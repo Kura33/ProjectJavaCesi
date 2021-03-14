@@ -5,11 +5,14 @@ public class Incident extends Event {
 
 	public enum Status {
 
-		STATUS_A("À prendre en charge"),
-		STATUS_B("Traitement en cours"),
-		STATUS_C("Intervention demandée"),
-		STATUS_D("Refusée");
+		TAKE_IN_CHARGE("À prendre en charge"),
+		WORK_IN_PROGRESS("Traitement en cours"),
+		INTERVENTION_CALLED("Intervention demandée"),
+		REFUSED("Refusée");
 
+		
+		
+		
 		private String status;
 
 		Status(String status) {
