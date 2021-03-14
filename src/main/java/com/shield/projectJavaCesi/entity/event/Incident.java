@@ -9,10 +9,7 @@ public class Incident extends Event {
 		WORK_IN_PROGRESS("Traitement en cours"),
 		INTERVENTION_CALLED("Intervention demandée"),
 		REFUSED("Refusée");
-
-		
-		
-		
+ 
 		private String status;
 
 		Status(String status) {
