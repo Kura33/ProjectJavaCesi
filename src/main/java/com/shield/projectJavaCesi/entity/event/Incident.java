@@ -1,5 +1,10 @@
 package com.shield.projectJavaCesi.entity.event;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "incident")
 public class Incident extends Event {
 	private Double dangerousness;
 
