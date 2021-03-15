@@ -21,8 +21,11 @@ public class Employee {
 	public enum Contract {
 		CDI("CDI"), CDD("CDD"), ALTERNANCE("Alternance"), STAGE("Stage"), NOT_CONCERNED("N/C");
 
-		Contract(String string) {
+		private String contract;
+
+		Contract(String contract) {
 			// TODO Auto-generated constructor stub
+			this.contract = contract;
 		}
 	}
 

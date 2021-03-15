@@ -8,10 +8,6 @@ public class Incident extends Event {
 		TAKE_IN_CHARGE("À prendre en charge"), WORK_IN_PROGRESS("Traitement en cours"),
 		INTERVENTION_CALLED("Intervention demandée"), REFUSED("Refusée");
 
-		public void setStatus(String status) {
-			this.status = status;
-		}
-
 		private String status;
 
 		Status(String status) {
@@ -21,6 +17,11 @@ public class Incident extends Event {
 		public String getStatus() {
 			return status;
 		}
+
+		public void setStatus(String status) {
+			this.status = status;
+		}
+
 	}
 
 	public Double getDangerousness() {
