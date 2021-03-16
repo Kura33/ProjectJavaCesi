@@ -1,12 +1,15 @@
 package com.shield.projectJavaCesi.entity.employee;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "employee_department")
+
 public class EmployeeDepartment {
 	@Id
 	@GeneratedValue
@@ -14,6 +17,9 @@ public class EmployeeDepartment {
 	private String departement;
 	private String city;
 	private String country;
+
+	@OneToMany(mappedBy = "employee_department")
+	private List<Employee> employee;
 
 	public int getId() {
 		return id;
