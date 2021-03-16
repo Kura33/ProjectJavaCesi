@@ -4,6 +4,7 @@ import com.shield.projectJavaCesi.entity.employee.Employee;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 import javax.persistence.*;
+import com.shield.projectJavaCesi.entity.being.Being;
 
 @Entity
 @Table(name = "comment")
@@ -21,4 +22,8 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name="superbeing_id", referencedColumnName = "id")
     private Superbeing superbeing;
+
+    @ManyToOne
+    @JoinColumn(name = "being_id", referencedColumnName = "id")
+    private Being being;
 }
