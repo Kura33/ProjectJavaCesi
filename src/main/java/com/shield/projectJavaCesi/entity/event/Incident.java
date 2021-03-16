@@ -1,5 +1,6 @@
 package com.shield.projectJavaCesi.entity.event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -33,11 +34,19 @@ public class Incident extends Event {
 
 	@ManyToMany
 	@JoinTable(name = "mission_incident", joinColumns = @JoinColumn(name = "mission_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
-	private List<Mission> mission;
+	private List<Mission> mission = new ArrayList<>();
+	
+	public void addMission(Mission mission) {
+		this.mission.add(mission);
+	}
 	
 	@ManyToMany
 	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
-	private List<Being> being;
+	private List<Being> being = new ArrayList<>();
+	
+	public void addBeing(Being being) {
+		this.mission.add(being);
+	}
 
 	public Status getStatus() {
 		return status;
