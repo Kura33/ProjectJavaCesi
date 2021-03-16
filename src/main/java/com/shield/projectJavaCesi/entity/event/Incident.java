@@ -10,23 +10,18 @@ public class Incident extends Event {
 
 	public enum Status {
 
-		TAKE_IN_CHARGE("À prendre en charge"), WORK_IN_PROGRESS("Traitement en cours"),
-		INTERVENTION_CALLED("Intervention demandée"), REFUSED("Refusée");
+		TAKE_IN_CHARGE, WORK_IN_PROGRESS, INTERVENTION_CALLED, REFUSED;
 
-		private String status;
+	}
 
-		Status(String status) {
-			this.status = status;
-		}
+	private Status status;
 
-		public String getStatus() {
-			return status;
-		}
+	public Status getStatus() {
+		return status;
+	}
 
-		public void setStatus(String status) {
-			this.status = status;
-		}
-
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public Double getDangerousness() {

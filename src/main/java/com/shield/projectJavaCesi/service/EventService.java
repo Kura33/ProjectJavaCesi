@@ -1,10 +1,8 @@
 package com.shield.projectJavaCesi.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.shield.projectJavaCesi.entity.event.Event;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.repository.IEventRepository;
@@ -29,13 +27,17 @@ public class EventService {
 	public List<Event> getEvents() {
 		return repository.findAll();
 	}
+
 	public String deleteEvent(int id) {
 		repository.deleteById(id);
-		return "Event" + id+ " deleted";
+		return "Event " + id + " deleted";
 	}
-	
+
 	public Incident updateIncident(Incident incident) {
 		Incident existingIncident = (Incident) repository.findById(incident.getId()).orElse(null);
+		if (existingIncident == null) {
+			return null;
+		}
 		existingIncident.setRef(incident.getRef());
 		existingIncident.setStartDate(incident.getStartDate());
 		existingIncident.setEndDate(incident.getEndDate());
@@ -43,7 +45,7 @@ public class EventService {
 		existingIncident.setArchive(incident.isArchive());
 		existingIncident.setEventType(incident.getEventType());
 		existingIncident.setDangerousness(incident.getDangerousness());
-		//existingIncident.setStatus(incident.getStatus);
+		existingIncident.setStatus(incident.getStatus());
 
 		return repository.save(existingIncident);
 	}
