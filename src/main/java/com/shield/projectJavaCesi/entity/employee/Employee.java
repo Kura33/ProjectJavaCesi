@@ -1,11 +1,17 @@
 package com.shield.projectJavaCesi.entity.employee;
 
 import java.util.Date;
-
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 
 @Entity
 @Table(name = "employee")
@@ -23,15 +29,25 @@ public class Employee {
 	private String password;
 
 	public enum Contract {
-		CDI("CDI"), CDD("CDD"), ALTERNANCE("Alternance"), STAGE("Stage"), NOT_CONCERNED("N/C");
+		OPEN_ENDED_CONTRACT, FIXED_TERM_CONTRACT, APPRENTICESHIP, INTERNSHIP, NOT_CONCERNED;
 
-		private String contract;
-
-		Contract(String contract) {
-			// TODO Auto-generated constructor stub
-			this.contract = contract;
-		}
 	}
+
+	private Contract contract;
+
+	@ManyToOne
+	@JoinColumn(name = "employee_department_id", referencedColumnName = "id")
+	private EmployeeDepartment employeeDepartment;
+
+	@OneToMany(mappedBy = "employee")
+	private List<Comment> comment;
+
+	@OneToMany(mappedBy = "employee")
+	private List<Media> media;
+
+	@OneToOne(optional = false)
+	@JoinColumn(name = "being_id", referencedColumnName = "ID")
+	private Being being;
 
 	public int getId() {
 		return id;
@@ -73,7 +89,7 @@ public class Employee {
 		this.endDate = endDate;
 	}
 
-	public Boolean getActive() {
+	public Boolean isActive() {
 		return active;
 	}
 
@@ -81,7 +97,7 @@ public class Employee {
 		this.active = active;
 	}
 
-	public Boolean getArchive() {
+	public Boolean isArchive() {
 		return archive;
 	}
 
@@ -103,6 +119,14 @@ public class Employee {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
 	}
 
 }
