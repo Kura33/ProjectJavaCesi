@@ -149,6 +149,18 @@ public abstract class Being {
 		public int getVictimOfHowManyMission() {
 			return victimOfHowManyMission;
 		}
+		public List<Comment> getComment() {
+			return comment;
+		}
+		public void setComment(List<Comment> comment) {
+			this.comment = comment;
+		}
+		public List<Media> getMedia() {
+			return media;
+		}
+		public void setMedia(List<Media> media) {
+			this.media = media;
+		}
 		public void setVictimOfHowManyMission(int victimOfHowManyMission) {
 			this.victimOfHowManyMission = victimOfHowManyMission;
 		}

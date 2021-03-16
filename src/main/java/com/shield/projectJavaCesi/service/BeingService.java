@@ -55,6 +55,8 @@ public class BeingService {
 		existingBeing.setHowManyDeclaredIncident(being.getHowManyDeclaredIncident());
 		existingBeing.setVictimOfHowManyMission(being.getVictimOfHowManyMission());
 		existingBeing.setArchive(being.isArchive());
+		existingBeing.setComment(being.getComment());
+		existingBeing.setMedia(being.getMedia());
 		return repository.save(existingBeing);
 	}
 }
