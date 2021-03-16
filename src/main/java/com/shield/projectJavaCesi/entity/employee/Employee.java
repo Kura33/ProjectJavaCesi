@@ -1,12 +1,17 @@
 package com.shield.projectJavaCesi.entity.employee;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 
 @Entity
 @Table(name = "employee")
@@ -33,6 +38,16 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name = "employee_department_id", referencedColumnName = "id")
 	private EmployeeDepartment employeeDepartment;
+
+	@OneToMany(mappedBy = "employee")
+	private List<Comment> comment;
+
+	@OneToMany(mappedBy = "employee")
+	private List<Media> media;
+
+	@OneToOne(optional = false)
+	@JoinColumn(name = "being_id", referencedColumnName = "ID")
+	private Being being;
 
 	public int getId() {
 		return id;

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 
 @Entity
 @Table(name = "employee_department")
@@ -20,6 +21,8 @@ public class EmployeeDepartment {
 
 	@OneToMany(mappedBy = "employee_department")
 	private List<Employee> employee;
+	@OneToMany(mappedBy = "employee_department")
+	private List<Comment> comment;
 
 	public int getId() {
 		return id;
