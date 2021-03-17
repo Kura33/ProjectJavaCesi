@@ -1,36 +1,36 @@
-package com.shield.projectJavaCesi.service;
+package com.shield.projectJavaCesi.service.event;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.shield.projectJavaCesi.entity.event.Event;
 import com.shield.projectJavaCesi.entity.event.Incident;
-import com.shield.projectJavaCesi.repository.IEventRepository;
+import com.shield.projectJavaCesi.repository.event.IIncidentRepository;
 
 @Service
-public class EventService {
+public class IncidentService {
 	@Autowired
-	private IEventRepository repository;
+	private IIncidentRepository repository;
 
-	public Event saveEvent(Event event) {
-		return repository.save(event);
+	public List<Incident> saveIncident(List<Incident> incidents) {
+		return repository.saveAll(incidents);
 	}
 
-	public List<Event> saveEvents(List<Event> events) {
-		return repository.saveAll(events);
-	}
-
-	public Event getEventById(int id) {
+	public Incident getIncidentById(int id) {
 		return repository.findById(id).orElse(null);
 	}
 
-	public List<Event> getEvents() {
+	public List<Incident> getIncidents() {
 		return repository.findAll();
 	}
 
-	public String deleteEvent(int id) {
+	public String deleteIncident(int id) {
 		repository.deleteById(id);
-		return "Event " + id + " deleted";
+		return "Incident " + id + " deleted";
+	}
+
+	public String deleteAllIncident() {
+		repository.deleteAll();
+		return "All Incidents deleted";
 	}
 
 	public Incident updateIncident(Incident incident) {
@@ -43,10 +43,11 @@ public class EventService {
 		existingIncident.setEndDate(incident.getEndDate());
 		existingIncident.setSolved(incident.isSolved());
 		existingIncident.setArchive(incident.isArchive());
-//		existingIncident.setEventType(incident.getEventType());
+//		existingIncident.setIncidentType(incident.getIncidentType());
 		existingIncident.setDangerousness(incident.getDangerousness());
-		existingIncident.setStatus(incident.getStatus());
+		// existingIncident.setStatus(incident.getStatus());
 
 		return repository.save(existingIncident);
 	}
+
 }

@@ -26,9 +26,9 @@ public abstract class Event {
 	private Boolean archive;
 	
 
-//	@ManyToOne
-//	@JoinColumn(name="event_type_id", referencedColumnName = "id")
-//	private EventType eventType;
+	@ManyToOne
+	@JoinColumn(name="event_type_id", referencedColumnName = "id")
+	private EventType eventType;
 	
 	public int getId() {
 		return id;
@@ -75,13 +75,13 @@ public abstract class Event {
 		this.archive = archive;
 	}
 
-//	public EventType getEventType() {
-//		return eventType;
-//	}
-//	public void setEventType(EventType eventType) {
-//		this.eventType = eventType;
-//	}
-//
+	public EventType getEventType() {
+		return eventType;
+	}
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
+	}
+
 	
 }
 
