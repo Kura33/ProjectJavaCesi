@@ -1,6 +1,7 @@
 package com.shield.projectJavaCesi.entity.multipleConnection;
 
 import com.shield.projectJavaCesi.entity.employee.Employee;
+import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 import javax.persistence.*;
@@ -28,4 +29,8 @@ public class Media {
     @ManyToOne
     @JoinColumn(name="being_id", referencedColumnName = "id")
     private Being being;
+    
+    @ManyToOne
+    @JoinColumn(name = "incident_id", referencedColumnName = "id")
+    private Incident incident;
 }
