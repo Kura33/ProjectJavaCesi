@@ -22,20 +22,24 @@ public class Employee {
 	@GeneratedValue
 	private int id;
 	private String ref;
-	private String fucntion;
+	private String function;
 	private Date startDate;
 	private Date endDate;
 	private Boolean active;
 	private Boolean archive;
 	private String email;
 	private String password;
+	private String contract;
+
+	public static final String OPEN_ENDED_CONTRACT = "CDI";
+	public static final String FIXED_TERM_CONTRACT = "CDD";
+	public static final String APPRENTICESHIP = "Alternance";
+	public static final String INTERNSHIP = "Internship";
+	public static final String NOT_CONCERNED = "N/C";
 
 	public enum Contract {
 		OPEN_ENDED_CONTRACT, FIXED_TERM_CONTRACT, APPRENTICESHIP, INTERNSHIP, NOT_CONCERNED;
-
 	}
-
-	private Contract contract;
 
 	@ManyToOne
 	@JoinColumn(name = "employee_department_id", referencedColumnName = "id")
@@ -67,12 +71,12 @@ public class Employee {
 		this.ref = ref;
 	}
 
-	public String getFucntion() {
-		return fucntion;
+	public String getFunction() {
+		return function;
 	}
 
-	public void setFucntion(String fucntion) {
-		this.fucntion = fucntion;
+	public void setFunction(String function) {
+		this.function = function;
 	}
 
 	public Date getStartDate() {
@@ -123,12 +127,11 @@ public class Employee {
 		this.password = password;
 	}
 
-	public Contract getContract() {
+	public String getContract() {
 		return contract;
 	}
 
-	public void setContract(Contract contract) {
+	public void setContract(String contract) {
 		this.contract = contract;
 	}
-
 }
