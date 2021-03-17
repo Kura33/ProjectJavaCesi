@@ -35,8 +35,6 @@ public class Superbeing {
     @OneToMany(mappedBy = "superbeing")
     private List<Being> being;
 
-    private int being_id;
-
     @OneToMany(mappedBy = "superbeing")
     private List<Comment> comment;
 

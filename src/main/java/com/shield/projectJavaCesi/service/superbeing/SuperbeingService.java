@@ -1,7 +1,7 @@
-package com.shield.projectJavaCesi.service;
+package com.shield.projectJavaCesi.service.superbeing;
 
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
-import com.shield.projectJavaCesi.repository.ISuperbeingRepository;
+import com.shield.projectJavaCesi.repository.superbeing.ISuperbeingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,30 +13,20 @@ public class SuperbeingService {
     @Autowired
     private ISuperbeingRepository repository;
 
-
-    public Superbeing saveSuperbeing(Superbeing superbeing) {
-        return repository.save(superbeing);
-    }
-
-    public List<Superbeing> saveSuperbeings(List<Superbeing> superbeings) {
-        return repository.saveAll(superbeings);
+    public List<Superbeing> getSuperbeings() {
+        return repository.findAll();
     }
 
     public Superbeing getSuperbeingById(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<Superbeing> getSuperbeings() {
-        return repository.findAll();
-    }
-
-    public String deleteSuperbeing(int id) {
-        repository.deleteById(id);
-        return "Superbeing " + id + " deleted";
+    public List<Superbeing> saveSuperbeings(List<Superbeing> superbeings) {
+        return repository.saveAll(superbeings);
     }
 
     public Superbeing updateSuperbeing(Superbeing superbeing) {
-        Superbeing existingSuperbeing = (Superbeing) repository.findById(superbeing.getId()).orElse(null);
+        Superbeing existingSuperbeing = repository.findById(superbeing.getId()).orElse(null);
         if (existingSuperbeing == null) {
             return null;
         }
@@ -56,6 +46,16 @@ public class SuperbeingService {
         existingSuperbeing.setArchive(superbeing.isArchive());
 
         return repository.save(existingSuperbeing);
+    }
+
+    public String deleteSuperbeing(int id) {
+        repository.deleteById(id);
+        return "Superbeing " + id + " deleted";
+    }
+
+    public String deleteAllSuperbeing() {
+        repository.deleteAll();
+        return "All Superbeings deleted";
     }
 
 }
