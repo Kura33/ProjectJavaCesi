@@ -43,7 +43,7 @@ public class EventService {
 		existingIncident.setEndDate(incident.getEndDate());
 		existingIncident.setSolved(incident.isSolved());
 		existingIncident.setArchive(incident.isArchive());
-		existingIncident.setEventType(incident.getEventType());
+//		existingIncident.setEventType(incident.getEventType());
 		existingIncident.setDangerousness(incident.getDangerousness());
 		existingIncident.setStatus(incident.getStatus());
 
