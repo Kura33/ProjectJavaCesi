@@ -12,6 +12,7 @@ import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 @Entity
+@Table(name = "being")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Being {
 
@@ -48,7 +49,7 @@ public abstract class Being {
 	    private Superbeing superbeing;
 	    
 	    @ManyToMany
-		@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"))
+		@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
 		private List<Incident> incident = new ArrayList<>();
 		
 		public int getId() {
