@@ -51,6 +51,10 @@ public abstract class Being {
 	    @ManyToMany
 		@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
 		private List<Incident> incident = new ArrayList<>();
+	    
+	    public void addIncident(Incident incident) {
+			this.incident.add(incident);
+		}
 		
 		public int getId() {
 			return id;

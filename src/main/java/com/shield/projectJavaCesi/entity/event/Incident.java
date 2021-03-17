@@ -50,10 +50,10 @@ public class Incident extends Event {
 //		this.mission.add(mission);
 //	}
 
-//	@ManyToMany
-//	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
-//	private List<Being> being = new ArrayList<>();
-//	
+	@ManyToMany
+	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
+	private List<Being> being = new ArrayList<>();
+	
 //	public void addBeing(Being being) {
 //		this.being.add(being);
 //	}
