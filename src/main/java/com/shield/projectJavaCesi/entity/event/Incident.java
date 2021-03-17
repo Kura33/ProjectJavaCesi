@@ -58,9 +58,9 @@ public class Incident extends Event {
 	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
 	private List<Being> being = new ArrayList<>();
 	
-	public void addBeing(Being being) {
-		this.being.add(being);
-	}
+	//	public void addBeing(Being being) {
+//		this.being.add(being);
+//	}
 
 	public String getStatus() {
 		return status;
