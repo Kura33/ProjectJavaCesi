@@ -18,11 +18,11 @@ public class EmployeeDepartment {
 	private String city;
 	private String country;
 
-//	@OneToMany(mappedBy = "employee_department")
-//	private List<Employee> employee;
-//
-//	@OneToMany(mappedBy = "employee_department")
-//	private List<Comment> comment;
+	@OneToMany(mappedBy = "employeeDepartment")
+	private List<Employee> employee;
+
+	@OneToMany(mappedBy = "employeeDepartment")
+	private List<Comment> comment;
 
 	public int getId() {
 		return id;
