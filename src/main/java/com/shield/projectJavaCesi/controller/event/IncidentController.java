@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.shield.projectJavaCesi.entity.event.Event;
 import com.shield.projectJavaCesi.entity.event.Incident;
-import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.service.event.IncidentService;
 
 @RestController

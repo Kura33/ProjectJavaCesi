@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,31 +33,34 @@ public class Incident extends Event {
 //			this.status
 //		}
 //	}
+	@ManyToOne
+	@JoinColumn(name="event_type_id", referencedColumnName = "id")
+	private EventType eventType;
 
-//	@OneToMany(mappedBy = "incident")
-//	private List<Comment> comment;
-//
-//	@OneToMany(mappedBy = "incident")
-//	private List<Media> media;
-//
-//	@OneToMany(mappedBy = "incident")
-//	private List<Location> location;
+	@OneToMany(mappedBy = "incident")
+	private List<Comment> comment;
 
-//	@ManyToMany
-//	@JoinTable(name = "mission_incident", joinColumns = @JoinColumn(name = "mission_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
-//	private List<Mission> mission = new ArrayList<>();
+	@OneToMany(mappedBy = "incident")
+	private List<Media> media;
 
-//	public void addMission(Mission mission) {
-//		this.mission.add(mission);
-//	}
+	@OneToMany(mappedBy = "incident")
+	private List<Location> location;
+
+	@ManyToMany
+	@JoinTable(name = "mission_incident", joinColumns = @JoinColumn(name = "mission_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
+	private List<Mission> mission = new ArrayList<>();
+
+	public void addMission(Mission mission) {
+		this.mission.add(mission);
+	}
 
 	@ManyToMany
 	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
 	private List<Being> being = new ArrayList<>();
 	
-//	public void addBeing(Being being) {
-//		this.being.add(being);
-//	}
+	public void addBeing(Being being) {
+		this.being.add(being);
+	}
 
 	public String getStatus() {
 		return status;
@@ -72,6 +76,13 @@ public class Incident extends Event {
 
 	public void setDangerousness(Double dangerousness) {
 		this.dangerousness = dangerousness;
+	}
+	
+	public EventType getEventType() {
+		return eventType;
+	}
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
 	}
 
 }
