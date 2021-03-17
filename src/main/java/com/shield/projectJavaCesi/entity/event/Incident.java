@@ -34,7 +34,7 @@ public class Incident extends Event {
 //		}
 //	}
 	@ManyToOne
-	@JoinColumn(name="event_type_id", referencedColumnName = "id")
+	@JoinColumn(name = "event_type_id", referencedColumnName = "id")
 	private EventType eventType;
 
 	@OneToMany(mappedBy = "incident")
@@ -55,9 +55,10 @@ public class Incident extends Event {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
+
+	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"))
 	private List<Being> being = new ArrayList<>();
-	
+
 	public void addBeing(Being being) {
 		this.being.add(being);
 	}
@@ -77,10 +78,11 @@ public class Incident extends Event {
 	public void setDangerousness(Double dangerousness) {
 		this.dangerousness = dangerousness;
 	}
-	
+
 	public EventType getEventType() {
 		return eventType;
 	}
+
 	public void setEventType(EventType eventType) {
 		this.eventType = eventType;
 	}

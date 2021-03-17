@@ -1,10 +1,10 @@
-package com.shield.projectJavaCesi.service;
+package com.shield.projectJavaCesi.service.employee;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shield.projectJavaCesi.entity.employee.Employee;
-import com.shield.projectJavaCesi.repository.IEmployeeRepository;
+import com.shield.projectJavaCesi.repository.employee.IEmployeeRepository;
 
 @Service
 public class EmployeeService {
