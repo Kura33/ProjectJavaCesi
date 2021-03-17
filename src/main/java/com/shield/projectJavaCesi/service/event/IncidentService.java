@@ -43,9 +43,9 @@ public class IncidentService {
 		existingIncident.setEndDate(incident.getEndDate());
 		existingIncident.setSolved(incident.isSolved());
 		existingIncident.setArchive(incident.isArchive());
-//		existingIncident.setIncidentType(incident.getIncidentType());
+		existingIncident.setEventType(incident.getEventType());
 		existingIncident.setDangerousness(incident.getDangerousness());
-		// existingIncident.setStatus(incident.getStatus());
+		existingIncident.setStatus(incident.getStatus());
 
 		return repository.save(existingIncident);
 	}
