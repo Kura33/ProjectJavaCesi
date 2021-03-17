@@ -15,8 +15,8 @@ public class EventType {
 	@GeneratedValue
 	private int id;
 	private String name;
-	@OneToMany(mappedBy = "event_type")
-	private List<Event> event;
+//	@OneToMany(mappedBy = "event_type")
+//	private List<Event> event;
 
 	public int getId() {
 		return id;
@@ -34,11 +34,11 @@ public class EventType {
 		this.name = name;
 	}
 
-	public List<Event> getEvent() {
-		return event;
-	}
-
-	public void setEvent(List<Event> event) {
-		this.event = event;
-	}
+//	public List<Event> getEvent() {
+//		return event;
+//	}
+//
+//	public void setEvent(List<Event> event) {
+//		this.event = event;
+//	}
 }

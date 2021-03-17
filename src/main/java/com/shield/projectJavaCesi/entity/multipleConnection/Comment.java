@@ -1,6 +1,7 @@
 package com.shield.projectJavaCesi.entity.multipleConnection;
 
 import com.shield.projectJavaCesi.entity.employee.Employee;
+import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 import javax.persistence.*;
@@ -26,4 +27,8 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "being_id", referencedColumnName = "id")
     private Being being;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_department_id", referencedColumnName = "id")
+    private EmployeeDepartment employeeDepartment;
 }

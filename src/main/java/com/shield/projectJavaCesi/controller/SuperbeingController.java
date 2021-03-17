@@ -15,19 +15,16 @@ public class SuperbeingController {
     @Autowired
     private SuperbeingService service;
 
-//    @PostMapping("/superbeing/create")
     @PostMapping("/create")
     public List<Superbeing> addSuperbeings(@RequestBody List<Superbeing> superbeings) {
         return service.saveSuperbeings(superbeings);
     }
 
-//    @GetMapping("/superbeing/{id}")
     @GetMapping("/{id}")
     public Superbeing findSuperbeingById(@PathVariable int id) {
         return service.getSuperbeingById(id);
     }
 
-//    @GetMapping("/superbeing")
     @GetMapping("/")
     public List<Superbeing> findAllSuperbeing() {
         return service.getSuperbeings();

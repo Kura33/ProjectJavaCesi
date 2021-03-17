@@ -1,5 +1,6 @@
 package com.shield.projectJavaCesi.entity.superbeing;
 
+import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 
@@ -31,10 +32,10 @@ public class Superbeing {
     private Boolean affiliated;
     private Boolean archive;
 
-//    @OneToMany(mappedBy = "superbeing")
-//    private List<Being> being;
+    @OneToMany(mappedBy = "superbeing")
+    private List<Being> being;
 
-//    private int being_id;
+    private int being_id;
 
     @OneToMany(mappedBy = "superbeing")
     private List<Comment> comment;

@@ -3,17 +3,14 @@ package com.shield.projectJavaCesi.entity.being;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
+import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 @Entity
-@Table(name = "being")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Being {
 
 		@Id
@@ -43,6 +40,10 @@ public abstract class Being {
 
 	    @OneToMany(mappedBy = "being")
 	    private List<Media> media;
+
+	    @ManyToOne
+		@JoinColumn(name = "superbeing_id", referencedColumnName = "id")
+	    private Superbeing superbeing;
 		
 		public int getId() {
 			return id;
