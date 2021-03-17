@@ -1,10 +1,12 @@
 package com.shield.projectJavaCesi.entity.being;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
+import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
@@ -44,6 +46,10 @@ public abstract class Being {
 	    @ManyToOne
 		@JoinColumn(name = "superbeing_id", referencedColumnName = "id")
 	    private Superbeing superbeing;
+	    
+	    @ManyToMany
+		@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"))
+		private List<Incident> incident = new ArrayList<>();
 		
 		public int getId() {
 			return id;
