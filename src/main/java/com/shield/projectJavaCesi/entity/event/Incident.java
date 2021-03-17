@@ -2,17 +2,13 @@ package com.shield.projectJavaCesi.entity.event;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Location;
@@ -22,17 +18,17 @@ import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 @Table(name = "incident")
 public class Incident extends Event {
 	private Double dangerousness;
-
-	// @Enumerated(EnumType.STRING)
 	private String status;
 
-//	public enum Status {
-//		TAKE_IN_CHARGE("À prendre en charge"), WORK_IN_PROGRESS("Traitement en cours"), INTERVENTION_CALLED("Intervention demandée"), REFUSED("Refusée");
-//
-//		Status(Status status) {
-//			this.status
-//		}
-//	}
+	public static final String TAKE_IN_CHARGE = "À prendre en charge";
+	public static final String WORK_IN_PROGRESS = "Traitement en cours";
+	public static final String INTERVENTION_CALLED = "Intervention demandée";
+	public static final String REFUSED = "Refusée";
+
+	public enum Status {
+		TAKE_IN_CHARGE, WORK_IN_PROGRESS, INTERVENTION_CALLED, REFUSED;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "event_type_id", referencedColumnName = "id")
 	private EventType eventType;
@@ -55,7 +51,6 @@ public class Incident extends Event {
 	}
 
 	@ManyToMany
-
 	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"))
 	private List<Being> being = new ArrayList<>();
 

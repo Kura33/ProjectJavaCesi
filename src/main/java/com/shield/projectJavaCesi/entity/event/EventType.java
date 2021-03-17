@@ -1,7 +1,6 @@
 package com.shield.projectJavaCesi.entity.event;
 
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +14,7 @@ public class EventType {
 	@GeneratedValue
 	private int id;
 	private String name;
-	
+
 	@OneToMany(mappedBy = "eventType")
 	private List<Incident> incident;
 
