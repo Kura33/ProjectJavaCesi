@@ -21,29 +21,53 @@ public class SuperbeingService {
         return repository.findById(id).orElse(null);
     }
 
-    public List<Superbeing> saveSuperbeings(List<Superbeing> superbeings) {
+    public List<Superbeing> saveSuperbeing(List<Superbeing> superbeings) {
         return repository.saveAll(superbeings);
     }
+
 
     public Superbeing updateSuperbeing(Superbeing superbeing) {
         Superbeing existingSuperbeing = repository.findById(superbeing.getId()).orElse(null);
         if (existingSuperbeing == null) {
             return null;
         }
-        existingSuperbeing.setRef(superbeing.getRef());
+        if (superbeing.getRef() != null) {
+
+            existingSuperbeing.setRef(superbeing.getRef());
+        }
         existingSuperbeing.setName(superbeing.getName());
         existingSuperbeing.setSuperhero(superbeing.isSuperhero());
         existingSuperbeing.setLikability(superbeing.getLikability());
+        if (superbeing.isActive() != null) {
         existingSuperbeing.setActive(superbeing.isActive());
-        existingSuperbeing.setEvent_participated_in(superbeing.getEvent_participated_in());
-        existingSuperbeing.setEvent_succeeded(superbeing.getEvent_succeeded());
-        existingSuperbeing.setEvent_failed(superbeing.getEvent_failed());
-        existingSuperbeing.setEvent_caused(superbeing.getEvent_caused());
+        }
+        if (superbeing.getEventParticipatedIn() != 0) {
+        existingSuperbeing.setEventParticipatedIn(superbeing.getEventParticipatedIn());
+        }
+        if (superbeing.getEventSucceeded() != 0) {
+        existingSuperbeing.setEventSucceeded(superbeing.getEventSucceeded());
+        }
+        if (superbeing.getEventFailed() != 0) {
+        existingSuperbeing.setEventFailed(superbeing.getEventFailed());
+        }
+        if (superbeing.getEventCaused() != 0) {
+        existingSuperbeing.setEventCaused(superbeing.getEventCaused());
+        }
+        if (superbeing.getDangerousness() != 0) {
         existingSuperbeing.setDangerousness(superbeing.getDangerousness());
-        existingSuperbeing.setDiscovered_at(superbeing.getDiscovered_at());
-        existingSuperbeing.setTreason_risk(superbeing.getTreason_risk());
+        }
+        if (superbeing.getDiscoveredAt() != null) {
+        existingSuperbeing.setDiscoveredAt(superbeing.getDiscoveredAt());
+        }
+        if (superbeing.getTreasonRisk() != 0) {
+        existingSuperbeing.setTreasonRisk(superbeing.getTreasonRisk());
+        }
+        if (superbeing.isAffiliated() != null) {
         existingSuperbeing.setAffiliated(superbeing.isAffiliated());
+        }
+        if (superbeing.isArchive() != null) {
         existingSuperbeing.setArchive(superbeing.isArchive());
+        }
 
         return repository.save(existingSuperbeing);
     }
