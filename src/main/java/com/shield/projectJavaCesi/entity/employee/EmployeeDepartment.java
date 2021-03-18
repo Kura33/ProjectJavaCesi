@@ -10,7 +10,6 @@ import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 
 @Entity
 @Table(name = "employee_department")
-
 public class EmployeeDepartment {
 	@Id
 	@GeneratedValue
@@ -19,9 +18,10 @@ public class EmployeeDepartment {
 	private String city;
 	private String country;
 
-	@OneToMany(mappedBy = "employee_department")
+	@OneToMany(mappedBy = "employeeDepartment")
 	private List<Employee> employee;
-	@OneToMany(mappedBy = "employee_department")
+
+	@OneToMany(mappedBy = "employeeDepartment")
 	private List<Comment> comment;
 
 	public int getId() {
