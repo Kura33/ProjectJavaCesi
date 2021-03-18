@@ -11,7 +11,7 @@ public class EmployeeService {
 	@Autowired
 	private IEmployeeRepository repository;
 
-	public List<Employee> saveEmlpoyees(List<Employee> employees) {
+	public List<Employee> saveEmployee(List<Employee> employees) {
 		return repository.saveAll(employees);
 	}
 
@@ -19,7 +19,7 @@ public class EmployeeService {
 		return repository.findById(id).orElse(null);
 	}
 
-	public List<Employee> getEmployee() {
+	public List<Employee> getEmployees() {
 		return repository.findAll();
 	}
 
@@ -33,7 +33,7 @@ public class EmployeeService {
 		return "All Employees deleted";
 	}
 
-	public Employee updateIncident(Employee employee) {
+	public Employee updateEmployee(Employee employee) {
 		Employee existingEmployee = (Employee) repository.findById(employee.getId()).orElse(null);
 		if (existingEmployee == null) {
 			return null;

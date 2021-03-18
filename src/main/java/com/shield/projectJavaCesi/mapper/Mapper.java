@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import com.shield.projectJavaCesi.entity.employee.Employee;
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
 
 public class Mapper {
 	public static Function<Incident, IncidentResource> incidentToIncidentResource = (incident) -> {
@@ -63,4 +65,20 @@ public class Mapper {
 		return result;
 
 	}
+	
+	public static Function<Employee, EmployeeResource> employeeToEmployeeResource = (employee) -> {
+		EmployeeResource res = new EmployeeResource();
+		res.id = employee.getId();
+		res.ref = employee.getRef();
+		res.function = employee.getFunction();
+		res.startDate = employee.getStartDate();
+		res.endDate = employee.getEndDate();
+		res.archive = employee.isArchive();
+		res.email = employee.getEmail();
+		res.password = employee.getPassword();
+		res.contract = employee.getContract();
+		return res;
+	};
+	
+	
 }
