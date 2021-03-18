@@ -38,15 +38,28 @@ public class IncidentService {
 		if (existingIncident == null) {
 			return null;
 		}
-		existingIncident.setRef(incident.getRef());
-		existingIncident.setStartDate(incident.getStartDate());
+		if (incident.getRef() != null) {
+			existingIncident.setRef(incident.getRef());
+		}
+		if (incident.getStartDate() != null) {
+			existingIncident.setStartDate(incident.getStartDate());
+		}
 		existingIncident.setEndDate(incident.getEndDate());
-		existingIncident.setSolved(incident.isSolved());
-		existingIncident.setArchive(incident.isArchive());
-		existingIncident.setEventType(incident.getEventType());
-		existingIncident.setDangerousness(incident.getDangerousness());
-		existingIncident.setStatus(incident.getStatus());
-
+		if (incident.isSolved() != null) {
+			existingIncident.setSolved(incident.isSolved());
+		}
+		if (incident.isArchive() != null) {
+			existingIncident.setArchive(incident.isArchive());
+		}
+		if (incident.getEventType() != null) {
+			existingIncident.setEventType(incident.getEventType());
+		}
+		if (incident.getDangerousness() != null) {
+			existingIncident.setDangerousness(incident.getDangerousness());
+		}
+		if (incident.getStatus() != null) {
+			existingIncident.setStatus(incident.getStatus());
+		}
 		return repository.save(existingIncident);
 	}
 
