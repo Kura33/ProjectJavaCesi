@@ -23,20 +23,20 @@ public class Mapper {
 		res.eventType = incident.getEventType().getName();
 		return res;
 	};
-	
-	public static Function<EventType, EventTypeResource> eventTypeToEventTypeResource = (eventType) ->{
+
+	public static Function<EventType, EventTypeResource> eventTypeToEventTypeResource = (eventType) -> {
 		EventTypeResource res = new EventTypeResource();
 		res.name = eventType.getName();
 		return res;
 	};
-	
+
 	public static <T, R> List<R> map(List<T> list, Function<T, R> func) {
 
-        List<R> result = new ArrayList<>();
-        for (T t : list) {
-            result.add(func.apply(t));
-        }
-        return result;
+		List<R> result = new ArrayList<>();
+		for (T t : list) {
+			result.add(func.apply(t));
+		}
+		return result;
 
-    }
+	}
 }
