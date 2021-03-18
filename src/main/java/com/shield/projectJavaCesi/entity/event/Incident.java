@@ -82,5 +82,4 @@ public class Incident extends Event {
 	public void setEventType(EventType eventType) {
 		this.eventType = eventType;
 	}
-
 }
