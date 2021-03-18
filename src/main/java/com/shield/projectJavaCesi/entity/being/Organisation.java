@@ -21,15 +21,40 @@ public class Organisation extends Being {
 	private String socialSecurityNumber;
 	
 	@ManyToMany
-	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "mission_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
-	private List<Mission> mission = new ArrayList<>();
+	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"))
+	private List<Civil> civil = new ArrayList<>();
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSiret() {
+		return siret;
+	}
+
+	public void setSiret(String siret) {
+		this.siret = siret;
+	}
+
+	public String getSocialSecurityNumber() {
+		return socialSecurityNumber;
+	}
+
+	public void setSocialSecurityNumber(String socialSecurityNumber) {
+		this.socialSecurityNumber = socialSecurityNumber;
+	}
+
+	public List<Civil> getCivil() {
+		return civil;
+	}
+
+	public void setCivil(List<Civil> civil) {
+		this.civil = civil;
+	}
 	
-	@ManyToMany
-	@JoinTable(
-	  name = "STUDENTS_COURSES",
-	  joinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID"),
-	  inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
-	)
-	private List<Civil> civils;
 	
 }
