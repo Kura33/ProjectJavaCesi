@@ -2,6 +2,8 @@ package com.shield.projectJavaCesi.entity.event;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -39,7 +41,7 @@ public class Incident extends Event {
 	@OneToMany(mappedBy = "incident")
 	private List<Media> media;
 
-	@OneToMany(mappedBy = "incident")
+	@OneToMany(mappedBy = "incident", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Location> location;
 
 	@ManyToMany

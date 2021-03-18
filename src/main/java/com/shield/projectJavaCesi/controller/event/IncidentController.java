@@ -1,7 +1,6 @@
 package com.shield.projectJavaCesi.controller.event;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.shield.projectJavaCesi.entity.event.Incident;
+import com.shield.projectJavaCesi.mapper.Mapper;
+import com.shield.projectJavaCesi.resource.IncidentResource;
 import com.shield.projectJavaCesi.service.event.IncidentService;
 
 @RestController
@@ -20,13 +21,21 @@ public class IncidentController {
 	private IncidentService service;
 
 	@GetMapping("/")
-	public List<Incident> findAllIncidents() {
-		return service.getIncidents();
+	public List<IncidentResource> findAllIncidents() {
+		List<Incident> incidents = service.getIncidents();
+		return Mapper.map(incidents, Mapper.incidentToIncidentResource);
+	}
+
+	@GetMapping("/{id}")
+	public IncidentResource findIncidentById(@PathVariable int id) {
+		Incident incident = service.getIncidentById(id);
+		return Mapper.incidentToIncidentResource.apply(incident);
 	}
 
 	@PostMapping("/create")
-	public List<Incident> addIncident(@RequestBody List<Incident> incident) {
-		return service.saveIncident(incident);
+	public List<IncidentResource> addIncident(@RequestBody List<Incident> incident) {
+		List<Incident> incidents = service.saveIncident(incident);
+		return Mapper.map(incidents, Mapper.incidentToIncidentResource);
 	}
 
 	@DeleteMapping("/delete/{id}")
