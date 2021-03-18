@@ -6,8 +6,8 @@ import java.util.function.Function;
 
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
-import com.shield.projectJavaCesi.resource.EventTypeResource;
-import com.shield.projectJavaCesi.resource.IncidentResource;
+import com.shield.projectJavaCesi.resource.event.EventTypeResource;
+import com.shield.projectJavaCesi.resource.event.IncidentResource;
 
 public class Mapper {
 	public static Function<Incident, IncidentResource> incidentToIncidentResource = (incident) -> {

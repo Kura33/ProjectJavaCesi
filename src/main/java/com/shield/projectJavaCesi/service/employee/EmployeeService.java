@@ -27,6 +27,7 @@ public class EmployeeService {
 		repository.deleteById(id);
 		return "Employee " + id + " deleted";
 	}
+
 	public String deleteAllEmployee() {
 		repository.deleteAll();
 		return "All Employees deleted";
@@ -37,16 +38,34 @@ public class EmployeeService {
 		if (existingEmployee == null) {
 			return null;
 		}
-		existingEmployee.setRef(employee.getRef());
-		existingEmployee.setFunction(employee.getFunction());
-		existingEmployee.setStartDate(employee.getStartDate());
-		existingEmployee.setEndDate(employee.getEndDate());
-		existingEmployee.setActive(employee.isActive());
-		existingEmployee.setArchive(employee.isArchive());
-		existingEmployee.setEmail(employee.getEmail());
-		existingEmployee.setPassword(employee.getPassword());
-		existingEmployee.setContract(employee.getContract());
-
+		if (employee.getRef() != null) {
+			existingEmployee.setRef(employee.getRef());			
+		}
+		if (employee.getFunction() != null) {
+			existingEmployee.setFunction(employee.getFunction());
+		}
+		if (employee.getStartDate() != null) {
+			existingEmployee.setStartDate(employee.getStartDate());
+		}
+		if (employee.getEndDate() != null) {
+			existingEmployee.setEndDate(employee.getEndDate());
+		}
+		
+		if (employee.isActive() != null) {
+			existingEmployee.setActive(employee.isActive());
+		}
+		if (employee.isArchive() != null) {
+			existingEmployee.setArchive(employee.isArchive());
+		}
+		if (employee.getEmail() != null) {
+			existingEmployee.setEmail(employee.getEmail());
+		}
+		if (employee.getPassword() != null) {
+			existingEmployee.setPassword(employee.getPassword());
+		}
+		if (employee.getContract() != null) {
+			existingEmployee.setContract(employee.getContract());
+		}
 		return repository.save(existingEmployee);
 	}
 }
