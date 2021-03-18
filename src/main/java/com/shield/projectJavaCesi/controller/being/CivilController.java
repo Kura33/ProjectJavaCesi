@@ -21,7 +21,7 @@ import com.shield.projectJavaCesi.resource.being.CivilResource;
 import com.shield.projectJavaCesi.service.being.CivilService;
 
 @RestController
-@RequestMapping(path = "/incident")
+@RequestMapping(path = "/civil")
 @Transactional
 public class CivilController {
 	@Autowired
@@ -32,43 +32,43 @@ public class CivilController {
 
 //	@GetMapping("/")
 //	public List<CivilResource> findAllCivils() {
-//		List<Civil> incidents = service.getCivils();
-//		return Mapper.map(incidents, Mapper.incidentToCivilResource);
+//		List<Civil> civils = service.getCivils();
+//		return Mapper.map(civils, Mapper.civilToCivilResource);
 //	}
-//
+
 //	@GetMapping("/{id}")
 //	public CivilResource findCivilById(@PathVariable int id) {
-//		Civil incident = service.getCivilById(id);
-//		return Mapper.incidentToCivilResource.apply(incident);
+//		Civil civil = service.getCivilById(id);
+//		return Mapper.civilToCivilResource.apply(civil);
 //	}
-//
+
 //	@PostMapping("/create")
-//	public List<CivilResource> addCivil(@RequestBody List<Civil> incident) {
-//		List<Civil> incidents = service.saveCivil(incident);
+//	public List<CivilResource> addCivil(@RequestBody List<Civil> civil) {
+//		List<Civil> civils = service.saveCivil(civil);
 //		em.flush();
-//		for (Civil incident1 : incidents) {
+//		for (Civil civil1 : civils) {
 //
-//			em.refresh(incident1);
+//			em.refresh(civil1);
 //		}
-//		return Mapper.map(incidents, Mapper.incidentToCivilResource);
+//		return Mapper.map(civils, Mapper.civilToCivilResource);
 //	}
-//
+
 //	@PutMapping("/update")
-//	public CivilResource updateCivil(@RequestBody Civil incident) {
-//		Civil incidents = service.updateCivil(incident);
+//	public CivilResource updateCivil(@RequestBody Civil civil) {
+//		Civil civils = service.updateCivil(civil);
 //		em.flush();
-//		em.refresh(incidents);
+//		em.refresh(civils);
 //
-//		return Mapper.incidentToCivilResource.apply(incidents);
+//		return Mapper.civilToCivilResource.apply(civils);
 //	}
-//
-//	@DeleteMapping("/delete/{id}")
-//	public String deleteCivilById(@PathVariable int id) {
-//		return service.deleteCivil(id);
-//	}
-//
-//	@DeleteMapping("/delete-all")
-//	public String deleteCivils() {
-//		return service.deleteAllCivil();
-//	}
+
+	@DeleteMapping("/delete/{id}")
+	public String deleteCivilById(@PathVariable int id) {
+		return service.deleteCivil(id);
+	}
+
+	@DeleteMapping("/delete-all")
+	public String deleteCivils() {
+		return service.deleteAllCivil();
+	}
 }
