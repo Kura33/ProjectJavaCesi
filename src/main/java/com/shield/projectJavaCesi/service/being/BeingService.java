@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shield.projectJavaCesi.entity.being.Being;
-import com.shield.projectJavaCesi.repository.IBeingRepository;
+import com.shield.projectJavaCesi.repository.being.IBeingRepository;
 
 @Service
 public class BeingService {

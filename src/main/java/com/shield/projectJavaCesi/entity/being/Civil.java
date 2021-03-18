@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 
 
 @Entity
-@DiscriminatorValue("CIVIL")
+@DiscriminatorValue("0")
 public class Civil extends Being {
 
 	private String firstName;
@@ -29,6 +29,10 @@ public class Civil extends Being {
 	@ManyToMany
 	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"))
 	private List<Organisation> organisation = new ArrayList<>();
+	
+	public void addOrganisation(Organisation organisation) {
+		this.organisation.add(organisation);
+	}
 
 	public String getFirstName() {
 		return firstName;
