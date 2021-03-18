@@ -14,6 +14,8 @@ import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 @Entity
 @Table(name = "being")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE_ENTITE")
+@DiscriminatorValue("BEING")
 public abstract class Being {
 
 		@Id
