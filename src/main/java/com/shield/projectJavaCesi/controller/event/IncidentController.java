@@ -1,6 +1,10 @@
 package com.shield.projectJavaCesi.controller.event;
 
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +20,13 @@ import com.shield.projectJavaCesi.service.event.IncidentService;
 
 @RestController
 @RequestMapping(path = "/incident")
+@Transactional
 public class IncidentController {
 	@Autowired
 	private IncidentService service;
+
+	@Autowired
+	private EntityManager em;
 
 	@GetMapping("/")
 	public List<IncidentResource> findAllIncidents() {
@@ -35,6 +43,11 @@ public class IncidentController {
 	@PostMapping("/create")
 	public List<IncidentResource> addIncident(@RequestBody List<Incident> incident) {
 		List<Incident> incidents = service.saveIncident(incident);
+		em.flush();
+		for (Incident incident1 : incidents) {
+
+			em.refresh(incident1);
+		}
 		return Mapper.map(incidents, Mapper.incidentToIncidentResource);
 	}
 
