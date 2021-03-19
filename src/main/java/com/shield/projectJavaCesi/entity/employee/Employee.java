@@ -139,4 +139,36 @@ public class Employee {
 	public void setContract(String contract) {
 		this.contract = contract;
 	}
+
+	public EmployeeDepartment getEmployeeDepartment() {
+		return employeeDepartment;
+	}
+
+	public void setEmployeeDepartment(EmployeeDepartment employeeDepartment) {
+		this.employeeDepartment = employeeDepartment;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public List<Media> getMedia() {
+		return media;
+	}
+
+	public void setMedia(List<Media> media) {
+		this.media = media;
+	}
+
+	public Being getBeing() {
+		return being;
+	}
+
+	public void setBeing(Being being) {
+		this.being = being;
+	}
 }
