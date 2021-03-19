@@ -20,7 +20,7 @@ public class EmployeeDepartment {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
-	private String departement;
+	private String department;
 	private String city;
 	private String country;
 
@@ -39,11 +39,11 @@ public class EmployeeDepartment {
 	}
 
 	public String getDepartement() {
-		return departement;
+		return department;
 	}
 
-	public void setDepartement(String departement) {
-		this.departement = departement;
+	public void setDepartement(String department) {
+		this.department = department;
 	}
 
 	public String getCity() {
