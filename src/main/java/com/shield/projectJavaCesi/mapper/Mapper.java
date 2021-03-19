@@ -6,10 +6,12 @@ import java.util.function.Function;
 
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
+import com.shield.projectJavaCesi.entity.superbeing.Ability;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.resource.EventTypeResource;
 import com.shield.projectJavaCesi.resource.IncidentResource;
-import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 
 public class Mapper {
 	public static Function<Incident, IncidentResource> incidentToIncidentResource = (incident) -> {
@@ -53,7 +55,15 @@ public class Mapper {
 		res.name = eventType.getName();
 		return res;
 	};
-	
+
+	public static Function<Ability, AbilityResource> abilityToAbilityResource = (ability) ->{
+		AbilityResource res = new AbilityResource();
+		res.id = ability.getId();
+		res.name = ability.getName();
+		res.weakness = ability.isWeakness();
+		return res;
+	};
+
 	public static <T, R> List<R> map(List<T> list, Function<T, R> func) {
 
         List<R> result = new ArrayList<>();

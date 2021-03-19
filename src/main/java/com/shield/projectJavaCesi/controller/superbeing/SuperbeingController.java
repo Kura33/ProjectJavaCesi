@@ -3,7 +3,7 @@ package com.shield.projectJavaCesi.controller.superbeing;
 
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.mapper.Mapper;
-import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.service.superbeing.SuperbeingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/superbeing")
+@RequestMapping(path = "/shield/superbeing")
 @Transactional
 public class SuperbeingController {
 
