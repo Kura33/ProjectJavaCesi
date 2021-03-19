@@ -9,8 +9,10 @@ public class EmployeeResource {
 	public Date startDate;
 	public Date endDate;
 	public Boolean active;
+	public String contract;
 	public Boolean archive;
 	public String email;
 	public String password;
-	public String contract;
+	// public BeingResource being;
+	public EmployeeDepartmentResource department;
 }
