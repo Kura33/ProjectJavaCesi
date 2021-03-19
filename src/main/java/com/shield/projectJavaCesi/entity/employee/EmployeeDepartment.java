@@ -3,18 +3,24 @@ package com.shield.projectJavaCesi.entity.employee;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 
 @Entity
 @Table(name = "employee_department")
 public class EmployeeDepartment {
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
-	private String departement;
+	private String department;
 	private String city;
 	private String country;
 
@@ -33,11 +39,11 @@ public class EmployeeDepartment {
 	}
 
 	public String getDepartement() {
-		return departement;
+		return department;
 	}
 
-	public void setDepartement(String departement) {
-		this.departement = departement;
+	public void setDepartement(String department) {
+		this.department = department;
 	}
 
 	public String getCity() {
@@ -55,5 +61,4 @@ public class EmployeeDepartment {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
 }

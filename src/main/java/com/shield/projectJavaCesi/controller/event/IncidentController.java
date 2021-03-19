@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.mapper.Mapper;
-import com.shield.projectJavaCesi.resource.IncidentResource;
+import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.service.event.IncidentService;
 
 @RestController
