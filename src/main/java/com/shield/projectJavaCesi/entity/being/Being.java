@@ -17,13 +17,13 @@ import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 @DiscriminatorColumn(name="organisation", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Being {
 
+	//@Column(name = "id", updatable = false, nullable = false)
+	//@MapsId("id")
 		@Id
-		//@MapsId("id")
-		//@Column(name = "id", updatable = false, nullable = false)
 		@GeneratedValue
 		private int id;
 		private String ref;
-		private Boolean organisation;
+		//private Boolean organisation;
 		private Boolean malevolant;
 		private String email;
 		private String password;
@@ -71,12 +71,7 @@ public abstract class Being {
 		public void setRef(String ref) {
 			this.ref = ref;
 		}
-		public Boolean isOrganisation() {
-			return organisation;
-		}
-		public void setOrganisation(Boolean organisation) {
-			this.organisation = organisation;
-		}
+		
 		public Boolean isMalevolant() {
 			return malevolant;
 		}

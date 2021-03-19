@@ -3,6 +3,7 @@ package com.shield.projectJavaCesi.entity.being;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -27,13 +28,12 @@ public class Civil extends Being {
 		MR, MME;
 	}
 	
-	//@ManyToMany
-	//@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"))
-	@OneToMany(mappedBy = "civil")
-	private List<Organisation> organisation = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"))
+	private List<Organisation> organisations = new ArrayList<>();
 	
 	public void addOrganisation(Organisation organisation) {
-		this.organisation.add(organisation);
+		this.organisations.add(organisation);
 	}
 
 	public String getFirstName() {
@@ -69,11 +69,10 @@ public class Civil extends Being {
 	}
 
 	public List<Organisation> getOrganisation() {
-		return organisation;
+		return organisations;
 	}
 
 	public void setOrganisation(List<Organisation> organisation) {
-		this.organisation = organisation;
+		this.organisations = organisations;
 	}
-	
 }

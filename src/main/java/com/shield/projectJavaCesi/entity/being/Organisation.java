@@ -3,6 +3,7 @@ package com.shield.projectJavaCesi.entity.being;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -20,15 +21,14 @@ public class Organisation extends Being {
 	private String name;
 	private String siret;
 	
-	//@ManyToMany
-	//@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"))
 	
-	@OneToMany(mappedBy = "organisation")
-	private List<CivilOnOrganisation> civilOnOrganisation = new ArrayList<>();
+	//@OneToMany(mappedBy = "organisation")
+	//private List<CivilOnOrganisation> civilOnOrganisation = new ArrayList<>();
+		
+	@ManyToMany
+	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"))
+	private List<Civil> civils = new ArrayList();
 	
-	public void addCivil(CivilOnOrganisation civilOnOrganisation) {
-		this.civilOnOrganisation.add(civilOnOrganisation);
-	}
 
 	public String getName() {
 		return name;
@@ -46,13 +46,12 @@ public class Organisation extends Being {
 		this.siret = siret;
 	}
 
-	public List<CivilOnOrganisation> getCivilOnOrganisation() {
-		return civilOnOrganisation;
+	public List<Civil> getCivils() {
+		return civils;
 	}
 
-	public void setCivilOnOrganisation(List<CivilOnOrganisation> civilOnOrganisation) {
-		this.civilOnOrganisation = civilOnOrganisation;
+	public void setCivils(List<Civil> civils) {
+		this.civils = civils;
 	}
-	
 	
 }
