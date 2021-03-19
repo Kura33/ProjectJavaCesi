@@ -14,10 +14,12 @@ import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 @Entity
 @Table(name = "being")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="organisation")
+@DiscriminatorColumn(name="organisation", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Being {
 
 		@Id
+		//@MapsId("id")
+		//@Column(name = "id", updatable = false, nullable = false)
 		@GeneratedValue
 		private int id;
 		private String ref;

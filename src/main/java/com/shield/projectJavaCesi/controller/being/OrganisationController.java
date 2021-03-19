@@ -30,38 +30,37 @@ public class OrganisationController {
 	@Autowired
 	private EntityManager em;
 
-//	TODO : MAPPER
-//	@GetMapping("/")
-//	public List<OrganisationResource> findAllOrganisations() {
-//		List<Organisation> organisations = service.getOrganisations();
-//		return Mapper.map(organisations, Mapper.organisationToOrganisationResource);
-//	}
-//
-//	@GetMapping("/{id}")
-//	public OrganisationResource findOrganisationById(@PathVariable int id) {
-//		Organisation organisation = service.getOrganisationById(id);
-//		return Mapper.organisationToOrganisationResource.apply(organisation);
-//	}
-//
-//	@PostMapping("/create")
-//	public List<OrganisationResource> addOrganisation(@RequestBody List<Organisation> organisation) {
-//		List<Organisation> organisations = service.saveOrganisation(organisation);
-//		em.flush();
-//		for (Organisation organisation1 : organisations) {
-//
-//			em.refresh(organisation1);
-//		}
-//		return Mapper.map(organisations, Mapper.organisationToOrganisationResource);
-//	}
-//
-//	@PutMapping("/update")
-//	public OrganisationResource updateOrganisation(@RequestBody Organisation organisation) {
-//		Organisation organisations = service.updateOrganisation(organisation);
-//		em.flush();
-//		em.refresh(organisations);
-//
-//		return Mapper.organisationToOrganisationResource.apply(organisations);
-//	}
+	@GetMapping("/")
+	public List<OrganisationResource> findAllOrganisations() {
+		List<Organisation> organisations = service.getOrganisations();
+		return Mapper.map(organisations, Mapper.organisationToOrganisationResource);
+	}
+
+	@GetMapping("/{id}")
+	public OrganisationResource findOrganisationById(@PathVariable int id) {
+		Organisation organisation = service.getOrganisationById(id);
+		return Mapper.organisationToOrganisationResource.apply(organisation);
+	}
+
+	@PostMapping("/create")
+	public List<OrganisationResource> addOrganisation(@RequestBody List<Organisation> organisation) {
+		List<Organisation> organisations = service.saveOrganisation(organisation);
+		em.flush();
+		for (Organisation organisation1 : organisations) {
+
+			em.refresh(organisation1);
+		}
+		return Mapper.map(organisations, Mapper.organisationToOrganisationResource);
+	}
+
+	@PutMapping("/update")
+	public OrganisationResource updateOrganisation(@RequestBody Organisation organisation) {
+		Organisation organisations = service.updateOrganisation(organisation);
+		em.flush();
+		em.refresh(organisations);
+
+		return Mapper.organisationToOrganisationResource.apply(organisations);
+	}
 
 	@DeleteMapping("/delete/{id}")
 	public String deleteOrganisationById(@PathVariable int id) {

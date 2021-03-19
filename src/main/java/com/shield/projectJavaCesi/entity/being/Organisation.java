@@ -8,23 +8,26 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.shield.projectJavaCesi.entity.event.Mission;
 
 
-@Entity
+@Entity(name = "Organisation")
 @DiscriminatorValue("1")
 public class Organisation extends Being {
 
 	private String name;
 	private String siret;
 	
-	@ManyToMany
-	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"))
-	private List<Civil> civil = new ArrayList<>();
+	//@ManyToMany
+	//@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"))
 	
-	public void addCivil(Civil civil) {
-		this.civil.add(civil);
+	@OneToMany(mappedBy = "organisation")
+	private List<CivilOnOrganisation> civilOnOrganisation = new ArrayList<>();
+	
+	public void addCivil(CivilOnOrganisation civilOnOrganisation) {
+		this.civilOnOrganisation.add(civilOnOrganisation);
 	}
 
 	public String getName() {
@@ -43,12 +46,12 @@ public class Organisation extends Being {
 		this.siret = siret;
 	}
 
-	public List<Civil> getCivil() {
-		return civil;
+	public List<CivilOnOrganisation> getCivilOnOrganisation() {
+		return civilOnOrganisation;
 	}
 
-	public void setCivil(List<Civil> civil) {
-		this.civil = civil;
+	public void setCivilOnOrganisation(List<CivilOnOrganisation> civilOnOrganisation) {
+		this.civilOnOrganisation = civilOnOrganisation;
 	}
 	
 	

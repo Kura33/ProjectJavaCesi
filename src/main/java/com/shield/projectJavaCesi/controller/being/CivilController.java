@@ -30,37 +30,37 @@ public class CivilController {
 	@Autowired
 	private EntityManager em;
 
-//	@GetMapping("/")
-//	public List<CivilResource> findAllCivils() {
-//		List<Civil> civils = service.getCivils();
-//		return Mapper.map(civils, Mapper.civilToCivilResource);
-//	}
+	@GetMapping("/")
+	public List<CivilResource> findAllCivils() {
+		List<Civil> civils = service.getCivils();
+		return Mapper.map(civils, Mapper.civilToCivilResource);
+	}
 
-//	@GetMapping("/{id}")
-//	public CivilResource findCivilById(@PathVariable int id) {
-//		Civil civil = service.getCivilById(id);
-//		return Mapper.civilToCivilResource.apply(civil);
-//	}
+	@GetMapping("/{id}")
+	public CivilResource findCivilById(@PathVariable int id) {
+		Civil civil = service.getCivilById(id);
+		return Mapper.civilToCivilResource.apply(civil);
+	}
 
-//	@PostMapping("/create")
-//	public List<CivilResource> addCivil(@RequestBody List<Civil> civil) {
-//		List<Civil> civils = service.saveCivil(civil);
-//		em.flush();
-//		for (Civil civil1 : civils) {
-//
-//			em.refresh(civil1);
-//		}
-//		return Mapper.map(civils, Mapper.civilToCivilResource);
-//	}
+	@PostMapping("/create")
+	public List<CivilResource> addCivil(@RequestBody List<Civil> civil) {
+		List<Civil> civils = service.saveCivil(civil);
+		em.flush();
+		for (Civil civil1 : civils) {
 
-//	@PutMapping("/update")
-//	public CivilResource updateCivil(@RequestBody Civil civil) {
-//		Civil civils = service.updateCivil(civil);
-//		em.flush();
-//		em.refresh(civils);
-//
-//		return Mapper.civilToCivilResource.apply(civils);
-//	}
+			em.refresh(civil1);
+		}
+		return Mapper.map(civils, Mapper.civilToCivilResource);
+	}
+
+	@PutMapping("/update")
+	public CivilResource updateCivil(@RequestBody Civil civil) {
+		Civil civils = service.updateCivil(civil);
+		em.flush();
+		em.refresh(civils);
+
+		return Mapper.civilToCivilResource.apply(civils);
+	}
 
 	@DeleteMapping("/delete/{id}")
 	public String deleteCivilById(@PathVariable int id) {

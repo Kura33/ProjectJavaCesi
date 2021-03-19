@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -26,8 +27,9 @@ public class Civil extends Being {
 		MR, MME;
 	}
 	
-	@ManyToMany
-	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"))
+	//@ManyToMany
+	//@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"))
+	@OneToMany(mappedBy = "civil")
 	private List<Organisation> organisation = new ArrayList<>();
 	
 	public void addOrganisation(Organisation organisation) {

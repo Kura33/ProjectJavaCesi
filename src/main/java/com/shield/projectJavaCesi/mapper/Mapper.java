@@ -72,7 +72,7 @@ public class Mapper {
 		return res;
 	};
 	
-	public static Function<Civil, CivilResource> CivilToCivilResource = (civil) -> {
+	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
 		res.firstName = civil.getFirstName();
@@ -100,7 +100,7 @@ public class Mapper {
 		return res;
 	};
 	
-	public static Function<Organisation, OrganisationResource> OrganisationToOrganisationResource = (organisation) -> {
+	public static Function<Organisation, OrganisationResource> organisationToOrganisationResource = (organisation) -> {
 		OrganisationResource res = new OrganisationResource();
 		res.id = organisation.getId();
 		res.name = organisation.getName();
