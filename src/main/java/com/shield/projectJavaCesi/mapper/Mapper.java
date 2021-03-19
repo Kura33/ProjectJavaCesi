@@ -7,9 +7,11 @@ import com.shield.projectJavaCesi.entity.employee.Employee;
 import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
+import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 import com.shield.projectJavaCesi.resource.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
@@ -89,6 +91,30 @@ public class Mapper {
 		res.contract = employee.getContract();
 		// res.being = Mapper.beingToBeingResource.apply(being.getBeing());
 		res.department = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(employee.getEmployeeDepartment());
+		return res;
+	};
+
+	public static Function<Comment, CommentResource> commentToCommentResource = (comment) -> {
+		CommentResource res = new CommentResource();
+		res.id = comment.getId();
+		res.comments = comment.getComments();
+		res.superbeing = Mapper.superbeingToSuperbeingResource.apply(comment.getSuperbeing());
+		// res.being = Mapper.beingToBeingResource.apply(comment.getBeing());
+		// res.accessRole =
+		// Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());
+		res.employee = Mapper.employeeToEmployeeResource.apply(comment.getEmployee());
+		// res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
+		res.employeeDepartment = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(comment.getEmployeeDepartment());
+		// res.location =
+		// Mapper.locationToLocationResource.apply(comment.getLocation());
+		// res.media = Mapper.mediaToMediaResource.apply(comment.getMedia());
+		// res.feedback =
+		// Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());
+		// res.litige = Mapper.litigeToLitigeResource.apply(comment.getLitige());
+		res.eventType = Mapper.eventTypeToEventTypeResource.apply(comment.getEventType());
+		res.incident = Mapper.incidentToIncidentResource.apply(comment.getIncident());
+		// res.mission = Mapper.missionToMissionResource.apply(comment.getMission());
+
 		return res;
 	};
 
