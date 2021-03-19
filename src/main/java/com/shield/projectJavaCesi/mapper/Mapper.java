@@ -80,7 +80,7 @@ public class Mapper {
 		res.socialSecurityNumber = civil.getSocialSecurityNumber();
 		res.gender = civil.getGender();
 		res.ref = civil.getRef();
-		res.organisation = civil.isOrganisation();
+		//res.organisation = civil.isOrganisation();
 		res.malevolant = civil.isMalevolant();
 		res.email = civil.getEmail();
 		res.password = civil.getPassword();
@@ -106,7 +106,7 @@ public class Mapper {
 		res.name = organisation.getName();
 		res.siret = organisation.getSiret();
 		res.ref = organisation.getRef();
-		res.organisation = organisation.isOrganisation();
+		//res.organisation = organisation.isOrganisation();
 		res.malevolant = organisation.isMalevolant();
 		res.email = organisation.getEmail();
 		res.password = organisation.getPassword();

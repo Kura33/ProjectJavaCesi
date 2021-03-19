@@ -53,9 +53,9 @@ public class CivilService {
 		if (civil.getGender() != null) {
 			existingCivil.setGender(civil.getGender());
 		}
-		if (civil.isOrganisation() != null) {
-			existingCivil.setOrganisation(civil.isOrganisation());
-		}
+//		if (civil.isOrganisation() != null) {
+//			existingCivil.setOrganisation(civil.isOrganisation());
+//		}
 		if (civil.isMalevolant() != null) {
 			existingCivil.setMalevolant(civil.isMalevolant());
 		}

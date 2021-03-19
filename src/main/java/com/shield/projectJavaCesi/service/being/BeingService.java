@@ -37,7 +37,7 @@ public class BeingService {
 	public Being updateBeing(Being being) {
 		Being existingBeing=repository.findById(being.getId()).orElse(null);
 		existingBeing.setId(being.getId());
-		existingBeing.setOrganisation(being.isOrganisation());
+		//existingBeing.setOrganisation(being.isOrganisation());
 		existingBeing.setMalevolant(being.isMalevolant());
 		existingBeing.setEmail(being.getEmail());
 		existingBeing.setPassword(being.getPassword());

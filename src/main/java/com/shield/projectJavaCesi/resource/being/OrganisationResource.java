@@ -7,7 +7,7 @@ public class OrganisationResource {
 	public String name;
 	public String siret;
 	public String ref;
-	public Boolean organisation;
+	//public Boolean organisation;
 	public Boolean malevolant;
 	public String email;
 	public String password;

@@ -50,9 +50,9 @@ public class OrganisationService {
 		if (organisation.getSiret() != null) {
 			existingOrganisation.setSiret(organisation.getSiret());
 		}
-		if (organisation.isOrganisation() != null) {
-			existingOrganisation.setOrganisation(organisation.isOrganisation());
-		}
+//		if (organisation.isOrganisation() != null) {
+//			existingOrganisation.setOrganisation(organisation.isOrganisation());
+//		}
 		if (organisation.isMalevolant() != null) {
 			existingOrganisation.setMalevolant(organisation.isMalevolant());
 		}

@@ -9,7 +9,7 @@ public class CivilResource {
 	public String socialSecurityNumber;
 	public String gender;
 	public String ref;
-	public Boolean organisation;
+	//public Boolean organisation;
 	public Boolean malevolant;
 	public String email;
 	public String password;
