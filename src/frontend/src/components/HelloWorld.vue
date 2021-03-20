@@ -11,7 +11,7 @@ export default {
     }
   },
   mounted() {
-    fetch("/shield/incident/message")
+    fetch("/shield/superbeing/hello")
     .then((response) => response.text())
     .then((data) => {
       this.msg = data;
