@@ -1,13 +1,11 @@
 package com.shield.projectJavaCesi.entity.being;
 
+import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 
 @Entity
@@ -31,6 +29,10 @@ public class Civil extends Being {
 	public enum Gender {
 		GENDER_MR, GENDER_MME;
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "access_role_id", referencedColumnName = "id")
+	private AccessRole accessRole;
 	
 	@ManyToMany
 	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"))
@@ -72,7 +74,6 @@ public class Civil extends Being {
 		this.title = title;
 	}
 
-
 	public String getGender() {
 		return gender;
 	}
@@ -85,4 +86,19 @@ public class Civil extends Being {
 		return organisations;
 	}
 
+	public AccessRole getAccessRole() {
+		return accessRole;
+	}
+
+	public void setAccessRole(AccessRole accessRole) {
+		this.accessRole = accessRole;
+	}
+
+	public List<Organisation> getOrganisations() {
+		return organisations;
+	}
+
+	public void setOrganisations(List<Organisation> organisations) {
+		this.organisations = organisations;
+	}
 }

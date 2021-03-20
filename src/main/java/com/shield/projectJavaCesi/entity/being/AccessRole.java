@@ -1,8 +1,10 @@
 package com.shield.projectJavaCesi.entity.being;
 
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "access_role")
@@ -14,6 +16,9 @@ public class AccessRole {
     private int id;
     private String name;
     private int accredition;
+
+    @OneToMany(mappedBy = "accessRole", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Civil> civil;
 
     public int getId() { return id; }
 

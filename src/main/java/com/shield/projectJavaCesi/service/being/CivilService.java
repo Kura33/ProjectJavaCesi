@@ -41,35 +41,32 @@ public class CivilService {
 		if (existingCivil == null) {
 			return null;
 		}
+		if (civil.getRef() != null) {
+			existingCivil.setRef(civil.getRef());
+		}
+		if (civil.isMalevolant() != null) {
+			existingCivil.setMalevolant(civil.isMalevolant());
+		}
+		if (civil.getTitle() != null) {
+			existingCivil.setTitle(civil.getTitle());
+		}
 		if (civil.getFirstname() != null) {
 			existingCivil.setFirstname(civil.getFirstname());
 		}
 		if (civil.getLastname() != null) {
 			existingCivil.setLastname(civil.getLastname());
 		}
-		if (civil.getSocialSecurityNumber() != null) {
-			existingCivil.setSocialSecurityNumber(civil.getSocialSecurityNumber());
-		}
-		if (civil.getTitle() != null) {
-			existingCivil.setTitle(civil.getTitle());
-		}
 		if (civil.getGender() != null) {
 			existingCivil.setGender(civil.getGender());
-		}
-		if (civil.isMalevolant() != null) {
-			existingCivil.setMalevolant(civil.isMalevolant());
-		}
-		if (civil.getEmail() != null) {
-			existingCivil.setEmail(civil.getEmail());
-		}
-		if (civil.getPassword() != null) {
-			existingCivil.setPassword(civil.getPassword());
 		}
 		if (civil.getBirthdate() != null) {
 			existingCivil.setBirthdate(civil.getBirthdate());
 		}
 		if (civil.getDeathdate() != null) {
 			existingCivil.setDeathdate(civil.getDeathdate());
+		}
+		if (civil.getSocialSecurityNumber() != null) {
+			existingCivil.setSocialSecurityNumber(civil.getSocialSecurityNumber());
 		}
 		if (civil.getAddress() != null) {
 			existingCivil.setAddress(civil.getAddress());
@@ -104,17 +101,26 @@ public class CivilService {
 		if (civil.isArchive() != null) {
 			existingCivil.setArchive(civil.isArchive());
 		}
+		if (civil.getEmail() != null) {
+			existingCivil.setEmail(civil.getEmail());
+		}
+		if (civil.getPassword() != null) {
+			existingCivil.setPassword(civil.getPassword());
+		}
+		if (civil.isActive() != null) {
+			existingCivil.setActive(civil.isActive());
+		}
+		if (civil.getAccessRole() != null) {
+			existingCivil.setAccessRole(civil.getAccessRole());
+		}
+		if (civil.getSuperbeing() != null) {
+			existingCivil.setSuperbeing(civil.getSuperbeing());
+		}
 		if (civil.getComment() != null) {
 			existingCivil.setComment(civil.getComment());
 		}
 		if (civil.getMedia() != null) {
 			existingCivil.setMedia(civil.getMedia());
-		}
-		if (civil.isActive() != null) {
-			existingCivil.setActive(civil.isActive());
-		}
-		if (civil.getSuperbeing() != null) {
-			existingCivil.setSuperbeing(civil.getSuperbeing());
 		}
 		return repository.save(existingCivil);
 	}
