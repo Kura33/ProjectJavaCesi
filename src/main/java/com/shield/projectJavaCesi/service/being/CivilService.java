@@ -42,10 +42,10 @@ public class CivilService {
 			return null;
 		}
 		if (civil.getFirstname() != null) {
-			existingCivil.setFirstName(civil.getFirstname());
+			existingCivil.setFirstname(civil.getFirstname());
 		}
-		if (civil.getLastName() != null) {
-			existingCivil.setLastName(civil.getLastName());
+		if (civil.getLastname() != null) {
+			existingCivil.setLastName(civil.getLastname());
 		}
 		if (civil.getSocialSecurityNumber() != null) {
 			existingCivil.setSocialSecurityNumber(civil.getSocialSecurityNumber());

@@ -86,7 +86,7 @@ public class Mapper {
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
 		res.firstName = civil.getFirstname();
-		res.lastName = civil.getLastName();
+		res.lastName = civil.getLastname();
 		res.socialSecurityNumber = civil.getSocialSecurityNumber();
 		res.gender = civil.getGender();
 		res.ref = civil.getRef();
@@ -112,7 +112,7 @@ public class Mapper {
 	public static Function<Civil, CivilForCommentRessource> civilForCommentToCivilForCommentResource = (civil) -> {
 		CivilForCommentRessource res = new CivilForCommentRessource();
 		res.firstName = civil.getFirstname();
-		res.lastName = civil.getLastName();
+		res.lastName = civil.getLastname();
 		return res;
 	};
 
