@@ -104,23 +104,49 @@ public class Mapper {
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
-		res.firstname = civil.getFirstname();
-		res.lastname = civil.getLastname();
-		res.socialSecurityNumber = civil.getSocialSecurityNumber();
-		res.title = civil.getTitle();
-		res.gender = civil.getGender();
+		if (civil.getFirstname() != null){
+			res.firstname = civil.getFirstname();
+		}
+		if (civil.getLastname() != null){
+			res.lastname = civil.getLastname();
+		}
+		if (civil.getSocialSecurityNumber() != null){
+			res.socialSecurityNumber = civil.getSocialSecurityNumber();
+		}
+		if (civil.getTitle() != null){
+			res.title = civil.getTitle();
+		}
+		if (civil.getGender() != null){
+			res.gender = civil.getGender();
+		}
 		res.ref = civil.getRef();
 		res.malevolant = civil.isMalevolant();
 		res.email = civil.getEmail();
 		res.password = civil.getPassword();
-		res.birthdate = civil.getBirthdate();
-		res.deathdate = civil.getDeathdate();
-		res.address = civil.getAddress();
-		res.city = civil.getCity();
-		res.state = civil.getState();
-		res.zipcode = civil.getZipcode();
-		res.country = civil.getCountry();
-		res.mobilePhone = civil.getMobilePhone();
+		if (civil.getBirthdate() != null){
+			res.birthdate = civil.getBirthdate();
+		}
+		if (civil.getDeathdate() != null){
+			res.deathdate = civil.getDeathdate();
+		}
+		if (civil.getAddress() != null){
+			res.address = civil.getAddress();
+		}
+		if (civil.getCity() != null){
+			res.city = civil.getCity();
+		}
+		if (civil.getState() != null){
+			res.state = civil.getState();
+		}
+		if (civil.getZipcode() != null){
+			res.zipcode = civil.getZipcode();
+		}
+		if (civil.getCountry() != null){
+			res.country = civil.getCountry();
+		}
+		if (civil.getMobilePhone() != null){
+			res.mobilePhone = civil.getMobilePhone();
+		}
 		res.addedAt = civil.getAddedAt();
 		res.updatedAt = civil.getUpdatedAt();
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
@@ -128,6 +154,7 @@ public class Mapper {
 		res.archive = civil.isArchive();
 		return res;
 	};
+
 	public static Function<Civil, CivilForCommentRessource> civilForCommentToCivilForCommentResource = (civil) -> {
 		CivilForCommentRessource res = new CivilForCommentRessource();
 		res.firstname = civil.getFirstname();
@@ -138,21 +165,40 @@ public class Mapper {
 	public static Function<Organisation, OrganisationResource> organisationToOrganisationResource = (organisation) -> {
 		OrganisationResource res = new OrganisationResource();
 		res.id = organisation.getId();
-		res.name = organisation.getName();
-		res.siret = organisation.getSiret();
+		if (organisation.getName() != null){
+			res.name = organisation.getName();
+		}
+		if (organisation.getSiret() != null){
+			res.siret = organisation.getSiret();
+		}
 		res.ref = organisation.getRef();
-		// res.organisation = organisation.isOrganisation();
 		res.malevolant = organisation.isMalevolant();
 		res.email = organisation.getEmail();
 		res.password = organisation.getPassword();
-		res.birthdate = organisation.getBirthdate();
-		res.deathdate = organisation.getDeathdate();
-		res.address = organisation.getAddress();
-		res.city = organisation.getCity();
-		res.state = organisation.getState();
-		res.zipcode = organisation.getZipcode();
-		res.country = organisation.getCountry();
-		res.mobilePhone = organisation.getMobilePhone();
+		if (organisation.getBirthdate() != null){
+			res.birthdate = organisation.getBirthdate();
+		}
+		if (organisation.getDeathdate() != null){
+			res.deathdate = organisation.getDeathdate();
+		}
+		if (organisation.getAddress() != null){
+			res.address = organisation.getAddress();
+		}
+		if (organisation.getCity() != null){
+			res.city = organisation.getCity();
+		}
+		if (organisation.getState() != null){
+			res.state = organisation.getState();
+		}
+		if (organisation.getZipcode() != null){
+			res.zipcode = organisation.getZipcode();
+		}
+		if (organisation.getCountry() != null){
+			res.country = organisation.getCountry();
+		}
+		if (organisation.getMobilePhone() != null){
+			res.mobilePhone = organisation.getMobilePhone();
+		}
 		res.addedAt = organisation.getAddedAt();
 		res.updatedAt = organisation.getUpdatedAt();
 		res.howManyDeclaredIncident = organisation.getHowManyDeclaredIncident();
@@ -160,6 +206,7 @@ public class Mapper {
 		res.archive = organisation.isArchive();
 		return res;
 	};
+
 	public static Function<Organisation, OrganisationForCommentRessource> organisationForCommentToOrganisationForCommentResource = (organisation) -> {
 		OrganisationForCommentRessource res = new OrganisationForCommentRessource();
 		res.name = organisation.getName();
