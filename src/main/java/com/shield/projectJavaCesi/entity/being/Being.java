@@ -25,7 +25,6 @@ public abstract class Being {
 		@GenericGenerator(name = "native", strategy = "native")
 		private int id;
 		private String ref;
-		//private Boolean organisation;
 		private Boolean malevolant;
 		private String email;
 		private String password;
@@ -42,7 +41,10 @@ public abstract class Being {
 		private int howManyDeclaredIncident;
 		private int victimOfHowManyMission;
 		private Boolean archive;
-		
+		private Boolean active;
+		//TODO : foreign key access_role_id
+
+
 		@OneToMany(mappedBy = "being")
 	    private List<Comment> comment;
 
@@ -181,4 +183,12 @@ public abstract class Being {
 		public void setArchive(Boolean archive) {
 			this.archive = archive;
 		}
+		public Boolean isActive() {
+		return active;
+	}
+		public void setActive(Boolean active) {
+		this.active = active;
+	}
+		public Superbeing getSuperbeing() { return superbeing; }
+		public void setSuperbeing(Superbeing superbeing) { this.superbeing = superbeing; }
 }

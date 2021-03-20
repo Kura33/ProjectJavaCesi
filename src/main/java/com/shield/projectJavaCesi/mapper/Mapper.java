@@ -104,6 +104,9 @@ public class Mapper {
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
+		if (civil.getLastname() != null){
+			res.lastname = civil.getLastname();
+		}
 		if (civil.getFirstname() != null){
 			res.firstname = civil.getFirstname();
 		}
@@ -121,8 +124,12 @@ public class Mapper {
 		}
 		res.ref = civil.getRef();
 		res.malevolant = civil.isMalevolant();
-		res.email = civil.getEmail();
-		res.password = civil.getPassword();
+		if (civil.getEmail() != null){
+			res.email = civil.getEmail();
+		}
+		if (civil.getPassword() != null){
+			res.password = civil.getPassword();
+		}
 		if (civil.getBirthdate() != null){
 			res.birthdate = civil.getBirthdate();
 		}
@@ -152,6 +159,10 @@ public class Mapper {
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
 		res.archive = civil.isArchive();
+		res.active = civil.isActive();
+		if (civil.getMobilePhone() != null){
+			res.superbeing = (List<Superbeing>) civil.getSuperbeing();
+		}
 		return res;
 	};
 

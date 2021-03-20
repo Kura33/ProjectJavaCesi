@@ -110,6 +110,12 @@ public class CivilService {
 		if (civil.getMedia() != null) {
 			existingCivil.setMedia(civil.getMedia());
 		}
+		if (civil.isActive() != null) {
+			existingCivil.setActive(civil.isActive());
+		}
+		if (civil.getSuperbeing() != null) {
+			existingCivil.setSuperbeing(civil.getSuperbeing());
+		}
 		return repository.save(existingCivil);
 	}
 

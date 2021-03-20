@@ -21,7 +21,7 @@ import com.shield.projectJavaCesi.resource.being.OrganisationResource;
 import com.shield.projectJavaCesi.service.being.OrganisationService;
 
 @RestController
-@RequestMapping(path = "/organisation")
+@RequestMapping(path = "/shield/organisation")
 @Transactional
 public class OrganisationController {
 	@Autowired
