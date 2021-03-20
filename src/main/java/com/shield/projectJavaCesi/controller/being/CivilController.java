@@ -57,7 +57,6 @@ public class CivilController {
 		Civil civils = service.updateCivil(civil);
 		em.flush();
 		em.refresh(civils);
-
 		return Mapper.civilToCivilResource.apply(civils);
 	}
 

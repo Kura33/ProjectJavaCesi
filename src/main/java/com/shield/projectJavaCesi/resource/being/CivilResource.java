@@ -4,13 +4,12 @@ import java.util.Date;
 
 public class CivilResource {
 	public int id;
-	public String firstName;
-	public String lastName;
+	public String firstname;
+	public String lastname;
 	public String socialSecurityNumber;
 	public String title;
 	public String gender;
 	public String ref;
-	//public Boolean organisation;
 	public Boolean malevolant;
 	public String email;
 	public String password;
@@ -20,10 +19,10 @@ public class CivilResource {
 	public String city;
 	public String state;
 	public String zipcode;
-	public String coutry;
+	public String country;
 	public String mobilePhone;
 	public Date addedAt;
-	public Date updateAt;
+	public Date updatedAt;
 	public int howManyDeclaredIncident;
 	public int victimOfHowManyMission;
 	public Boolean archive;

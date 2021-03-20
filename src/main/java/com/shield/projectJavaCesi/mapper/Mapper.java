@@ -104,13 +104,12 @@ public class Mapper {
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
-		res.firstName = civil.getFirstname();
-		res.lastName = civil.getLastname();
+		res.firstname = civil.getFirstname();
+		res.lastname = civil.getLastname();
 		res.socialSecurityNumber = civil.getSocialSecurityNumber();
 		res.title = civil.getTitle();
 		res.gender = civil.getGender();
 		res.ref = civil.getRef();
-		// res.organisation = civil.isOrganisation();
 		res.malevolant = civil.isMalevolant();
 		res.email = civil.getEmail();
 		res.password = civil.getPassword();
@@ -120,10 +119,10 @@ public class Mapper {
 		res.city = civil.getCity();
 		res.state = civil.getState();
 		res.zipcode = civil.getZipcode();
-		res.coutry = civil.getCoutry();
+		res.country = civil.getCountry();
 		res.mobilePhone = civil.getMobilePhone();
 		res.addedAt = civil.getAddedAt();
-		res.updateAt = civil.getUpdatedAt();
+		res.updatedAt = civil.getUpdatedAt();
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
 		res.archive = civil.isArchive();
@@ -131,8 +130,8 @@ public class Mapper {
 	};
 	public static Function<Civil, CivilForCommentRessource> civilForCommentToCivilForCommentResource = (civil) -> {
 		CivilForCommentRessource res = new CivilForCommentRessource();
-		res.firstName = civil.getFirstname();
-		res.lastName = civil.getLastname();
+		res.firstname = civil.getFirstname();
+		res.lastname = civil.getLastname();
 		return res;
 	};
 
@@ -152,10 +151,10 @@ public class Mapper {
 		res.city = organisation.getCity();
 		res.state = organisation.getState();
 		res.zipcode = organisation.getZipcode();
-		res.coutry = organisation.getCoutry();
+		res.country = organisation.getCountry();
 		res.mobilePhone = organisation.getMobilePhone();
 		res.addedAt = organisation.getAddedAt();
-		res.updateAt = organisation.getUpdatedAt();
+		res.updatedAt = organisation.getUpdatedAt();
 		res.howManyDeclaredIncident = organisation.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = organisation.getVictimOfHowManyMission();
 		res.archive = organisation.isArchive();

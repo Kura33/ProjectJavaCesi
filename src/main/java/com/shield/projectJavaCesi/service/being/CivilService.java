@@ -45,7 +45,7 @@ public class CivilService {
 			existingCivil.setFirstname(civil.getFirstname());
 		}
 		if (civil.getLastname() != null) {
-			existingCivil.setLastName(civil.getLastname());
+			existingCivil.setLastname(civil.getLastname());
 		}
 		if (civil.getSocialSecurityNumber() != null) {
 			existingCivil.setSocialSecurityNumber(civil.getSocialSecurityNumber());
@@ -82,6 +82,9 @@ public class CivilService {
 		}
 		if (civil.getZipcode() != null) {
 			existingCivil.setZipcode(civil.getZipcode());
+		}
+		if (civil.getCountry() != null) {
+			existingCivil.setCountry(civil.getCountry());
 		}
 		if (civil.getMobilePhone() != null) {
 			existingCivil.setMobilePhone(civil.getMobilePhone());

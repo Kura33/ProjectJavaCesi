@@ -77,6 +77,9 @@ public class OrganisationService {
 		if (organisation.getZipcode() != null) {
 			existingOrganisation.setZipcode(organisation.getZipcode());
 		}
+		if (organisation.getCountry() != null) {
+			existingOrganisation.setCountry(organisation.getCountry());
+		}
 		if (organisation.getMobilePhone() != null) {
 			existingOrganisation.setMobilePhone(organisation.getMobilePhone());
 		}

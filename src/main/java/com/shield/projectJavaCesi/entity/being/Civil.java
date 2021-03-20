@@ -52,7 +52,7 @@ public class Civil extends Being {
 		return lastname;
 	}
 
-	public void setLastName(String lastname) {
+	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
@@ -85,7 +85,4 @@ public class Civil extends Being {
 		return organisations;
 	}
 
-//	public void setOrganisation(List<Organisation> organisation) {
-//		this.organisations = organisations;
-//	}
 }

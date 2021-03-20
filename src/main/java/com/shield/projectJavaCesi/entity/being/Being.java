@@ -35,7 +35,7 @@ public abstract class Being {
 		private String city;
 		private String state;
 		private String zipcode;
-		private String coutry;
+		private String country;
 		private String mobilePhone;
 		private Date addedAt;
 		private Date updatedAt;
@@ -73,7 +73,6 @@ public abstract class Being {
 		public void setRef(String ref) {
 			this.ref = ref;
 		}
-		
 		public Boolean isMalevolant() {
 			return malevolant;
 		}
@@ -128,11 +127,11 @@ public abstract class Being {
 		public void setZipcode(String zipcode) {
 			this.zipcode = zipcode;
 		}
-		public String getCoutry() {
-			return coutry;
+		public String getCountry() {
+			return country;
 		}
-		public void setCoutry(String coutry) {
-			this.coutry = coutry;
+		public void setCountry(String country) {
+			this.country = country;
 		}
 		public String getMobilePhone() {
 			return mobilePhone;

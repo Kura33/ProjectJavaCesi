@@ -17,10 +17,10 @@ public class OrganisationResource {
 	public String city;
 	public String state;
 	public String zipcode;
-	public String coutry;
+	public String country;
 	public String mobilePhone;
 	public Date addedAt;
-	public Date updateAt;
+	public Date updatedAt;
 	public int howManyDeclaredIncident;
 	public int victimOfHowManyMission;
 	public Boolean archive;
