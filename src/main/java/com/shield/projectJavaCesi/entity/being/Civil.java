@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 public class Civil extends Being {
 
 	private String firstname;
-	private String lastName;
+	private String lastname;
 	private String socialSecurityNumber;
 	private String gender;
 	
@@ -43,11 +43,11 @@ public class Civil extends Being {
 	}
 
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getSocialSecurityNumber() {
