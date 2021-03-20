@@ -1,4 +1,4 @@
-package com.shield.projectJavaCesi.resource;
+package com.shield.projectJavaCesi.resource.event;
 
 import java.util.Date;
 

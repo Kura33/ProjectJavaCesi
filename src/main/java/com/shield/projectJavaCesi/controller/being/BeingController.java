@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shield.projectJavaCesi.entity.being.Being;
-import com.shield.projectJavaCesi.service.BeingService;
+import com.shield.projectJavaCesi.service.being.BeingService;
 
 @RestController
-@RequestMapping(path = "/being")
+@RequestMapping(path = "/shield/being")
 public class BeingController {
 	
 	@Autowired

@@ -23,5 +23,4 @@ public class Mission {
 	@JoinTable(name = "mission_incident", joinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "mission_id", referencedColumnName = "id"))
 	private List<Incident> incident = new ArrayList<>();
 	
-	
 }

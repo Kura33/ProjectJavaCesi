@@ -11,11 +11,7 @@ public class EmployeeDepartmentService {
 	@Autowired
 	private IEmployeeDepartmentRepository repository;
 
-	public EmployeeDepartment saveEmployeeDepartment(EmployeeDepartment employeeDepartment) {
-		return repository.save(employeeDepartment);
-	}
-
-	public List<EmployeeDepartment> saveEmlpoyeeDepartments(List<EmployeeDepartment> employeeDepartments) {
+	public List<EmployeeDepartment> saveEmployeeDepartment(List<EmployeeDepartment> employeeDepartments) {
 		return repository.saveAll(employeeDepartments);
 	}
 
@@ -27,21 +23,30 @@ public class EmployeeDepartmentService {
 		return repository.findAll();
 	}
 
-	public String deleteEmployee(int id) {
+	public String deleteEmployeeDepartment(int id) {
 		repository.deleteById(id);
 		return "Employee Department " + id + " deleted";
 	}
 
-	public EmployeeDepartment updateIncident(EmployeeDepartment employeeDepartment) {
-		EmployeeDepartment existingEmployee = (EmployeeDepartment) repository.findById(employeeDepartment.getId())
-				.orElse(null);
-		if (existingEmployee == null) {
+	public String deleteAllEmployeeDepartment() {
+		repository.deleteAll();
+		return "All Employee Departments deleted";
+	}
+
+	public EmployeeDepartment updateEmployeeDepartment(EmployeeDepartment employeeDepartment) {
+		EmployeeDepartment existingEmployeeDepartment = (EmployeeDepartment) repository.findById(employeeDepartment.getId()).orElse(null);
+		if (existingEmployeeDepartment == null) {
 			return null;
 		}
-		existingEmployee.setDepartement(employeeDepartment.getDepartement());
-		existingEmployee.setCity(employeeDepartment.getCity());
-		existingEmployee.setCountry(employeeDepartment.getCountry());
-
-		return repository.save(existingEmployee);
+		if (employeeDepartment.getDepartement() != null) {
+			existingEmployeeDepartment.setDepartement(employeeDepartment.getDepartement());
+		}
+		if (employeeDepartment.getCity() != null) {
+			existingEmployeeDepartment.setCity(employeeDepartment.getCity());
+		}
+		if (employeeDepartment.getCountry() != null) {
+			existingEmployeeDepartment.setCountry(employeeDepartment.getCountry());
+		}
+		return repository.save(existingEmployeeDepartment);
 	}
 }
