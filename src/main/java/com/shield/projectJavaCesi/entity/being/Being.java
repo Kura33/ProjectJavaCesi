@@ -25,24 +25,24 @@ public abstract class Being {
 		@GenericGenerator(name = "native", strategy = "native")
 		private int id;
 		private String ref;
-		//private Boolean organisation;
 		private Boolean malevolant;
-		private String email;
-		private String password;
 		private Date birthdate;
 		private Date deathdate;
 		private String address;
 		private String city;
 		private String state;
 		private String zipcode;
-		private String coutry;
+		private String country;
 		private String mobilePhone;
 		private Date addedAt;
 		private Date updatedAt;
 		private int howManyDeclaredIncident;
 		private int victimOfHowManyMission;
 		private Boolean archive;
-		
+		private String email;
+		private String password;
+		private Boolean active;
+
 		@OneToMany(mappedBy = "being")
 	    private List<Comment> comment;
 
@@ -73,7 +73,6 @@ public abstract class Being {
 		public void setRef(String ref) {
 			this.ref = ref;
 		}
-		
 		public Boolean isMalevolant() {
 			return malevolant;
 		}
@@ -128,11 +127,11 @@ public abstract class Being {
 		public void setZipcode(String zipcode) {
 			this.zipcode = zipcode;
 		}
-		public String getCoutry() {
-			return coutry;
+		public String getCountry() {
+			return country;
 		}
-		public void setCoutry(String coutry) {
-			this.coutry = coutry;
+		public void setCountry(String country) {
+			this.country = country;
 		}
 		public String getMobilePhone() {
 			return mobilePhone;
@@ -182,4 +181,12 @@ public abstract class Being {
 		public void setArchive(Boolean archive) {
 			this.archive = archive;
 		}
+		public Boolean isActive() {
+		return active;
+	}
+		public void setActive(Boolean active) {
+		this.active = active;
+	}
+		public Superbeing getSuperbeing() { return superbeing; }
+		public void setSuperbeing(Superbeing superbeing) { this.superbeing = superbeing; }
 }

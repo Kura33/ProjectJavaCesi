@@ -20,8 +20,8 @@ public class Ability {
     private String name;
     private Boolean weakness;
 
-    @OneToMany(mappedBy = "ability")
-    private List<Comment> comment;
+//    @OneToMany(mappedBy = "ability")
+//    private List<Comment> comment;
 
     @OneToMany(mappedBy = "ability")
     private List<Media> media;

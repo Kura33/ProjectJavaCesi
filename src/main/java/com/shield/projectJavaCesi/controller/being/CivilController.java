@@ -21,7 +21,7 @@ import com.shield.projectJavaCesi.resource.being.CivilResource;
 import com.shield.projectJavaCesi.service.being.CivilService;
 
 @RestController
-@RequestMapping(path = "/civil")
+@RequestMapping(path = "/shield/civil")
 @Transactional
 public class CivilController {
 	@Autowired
@@ -57,7 +57,6 @@ public class CivilController {
 		Civil civils = service.updateCivil(civil);
 		em.flush();
 		em.refresh(civils);
-
 		return Mapper.civilToCivilResource.apply(civils);
 	}
 

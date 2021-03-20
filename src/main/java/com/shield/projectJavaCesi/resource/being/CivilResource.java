@@ -1,34 +1,33 @@
 package com.shield.projectJavaCesi.resource.being;
 
+import com.shield.projectJavaCesi.entity.being.AccessRole;
+import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
+
 import java.util.Date;
 import java.util.List;
 
-import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
-import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
-
 public class CivilResource {
-	public int id;
-	public String firstName;
-	public String lastName;
-	public String socialSecurityNumber;
-	public String gender;
 	public String ref;
-	//public Boolean organisation;
 	public Boolean malevolant;
-	public String email;
-	public String password;
+	public String title;
+	public String firstname;
+	public String lastname;
+	public String gender;
 	public Date birthdate;
 	public Date deathdate;
+	public String socialSecurityNumber;
 	public String address;
 	public String city;
 	public String state;
 	public String zipcode;
-	public String coutry;
+	public String country;
 	public String mobilePhone;
 	public Date addedAt;
-	public Date updateAt;
+	public Date updatedAt;
 	public int howManyDeclaredIncident;
 	public int victimOfHowManyMission;
-	public Boolean archive;
-	//public CommentResource comment;
+	public String email;
+	public Boolean active;
+	public String accessRole;
+	public String superbeing;
 }
