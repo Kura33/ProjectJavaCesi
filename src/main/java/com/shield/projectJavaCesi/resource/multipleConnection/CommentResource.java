@@ -1,6 +1,6 @@
 package com.shield.projectJavaCesi.resource.multipleConnection;
 
-import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.being.CivilResource;
 import com.shield.projectJavaCesi.resource.being.OrganisationResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;

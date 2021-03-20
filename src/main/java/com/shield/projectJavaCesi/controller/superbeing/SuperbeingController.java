@@ -29,11 +29,6 @@ public class SuperbeingController {
         return Mapper.map(superbeing, Mapper.superbeingToSuperbeingResource);
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
-
     @GetMapping("/{id}")
     public Superbeing findSuperbeingById(@PathVariable int id) {
         return service.getSuperbeingById(id);
