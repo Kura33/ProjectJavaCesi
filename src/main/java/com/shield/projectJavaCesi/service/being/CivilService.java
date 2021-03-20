@@ -89,8 +89,8 @@ public class CivilService {
 		if (civil.getAddedAt() != null) {
 			existingCivil.setAddedAt(civil.getAddedAt());
 		}
-		if (civil.getUpdateAt() != null) {
-			existingCivil.setUpdateAt(civil.getUpdateAt());
+		if (civil.getUpdatedAt() != null) {
+			existingCivil.setUpdatedAt(civil.getUpdatedAt());
 		}
 		if (civil.getHowManyDeclaredIncident() != 0) {
 			existingCivil.setHowManyDeclaredIncident(civil.getHowManyDeclaredIncident());

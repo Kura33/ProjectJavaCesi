@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
 import com.shield.projectJavaCesi.entity.employee.Employee;
@@ -102,7 +101,7 @@ public class Mapper {
 		res.coutry = civil.getCoutry();
 		res.mobilePhone = civil.getMobilePhone();
 		res.addedAt = civil.getAddedAt();
-		res.updateAt = civil.getUpdateAt();
+		res.updateAt = civil.getUpdatedAt();
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
 		res.archive = civil.isArchive();
@@ -128,7 +127,7 @@ public class Mapper {
 		res.coutry = organisation.getCoutry();
 		res.mobilePhone = organisation.getMobilePhone();
 		res.addedAt = organisation.getAddedAt();
-		res.updateAt = organisation.getUpdateAt();
+		res.updateAt = organisation.getUpdatedAt();
 		res.howManyDeclaredIncident = organisation.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = organisation.getVictimOfHowManyMission();
 		res.archive = organisation.isArchive();

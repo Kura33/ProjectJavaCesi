@@ -1,6 +1,5 @@
 package com.shield.projectJavaCesi.entity.being;
 
-import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +10,7 @@ import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "being")
@@ -21,7 +21,8 @@ public abstract class Being {
 	//@Column(name = "id", updatable = false, nullable = false)
 	//@MapsId("id")
 		@Id
-		@GeneratedValue
+		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+		@GenericGenerator(name = "native", strategy = "native")
 		private int id;
 		private String ref;
 		//private Boolean organisation;
@@ -37,7 +38,7 @@ public abstract class Being {
 		private String coutry;
 		private String mobilePhone;
 		private Date addedAt;
-		private Date updateAt;
+		private Date updatedAt;
 		private int howManyDeclaredIncident;
 		private int victimOfHowManyMission;
 		private Boolean archive;
@@ -145,11 +146,11 @@ public abstract class Being {
 		public void setAddedAt(Date addedAt) {
 			this.addedAt = addedAt;
 		}
-		public Date getUpdateAt() {
-			return updateAt;
+		public Date getUpdatedAt() {
+			return updatedAt;
 		}
-		public void setUpdateAt(Date updateAt) {
-			this.updateAt = updateAt;
+		public void setUpdatedAt(Date updateAt) {
+			this.updatedAt = updateAt;
 		}
 		public int getHowManyDeclaredIncident() {
 			return howManyDeclaredIncident;

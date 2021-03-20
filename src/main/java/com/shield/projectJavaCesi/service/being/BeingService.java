@@ -49,7 +49,7 @@ public class BeingService {
 		existingBeing.setZipcode(being.getZipcode());
 		existingBeing.setMobilePhone(being.getMobilePhone());
 		existingBeing.setAddedAt(being.getAddedAt());
-		existingBeing.setUpdateAt(being.getUpdateAt());
+		existingBeing.setUpdatedAt(being.getUpdatedAt());
 		existingBeing.setHowManyDeclaredIncident(being.getHowManyDeclaredIncident());
 		existingBeing.setVictimOfHowManyMission(being.getVictimOfHowManyMission());
 		existingBeing.setArchive(being.isArchive());
