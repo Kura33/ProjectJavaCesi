@@ -122,13 +122,13 @@ public class Comment {
 		this.employee = employee;
 	}
 
-//	public List<Ability> getAbility() {
-//		return ability;
-//	}
-//
-//	public void setAbility(List<Ability> ability) {
-//		this.ability = ability;
-//	}
+	public Ability getAbility() {
+		return ability;
+	}
+
+	public void setAbility(Ability ability) {
+		this.ability = ability;
+	}
 
 	public EmployeeDepartment getEmployeeDepartment() {
 		return employeeDepartment;

@@ -4,3 +4,4 @@ public class CivilForEmployeeRessource {
 	public String firstName;
 	public String lastName;
 }
+	

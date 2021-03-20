@@ -1,6 +1,10 @@
 package com.shield.projectJavaCesi.resource.being;
 
 import java.util.Date;
+import java.util.List;
+
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 
 public class CivilResource {
 	public int id;
@@ -26,4 +30,5 @@ public class CivilResource {
 	public int howManyDeclaredIncident;
 	public int victimOfHowManyMission;
 	public Boolean archive;
+	//public CommentResource comment;
 }

@@ -17,6 +17,7 @@ import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingForCommentResource;
 import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.CivilForEmployeeRessource;
@@ -100,13 +101,13 @@ public class Mapper {
 		res.archive = superbeing.isArchive();
 		return res;
 	};
-//	public static Function<Superbeing, SuperbeingForCommentResource> superbeingForCommentToSuperbeingForCommentResource = (superbeing) -> {
-//		if (superbeing == null) {
-//			return null;}
-//		SuperbeingForCommentResource res = new SuperbeingForCommentResource();
-//		res.name = superbeing.getName();
-//		return res;
-//	};
+	public static Function<Superbeing, SuperbeingForCommentResource> superbeingForCommentToSuperbeingForCommentResource = (superbeing) -> {
+		if (superbeing == null) {
+			return null;}
+		SuperbeingForCommentResource res = new SuperbeingForCommentResource();
+		res.name = superbeing.getName();
+		return res;
+	};
 
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
@@ -133,6 +134,7 @@ public class Mapper {
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
 		res.archive = civil.isArchive();
+		//res.comment = Mapper.commentToCommentResource.apply((Comment) civil.getComment());
 		return res;
 	};
 	public static Function<Civil, CivilForCommentRessource> civilForCommentToCivilForCommentResource = (civil) -> {
@@ -222,8 +224,8 @@ public class Mapper {
 			return null;}
 			CommentResource res = new CommentResource();
 			res.comments = comment.getComments();
-			// res.superbeing =
-			// Mapper.superbeingToSuperbeingResource.apply(comment.getSuperbeing());
+			if (comment.getBeing() != null) {
+			res.superbeing = Mapper.superbeingForCommentToSuperbeingForCommentResource.apply(comment.getSuperbeing());}
 			if (comment.getBeing() != null) {
 				// check classname is either Civil or Organisation to display the right Being
 				if (comment.getBeing().getClass().getName() == Civil.class.getName()) {
@@ -236,7 +238,7 @@ public class Mapper {
 //				res.accessRole = Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());}
 			if (comment.getEmployee() != null) {
 			res.employee = Mapper.employeeToEmployeeResource.apply(comment.getEmployee());}
-			// res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
+			res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
 			if (comment.getEmployeeDepartment() != null) {
 			res.employeeDepartment = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(comment.getEmployeeDepartment());}
 			//if (comment.getLocation() != null) {
