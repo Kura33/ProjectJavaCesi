@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
 import com.shield.projectJavaCesi.entity.employee.Employee;
@@ -12,19 +11,21 @@ import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import com.shield.projectJavaCesi.entity.superbeing.Ability;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
-import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.CivilResource;
-import com.shield.projectJavaCesi.resource.being.OrganisationForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.OrganisationResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
 
 public class Mapper {
+
 
 	public static <T, R> List<R> map(List<T> list, Function<T, R> func) {
 
@@ -61,7 +62,23 @@ public class Mapper {
 		return res;
 	};
 
+	public static Function<Ability, AbilityResource> abilityToAbilityResource = (ability) -> {
+		if (ability == null) {
+			return null;
+		}
+		AbilityResource res = new AbilityResource();
+		res.id = ability.getId();
+		res.name = ability.getName();
+		res.weakness = ability.isWeakness();
+		return res;
+
+	};
+
+
 	public static Function<Superbeing, SuperbeingResource> superbeingToSuperbeingResource = (superbeing) -> {
+		if (superbeing == null) {
+			return null;
+		}
 		SuperbeingResource res = new SuperbeingResource();
 		res.id = superbeing.getId();
 		res.ref = superbeing.getRef();
@@ -111,7 +128,7 @@ public class Mapper {
 		res.coutry = civil.getCoutry();
 		res.mobilePhone = civil.getMobilePhone();
 		res.addedAt = civil.getAddedAt();
-		res.updateAt = civil.getUpdateAt();
+		res.updateAt = civil.getUpdatedAt();
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
 		res.archive = civil.isArchive();
@@ -145,7 +162,7 @@ public class Mapper {
 		res.coutry = organisation.getCoutry();
 		res.mobilePhone = organisation.getMobilePhone();
 		res.addedAt = organisation.getAddedAt();
-		res.updateAt = organisation.getUpdateAt();
+		res.updateAt = organisation.getUpdatedAt();
 		res.howManyDeclaredIncident = organisation.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = organisation.getVictimOfHowManyMission();
 		res.archive = organisation.isArchive();
@@ -160,7 +177,8 @@ public class Mapper {
 	};
 
 
-	public static Function<EmployeeDepartment, EmployeeDepartmentResource> employeeDepartmentToEmployeeDepartmentResource = (employeeDepartment) -> {
+	public static Function<EmployeeDepartment, EmployeeDepartmentResource> employeeDepartmentToEmployeeDepartmentResource = (
+			employeeDepartment) -> {
 		if (employeeDepartment == null) {
 			return null;
 		}

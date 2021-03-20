@@ -7,14 +7,9 @@ import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.event.Mission;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
-import java.util.List;
-
 import javax.persistence.*;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import com.shield.projectJavaCesi.entity.being.Being;
-import com.shield.projectJavaCesi.entity.being.Civil;
 
 @Entity
 @Table(name = "comment")

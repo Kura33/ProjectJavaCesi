@@ -5,10 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shield.projectJavaCesi.entity.being.Being;
-import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
-import com.shield.projectJavaCesi.repository.being.ICivilRepository;
 import com.shield.projectJavaCesi.repository.being.IOrganisationRepository;
 
 @Service
@@ -86,8 +83,8 @@ public class OrganisationService {
 		if (organisation.getAddedAt() != null) {
 			existingOrganisation.setAddedAt(organisation.getAddedAt());
 		}
-		if (organisation.getUpdateAt() != null) {
-			existingOrganisation.setUpdateAt(organisation.getUpdateAt());
+		if (organisation.getUpdatedAt() != null) {
+			existingOrganisation.setUpdatedAt(organisation.getUpdatedAt());
 		}
 		if (organisation.getHowManyDeclaredIncident() != 0) {
 			existingOrganisation.setHowManyDeclaredIncident(organisation.getHowManyDeclaredIncident());

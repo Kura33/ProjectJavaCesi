@@ -47,9 +47,8 @@ public class CivilController {
 		List<Civil> civils = service.saveCivil(civil);
 		em.flush();
 		for (Civil civil1 : civils) {
-
 			em.refresh(civil1);
-		}
+		} 
 		return Mapper.map(civils, Mapper.civilToCivilResource);
 	}
 

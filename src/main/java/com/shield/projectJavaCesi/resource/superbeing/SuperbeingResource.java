@@ -1,4 +1,4 @@
-package com.shield.projectJavaCesi.resource;
+package com.shield.projectJavaCesi.resource.superbeing;
 
 import java.util.Date;
 

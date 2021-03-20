@@ -2,6 +2,7 @@ package com.shield.projectJavaCesi.entity.event;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
@@ -82,4 +83,5 @@ public class Incident extends Event {
 	public void setEventType(EventType eventType) {
 		this.eventType = eventType;
 	}
+
 }

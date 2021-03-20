@@ -48,8 +48,8 @@ public class Civil extends Being {
 		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastname = lastName;
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getSocialSecurityNumber() {

@@ -3,8 +3,10 @@ package com.shield.projectJavaCesi.entity.superbeing;
 import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +15,8 @@ import java.util.List;
 public class Superbeing {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int id;
     private String ref;
     private String name;
@@ -41,7 +44,13 @@ public class Superbeing {
     @OneToMany(mappedBy = "superbeing")
     private List<Media> media;
 
+    @ManyToMany
+    @JoinTable(name = "superbeing_ability", joinColumns = @JoinColumn(name = "superbeing_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "ability_id", referencedColumnName = "id"))
+    private List<Ability> ability = new ArrayList<>();
 
+    public void addAbility(Ability ability) {
+        this.ability.add(ability);
+    }
 
     public int getId() {
         return id;
