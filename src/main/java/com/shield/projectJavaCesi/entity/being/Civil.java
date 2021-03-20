@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 public class Civil extends Being {
 
 	private String firstname;
-	private String lastName;
+	private String lastname;
 	private String socialSecurityNumber;
 	private String gender;
 	
@@ -45,11 +45,11 @@ public class Civil extends Being {
 	}
 
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastname = lastName;
 	}
 
 	public String getSocialSecurityNumber() {
