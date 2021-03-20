@@ -11,11 +11,13 @@ import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import com.shield.projectJavaCesi.entity.superbeing.Ability;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
-import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.CivilResource;
 import com.shield.projectJavaCesi.resource.being.OrganisationForCommentRessource;
@@ -24,6 +26,7 @@ import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
 
 public class Mapper {
+
 
 	public static <T, R> List<R> map(List<T> list, Function<T, R> func) {
 
@@ -60,7 +63,23 @@ public class Mapper {
 		return res;
 	};
 
+	public static Function<Ability, AbilityResource> abilityToAbilityResource = (ability) -> {
+		if (ability == null) {
+			return null;
+		}
+		AbilityResource res = new AbilityResource();
+		res.id = ability.getId();
+		res.name = ability.getName();
+		res.weakness = ability.isWeakness();
+		return res;
+
+	};
+
+
 	public static Function<Superbeing, SuperbeingResource> superbeingToSuperbeingResource = (superbeing) -> {
+		if (superbeing == null) {
+			return null;
+		}
 		SuperbeingResource res = new SuperbeingResource();
 		res.id = superbeing.getId();
 		res.ref = superbeing.getRef();

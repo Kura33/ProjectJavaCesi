@@ -7,9 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 
 @Entity
@@ -61,4 +59,5 @@ public class EmployeeDepartment {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 }
