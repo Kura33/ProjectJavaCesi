@@ -82,6 +82,13 @@ public class Mapper {
 		res.archive = superbeing.isArchive();
 		return res;
 	};
+//	public static Function<Superbeing, SuperbeingForCommentResource> superbeingForCommentToSuperbeingForCommentResource = (superbeing) -> {
+//		if (superbeing == null) {
+//			return null;}
+//		SuperbeingForCommentResource res = new SuperbeingForCommentResource();
+//		res.name = superbeing.getName();
+//		return res;
+//	};
 
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
@@ -111,6 +118,8 @@ public class Mapper {
 		return res;
 	};
 	public static Function<Civil, CivilForCommentRessource> civilForCommentToCivilForCommentResource = (civil) -> {
+		if (civil == null) {
+			return null;}
 		CivilForCommentRessource res = new CivilForCommentRessource();
 		res.firstName = civil.getFirstname();
 		res.lastName = civil.getLastName();
@@ -143,6 +152,8 @@ public class Mapper {
 		return res;
 	};
 	public static Function<Organisation, OrganisationForCommentRessource> organisationForCommentToOrganisationForCommentResource = (organisation) -> {
+		if (organisation == null) {
+			return null;}
 		OrganisationForCommentRessource res = new OrganisationForCommentRessource();
 		res.name = organisation.getName();
 		return res;
@@ -194,18 +205,16 @@ public class Mapper {
 					res.organisation = Mapper.organisationForCommentToOrganisationForCommentResource.apply((Organisation) comment.getBeing());
 				}
 			}
-			// res.accessRole =
-			// Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());
+//			if (comment.getAccessRole() != null) {
+//				res.accessRole = Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());}
 			if (comment.getEmployee() != null) {
 			res.employee = Mapper.employeeToEmployeeResource.apply(comment.getEmployee());}
 			// res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
 			if (comment.getEmployeeDepartment() != null) {
 			res.employeeDepartment = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(comment.getEmployeeDepartment());}
-			// res.location =
-			// Mapper.locationToLocationResource.apply(comment.getLocation());
+			// res.location = Mapper.locationToLocationResource.apply(comment.getLocation());
 			// res.media = Mapper.mediaToMediaResource.apply(comment.getMedia());
-			// res.feedback =
-			// Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());
+			// res.feedback = Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());
 			// res.litige = Mapper.litigeToLitigeResource.apply(comment.getLitige());
 			if (comment.getEventType() != null) {
 			res.eventType = Mapper.eventTypeToEventTypeResource.apply(comment.getEventType());}
