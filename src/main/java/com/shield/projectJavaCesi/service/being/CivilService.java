@@ -41,8 +41,8 @@ public class CivilService {
 		if (existingCivil == null) {
 			return null;
 		}
-		if (civil.getFirstName() != null) {
-			existingCivil.setFirstName(civil.getFirstName());
+		if (civil.getFirstname() != null) {
+			existingCivil.setFirstName(civil.getFirstname());
 		}
 		if (civil.getLastName() != null) {
 			existingCivil.setLastName(civil.getLastName());

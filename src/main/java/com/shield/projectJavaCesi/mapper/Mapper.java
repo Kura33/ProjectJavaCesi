@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
 import com.shield.projectJavaCesi.entity.employee.Employee;
@@ -34,11 +35,17 @@ public class Mapper {
 
 	public static Function<EventType, EventTypeResource> eventTypeToEventTypeResource = (eventType) -> {
 		EventTypeResource res = new EventTypeResource();
+		if (eventType == null) {
+			return null;
+		}
 		res.name = eventType.getName();
 		return res;
 	};
 
 	public static Function<Incident, IncidentResource> incidentToIncidentResource = (incident) -> {
+		if (incident == null) {
+			return null;
+		}
 		IncidentResource res = new IncidentResource();
 		res.id = incident.getId();
 		res.ref = incident.getRef();
@@ -73,16 +80,16 @@ public class Mapper {
 		res.archive = superbeing.isArchive();
 		return res;
 	};
-	
+
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
-		res.firstName = civil.getFirstName();
+		res.firstName = civil.getFirstname();
 		res.lastName = civil.getLastName();
 		res.socialSecurityNumber = civil.getSocialSecurityNumber();
 		res.gender = civil.getGender();
 		res.ref = civil.getRef();
-		//res.organisation = civil.isOrganisation();
+		// res.organisation = civil.isOrganisation();
 		res.malevolant = civil.isMalevolant();
 		res.email = civil.getEmail();
 		res.password = civil.getPassword();
@@ -101,14 +108,14 @@ public class Mapper {
 		res.archive = civil.isArchive();
 		return res;
 	};
-	
+
 	public static Function<Organisation, OrganisationResource> organisationToOrganisationResource = (organisation) -> {
 		OrganisationResource res = new OrganisationResource();
 		res.id = organisation.getId();
 		res.name = organisation.getName();
 		res.siret = organisation.getSiret();
 		res.ref = organisation.getRef();
-		//res.organisation = organisation.isOrganisation();
+		// res.organisation = organisation.isOrganisation();
 		res.malevolant = organisation.isMalevolant();
 		res.email = organisation.getEmail();
 		res.password = organisation.getPassword();
@@ -130,6 +137,9 @@ public class Mapper {
 
 	public static Function<EmployeeDepartment, EmployeeDepartmentResource> employeeDepartmentToEmployeeDepartmentResource = (
 			employeeDepartment) -> {
+		if (employeeDepartment == null) {
+			return null;
+		}
 		EmployeeDepartmentResource res = new EmployeeDepartmentResource();
 		res.department = employeeDepartment.getDepartement();
 		res.city = employeeDepartment.getCity();
@@ -138,6 +148,9 @@ public class Mapper {
 	};
 
 	public static Function<Employee, EmployeeResource> employeeToEmployeeResource = (employee) -> {
+		if (employee == null) {
+			return null;
+		}
 		EmployeeResource res = new EmployeeResource();
 		res.id = employee.getId();
 		res.ref = employee.getRef();
@@ -157,8 +170,16 @@ public class Mapper {
 		CommentResource res = new CommentResource();
 		res.id = comment.getId();
 		res.comments = comment.getComments();
-		res.superbeing = Mapper.superbeingToSuperbeingResource.apply(comment.getSuperbeing());
-		// res.being = Mapper.beingToBeingResource.apply(comment.getBeing());
+		// res.superbeing =
+		// Mapper.superbeingToSuperbeingResource.apply(comment.getSuperbeing());
+		if (comment.getBeing() != null) {
+			// check classname is either Civil or Organisation to display the right Being
+			if (comment.getBeing().getClass().getName() == Civil.class.getName()) {
+				res.civil = Mapper.civilToCivilResource.apply((Civil) comment.getBeing());
+			} else {
+				res.organisation = Mapper.organisationToOrganisationResource.apply((Organisation) comment.getBeing());
+			}
+		}
 		// res.accessRole =
 		// Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());
 		res.employee = Mapper.employeeToEmployeeResource.apply(comment.getEmployee());
@@ -173,7 +194,6 @@ public class Mapper {
 		res.eventType = Mapper.eventTypeToEventTypeResource.apply(comment.getEventType());
 		res.incident = Mapper.incidentToIncidentResource.apply(comment.getIncident());
 		// res.mission = Mapper.missionToMissionResource.apply(comment.getMission());
-
 		return res;
 	};
 
