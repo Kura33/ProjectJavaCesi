@@ -1,5 +1,6 @@
 package com.shield.projectJavaCesi.entity.being;
 
+import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,7 @@ public abstract class Being {
 		@OneToMany(mappedBy = "being")
 	    private List<Comment> comment;
 
-	    @OneToMany(mappedBy = "being")
+	    @OneToMany(mappedBy = "media")
 	    private List<Media> media;
 
 	    @ManyToOne

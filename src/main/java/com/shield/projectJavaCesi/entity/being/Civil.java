@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("0")
 public class Civil extends Being {
 
-	private String firstName;
+	private String firstname;
 	private String lastName;
 	private String socialSecurityNumber;
 	private String gender;
@@ -36,12 +36,12 @@ public class Civil extends Being {
 		this.organisations.add(organisation);
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstname = firstName;
 	}
 
 	public String getLastName() {

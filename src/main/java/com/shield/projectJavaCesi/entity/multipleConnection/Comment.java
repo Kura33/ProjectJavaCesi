@@ -14,6 +14,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.shield.projectJavaCesi.entity.being.Being;
+import com.shield.projectJavaCesi.entity.being.Civil;
 
 @Entity
 @Table(name = "comment")
@@ -28,7 +29,7 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "superbeing_id", referencedColumnName = "id")
 	private Superbeing superbeing;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "being_id", referencedColumnName = "id")
 	private Being being;
