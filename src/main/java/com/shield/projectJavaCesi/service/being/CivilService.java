@@ -50,12 +50,12 @@ public class CivilService {
 		if (civil.getSocialSecurityNumber() != null) {
 			existingCivil.setSocialSecurityNumber(civil.getSocialSecurityNumber());
 		}
+		if (civil.getTitle() != null) {
+			existingCivil.setTitle(civil.getTitle());
+		}
 		if (civil.getGender() != null) {
 			existingCivil.setGender(civil.getGender());
 		}
-//		if (civil.isOrganisation() != null) {
-//			existingCivil.setOrganisation(civil.isOrganisation());
-//		}
 		if (civil.isMalevolant() != null) {
 			existingCivil.setMalevolant(civil.isMalevolant());
 		}

@@ -17,13 +17,19 @@ public class Civil extends Being {
 	private String firstname;
 	private String lastname;
 	private String socialSecurityNumber;
+	private String title;
 	private String gender;
-	
-	public static final String MR = "M";
-	public static final String MME = "Mme";
 
+	public static final String TITLE_MR = "Mr";
+	public static final String TITLE_MME = "Mme";
+	public enum Title {
+		TITLE_MR, TITLE_MME;
+	}
+
+	public static final String GENDER_MR = "M";
+	public static final String GENDER_MME = "Mme";
 	public enum Gender {
-		MR, MME;
+		GENDER_MR, GENDER_MME;
 	}
 	
 	@ManyToMany
@@ -57,6 +63,15 @@ public class Civil extends Being {
 	public void setSocialSecurityNumber(String socialSecurityNumber) {
 		this.socialSecurityNumber = socialSecurityNumber;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 
 	public String getGender() {
 		return gender;

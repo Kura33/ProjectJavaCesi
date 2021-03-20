@@ -7,6 +7,7 @@ public class CivilResource {
 	public String firstName;
 	public String lastName;
 	public String socialSecurityNumber;
+	public String title;
 	public String gender;
 	public String ref;
 	//public Boolean organisation;

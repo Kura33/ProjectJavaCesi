@@ -107,6 +107,7 @@ public class Mapper {
 		res.firstName = civil.getFirstname();
 		res.lastName = civil.getLastname();
 		res.socialSecurityNumber = civil.getSocialSecurityNumber();
+		res.title = civil.getTitle();
 		res.gender = civil.getGender();
 		res.ref = civil.getRef();
 		// res.organisation = civil.isOrganisation();
