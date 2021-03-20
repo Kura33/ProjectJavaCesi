@@ -1,14 +1,12 @@
-package com.shield.projectJavaCesi.service;
+package com.shield.projectJavaCesi.service.being;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shield.projectJavaCesi.entity.being.Being;
-import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
-import com.shield.projectJavaCesi.repository.IBeingRepository;
+import com.shield.projectJavaCesi.repository.being.IBeingRepository;
 
 @Service
 public class BeingService {
@@ -39,7 +37,7 @@ public class BeingService {
 	public Being updateBeing(Being being) {
 		Being existingBeing=repository.findById(being.getId()).orElse(null);
 		existingBeing.setId(being.getId());
-		existingBeing.setOrganisation(being.isOrganisation());
+		//existingBeing.setOrganisation(being.isOrganisation());
 		existingBeing.setMalevolant(being.isMalevolant());
 		existingBeing.setEmail(being.getEmail());
 		existingBeing.setPassword(being.getPassword());
@@ -51,7 +49,7 @@ public class BeingService {
 		existingBeing.setZipcode(being.getZipcode());
 		existingBeing.setMobilePhone(being.getMobilePhone());
 		existingBeing.setAddedAt(being.getAddedAt());
-		existingBeing.setUpdateAt(being.getUpdateAt());
+		existingBeing.setUpdatedAt(being.getUpdatedAt());
 		existingBeing.setHowManyDeclaredIncident(being.getHowManyDeclaredIncident());
 		existingBeing.setVictimOfHowManyMission(being.getVictimOfHowManyMission());
 		existingBeing.setArchive(being.isArchive());

@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
@@ -18,8 +21,10 @@ import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 @Entity
 @Table(name = "employee")
 public class Employee {
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
 	private String ref;
 	private String function;
@@ -133,5 +138,37 @@ public class Employee {
 
 	public void setContract(String contract) {
 		this.contract = contract;
+	}
+
+	public EmployeeDepartment getEmployeeDepartment() {
+		return employeeDepartment;
+	}
+
+	public void setEmployeeDepartment(EmployeeDepartment employeeDepartment) {
+		this.employeeDepartment = employeeDepartment;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public List<Media> getMedia() {
+		return media;
+	}
+
+	public void setMedia(List<Media> media) {
+		this.media = media;
+	}
+
+	public Being getBeing() {
+		return being;
+	}
+
+	public void setBeing(Being being) {
+		this.being = being;
 	}
 }

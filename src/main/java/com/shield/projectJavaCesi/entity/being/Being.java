@@ -10,17 +10,22 @@ import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "being")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="organisation", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Being {
 
+	//@Column(name = "id", updatable = false, nullable = false)
+	//@MapsId("id")
 		@Id
-		@GeneratedValue
+		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+		@GenericGenerator(name = "native", strategy = "native")
 		private int id;
 		private String ref;
-		private Boolean organisation;
+		//private Boolean organisation;
 		private Boolean malevolant;
 		private String email;
 		private String password;
@@ -33,7 +38,7 @@ public abstract class Being {
 		private String coutry;
 		private String mobilePhone;
 		private Date addedAt;
-		private Date updateAt;
+		private Date updatedAt;
 		private int howManyDeclaredIncident;
 		private int victimOfHowManyMission;
 		private Boolean archive;
@@ -41,7 +46,7 @@ public abstract class Being {
 		@OneToMany(mappedBy = "being")
 	    private List<Comment> comment;
 
-	    @OneToMany(mappedBy = "being")
+	    @OneToMany(mappedBy = "media")
 	    private List<Media> media;
 
 	    @ManyToOne
@@ -68,12 +73,7 @@ public abstract class Being {
 		public void setRef(String ref) {
 			this.ref = ref;
 		}
-		public Boolean isOrganisation() {
-			return organisation;
-		}
-		public void setOrganisation(Boolean organisation) {
-			this.organisation = organisation;
-		}
+		
 		public Boolean isMalevolant() {
 			return malevolant;
 		}
@@ -146,11 +146,11 @@ public abstract class Being {
 		public void setAddedAt(Date addedAt) {
 			this.addedAt = addedAt;
 		}
-		public Date getUpdateAt() {
-			return updateAt;
+		public Date getUpdatedAt() {
+			return updatedAt;
 		}
-		public void setUpdateAt(Date updateAt) {
-			this.updateAt = updateAt;
+		public void setUpdatedAt(Date updateAt) {
+			this.updatedAt = updateAt;
 		}
 		public int getHowManyDeclaredIncident() {
 			return howManyDeclaredIncident;
