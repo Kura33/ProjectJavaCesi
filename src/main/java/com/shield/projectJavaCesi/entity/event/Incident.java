@@ -35,10 +35,10 @@ public class Incident extends Event {
 	@JoinColumn(name = "event_type_id", referencedColumnName = "id")
 	private EventType eventType;
 
-	@OneToMany(mappedBy = "incident")
+	@OneToMany(mappedBy = "incident", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> comment;
 
-	@OneToMany(mappedBy = "incident")
+	@OneToMany(mappedBy = "incident", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Media> media;
 
 	@OneToMany(mappedBy = "incident", cascade = CascadeType.ALL, orphanRemoval = true)

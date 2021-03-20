@@ -19,6 +19,7 @@ import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
 import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
+import com.shield.projectJavaCesi.resource.being.CivilForEmployeeRessource;
 import com.shield.projectJavaCesi.resource.being.CivilResource;
 import com.shield.projectJavaCesi.resource.being.OrganisationForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.OrganisationResource;
@@ -51,13 +52,12 @@ public class Mapper {
 			return null;
 		}
 		IncidentResource res = new IncidentResource();
-		res.id = incident.getId();
 		res.ref = incident.getRef();
 		res.startDate = incident.getStartDate();
-		res.endDate = incident.getEndDate();
+		if (incident.getEndDate() != null) {
+		res.endDate = incident.getEndDate();}
 		res.solved = incident.isSolved();
 		res.dangerousness = incident.getDangerousness();
-		res.archive = incident.isArchive();
 		res.status = incident.getStatus();
 		res.eventType = incident.getEventType().getName();
 		return res;
@@ -143,6 +143,14 @@ public class Mapper {
 		res.lastName = civil.getLastName();
 		return res;
 	};
+	public static Function<Civil, CivilForEmployeeRessource> civilForEmployeeToCivilForEmployeeResource = (civil) -> {
+		if (civil == null) {
+			return null;}
+		CivilForEmployeeRessource res = new CivilForEmployeeRessource();
+		res.firstName = civil.getFirstname();
+		res.lastName = civil.getLastName();
+		return res;
+	};
 
 	public static Function<Organisation, OrganisationResource> organisationToOrganisationResource = (organisation) -> {
 		OrganisationResource res = new OrganisationResource();
@@ -195,16 +203,16 @@ public class Mapper {
 			return null;
 		}
 		EmployeeResource res = new EmployeeResource();
-		res.id = employee.getId();
+
 		res.ref = employee.getRef();
 		res.function = employee.getFunction();
 		res.startDate = employee.getStartDate();
-		res.endDate = employee.getEndDate();
-		res.archive = employee.isArchive();
-		res.email = employee.getEmail();
-		res.password = employee.getPassword();
+		if (employee.getEndDate() != null) {
+		res.endDate = employee.getEndDate();}
+		if (employee.getEmail() != null) {
+		res.email = employee.getEmail();}
 		res.contract = employee.getContract();
-		// res.being = Mapper.beingToBeingResource.apply(being.getBeing());
+		res.civil = Mapper.civilForEmployeeToCivilForEmployeeResource.apply((Civil) employee.getBeing());
 		res.department = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(employee.getEmployeeDepartment());
 		return res;
 	};
@@ -231,15 +239,20 @@ public class Mapper {
 			// res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
 			if (comment.getEmployeeDepartment() != null) {
 			res.employeeDepartment = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(comment.getEmployeeDepartment());}
-			// res.location = Mapper.locationToLocationResource.apply(comment.getLocation());
-			// res.media = Mapper.mediaToMediaResource.apply(comment.getMedia());
-			// res.feedback = Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());
-			// res.litige = Mapper.litigeToLitigeResource.apply(comment.getLitige());
+			//if (comment.getLocation() != null) {
+			// res.location = Mapper.locationToLocationResource.apply(comment.getLocation());}
+			// if (comment.getMedia() != null) {
+			// res.media = Mapper.mediaToMediaResource.apply(comment.getMedia());}
+			// if (comment.getFeedback() != null) {
+			// res.feedback = Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());}
+			// if (comment.getLitige() != null) {
+			// res.litige = Mapper.litigeToLitigeResource.apply(comment.getLitige());}
 			if (comment.getEventType() != null) {
 			res.eventType = Mapper.eventTypeToEventTypeResource.apply(comment.getEventType());}
 			if (comment.getIncident() != null) {
 			res.incident = Mapper.incidentToIncidentResource.apply(comment.getIncident());}
-			// res.mission = Mapper.missionToMissionResource.apply(comment.getMission());
+			// if (comment.getMission() != null) {
+			// res.mission = Mapper.missionToMissionResource.apply(comment.getMission());}
 			return res;
 		};
 

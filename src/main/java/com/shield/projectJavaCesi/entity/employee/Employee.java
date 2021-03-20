@@ -2,6 +2,8 @@ package com.shield.projectJavaCesi.entity.employee;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,10 +52,10 @@ public class Employee {
 	@JoinColumn(name = "employee_department_id", referencedColumnName = "id")
 	private EmployeeDepartment employeeDepartment;
 
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> comment;
 
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Media> media;
 
 	@OneToOne(optional = false)

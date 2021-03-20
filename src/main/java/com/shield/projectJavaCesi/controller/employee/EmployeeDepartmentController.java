@@ -18,7 +18,7 @@ import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.service.employee.EmployeeDepartmentService;
 
 @RestController
-@RequestMapping(path = "/employeedepartment")
+@RequestMapping(path = "/shield/employeedepartment")
 @Transactional
 public class EmployeeDepartmentController {
 

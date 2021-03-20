@@ -19,7 +19,7 @@ import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 import com.shield.projectJavaCesi.service.multipleConnection.CommentService;
 
 @RestController
-@RequestMapping(path = "/comment")
+@RequestMapping(path = "/shield/comment")
 @Transactional
 public class CommentController {
 

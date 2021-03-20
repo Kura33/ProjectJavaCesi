@@ -19,7 +19,7 @@ import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.service.event.IncidentService;
 
 @RestController
-@RequestMapping(path = "/incident")
+@RequestMapping(path = "/shield/incident")
 @Transactional
 public class IncidentController {
 	@Autowired

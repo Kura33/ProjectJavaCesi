@@ -1,6 +1,8 @@
 package com.shield.projectJavaCesi.entity.employee;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,10 +24,10 @@ public class EmployeeDepartment {
 	private String city;
 	private String country;
 
-	@OneToMany(mappedBy = "employeeDepartment")
+	@OneToMany(mappedBy = "employeeDepartment", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Employee> employee;
 
-	@OneToMany(mappedBy = "employeeDepartment")
+	@OneToMany(mappedBy = "employeeDepartment", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> comment;
 
 	public int getId() {
