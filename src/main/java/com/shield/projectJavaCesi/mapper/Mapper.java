@@ -16,7 +16,9 @@ import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 import com.shield.projectJavaCesi.resource.SuperbeingResource;
+import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.CivilResource;
+import com.shield.projectJavaCesi.resource.being.OrganisationForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.OrganisationResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
@@ -107,6 +109,12 @@ public class Mapper {
 		res.archive = civil.isArchive();
 		return res;
 	};
+	public static Function<Civil, CivilForCommentRessource> civilForCommentToCivilForCommentResource = (civil) -> {
+		CivilForCommentRessource res = new CivilForCommentRessource();
+		res.firstName = civil.getFirstname();
+		res.lastName = civil.getLastName();
+		return res;
+	};
 
 	public static Function<Organisation, OrganisationResource> organisationToOrganisationResource = (organisation) -> {
 		OrganisationResource res = new OrganisationResource();
@@ -133,9 +141,14 @@ public class Mapper {
 		res.archive = organisation.isArchive();
 		return res;
 	};
+	public static Function<Organisation, OrganisationForCommentRessource> organisationForCommentToOrganisationForCommentResource = (organisation) -> {
+		OrganisationForCommentRessource res = new OrganisationForCommentRessource();
+		res.name = organisation.getName();
+		return res;
+	};
 
-	public static Function<EmployeeDepartment, EmployeeDepartmentResource> employeeDepartmentToEmployeeDepartmentResource = (
-			employeeDepartment) -> {
+
+	public static Function<EmployeeDepartment, EmployeeDepartmentResource> employeeDepartmentToEmployeeDepartmentResource = (employeeDepartment) -> {
 		if (employeeDepartment == null) {
 			return null;
 		}
@@ -166,34 +179,39 @@ public class Mapper {
 	};
 
 	public static Function<Comment, CommentResource> commentToCommentResource = (comment) -> {
-		CommentResource res = new CommentResource();
-		res.id = comment.getId();
-		res.comments = comment.getComments();
-		// res.superbeing =
-		// Mapper.superbeingToSuperbeingResource.apply(comment.getSuperbeing());
-		if (comment.getBeing() != null) {
-			// check classname is either Civil or Organisation to display the right Being
-			if (comment.getBeing().getClass().getName() == Civil.class.getName()) {
-				res.civil = Mapper.civilToCivilResource.apply((Civil) comment.getBeing());
-			} else {
-				res.organisation = Mapper.organisationToOrganisationResource.apply((Organisation) comment.getBeing());
+		if (comment == null) {
+			return null;}
+			CommentResource res = new CommentResource();
+			res.comments = comment.getComments();
+			// res.superbeing =
+			// Mapper.superbeingToSuperbeingResource.apply(comment.getSuperbeing());
+			if (comment.getBeing() != null) {
+				// check classname is either Civil or Organisation to display the right Being
+				if (comment.getBeing().getClass().getName() == Civil.class.getName()) {
+					res.civil = Mapper.civilForCommentToCivilForCommentResource.apply((Civil) comment.getBeing());
+				} else {
+					res.organisation = Mapper.organisationForCommentToOrganisationForCommentResource.apply((Organisation) comment.getBeing());
+				}
 			}
-		}
-		// res.accessRole =
-		// Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());
-		res.employee = Mapper.employeeToEmployeeResource.apply(comment.getEmployee());
-		// res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
-		res.employeeDepartment = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(comment.getEmployeeDepartment());
-		// res.location =
-		// Mapper.locationToLocationResource.apply(comment.getLocation());
-		// res.media = Mapper.mediaToMediaResource.apply(comment.getMedia());
-		// res.feedback =
-		// Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());
-		// res.litige = Mapper.litigeToLitigeResource.apply(comment.getLitige());
-		res.eventType = Mapper.eventTypeToEventTypeResource.apply(comment.getEventType());
-		res.incident = Mapper.incidentToIncidentResource.apply(comment.getIncident());
-		// res.mission = Mapper.missionToMissionResource.apply(comment.getMission());
-		return res;
-	};
+			// res.accessRole =
+			// Mapper.accessRoleToAccessRoleResource.apply(comment.getAccessRole());
+			if (comment.getEmployee() != null) {
+			res.employee = Mapper.employeeToEmployeeResource.apply(comment.getEmployee());}
+			// res.ability = Mapper.abilityToAbilityResource.apply(comment.getAbility());
+			if (comment.getEmployeeDepartment() != null) {
+			res.employeeDepartment = Mapper.employeeDepartmentToEmployeeDepartmentResource.apply(comment.getEmployeeDepartment());}
+			// res.location =
+			// Mapper.locationToLocationResource.apply(comment.getLocation());
+			// res.media = Mapper.mediaToMediaResource.apply(comment.getMedia());
+			// res.feedback =
+			// Mapper.feedbackToFeedbackResource.apply(comment.getFeedback());
+			// res.litige = Mapper.litigeToLitigeResource.apply(comment.getLitige());
+			if (comment.getEventType() != null) {
+			res.eventType = Mapper.eventTypeToEventTypeResource.apply(comment.getEventType());}
+			if (comment.getIncident() != null) {
+			res.incident = Mapper.incidentToIncidentResource.apply(comment.getIncident());}
+			// res.mission = Mapper.missionToMissionResource.apply(comment.getMission());
+			return res;
+		};
 
 }

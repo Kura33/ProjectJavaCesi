@@ -38,11 +38,11 @@ public class Civil extends Being {
 		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstname = firstName;
+	public void setFirstname(String firstName) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
+	public String getLastname() {
 		return lastname;
 	}
 
