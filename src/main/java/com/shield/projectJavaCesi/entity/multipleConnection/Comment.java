@@ -5,6 +5,7 @@ import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
 import com.shield.projectJavaCesi.entity.event.EventType;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.event.Mission;
+import com.shield.projectJavaCesi.entity.superbeing.Ability;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 import javax.persistence.*;
@@ -37,9 +38,9 @@ public class Comment {
 	@JoinColumn(name = "employee_id", referencedColumnName = "id")
 	private Employee employee;
 
-//    @ManyToOne
-//    @JoinColumn(name="ability_id", referencedColumnName = "id")
-//    private List<Ability> ability;
+    @ManyToOne
+    @JoinColumn(name="ability_id", referencedColumnName = "id")
+    private Ability ability;
 
 	@ManyToOne
 	@JoinColumn(name = "employee_department_id", referencedColumnName = "id")
