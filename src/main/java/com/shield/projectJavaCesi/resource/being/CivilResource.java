@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 public class CivilResource {
-	public int id;
 	public String ref;
 	public Boolean malevolant;
 	public String title;
@@ -27,9 +26,7 @@ public class CivilResource {
 	public Date updatedAt;
 	public int howManyDeclaredIncident;
 	public int victimOfHowManyMission;
-	public Boolean archive;
 	public String email;
-	public String password;
 	public Boolean active;
 	public String accessRole;
 	public String superbeing;

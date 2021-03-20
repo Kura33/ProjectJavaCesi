@@ -103,7 +103,6 @@ public class Mapper {
 		if (civil == null) {
 			return null;}
 		CivilResource res = new CivilResource();
-		res.id = civil.getId();
 		res.ref = civil.getRef();
 		res.malevolant = civil.isMalevolant();
 		if (civil.getTitle() != null){
@@ -149,12 +148,8 @@ public class Mapper {
 		res.updatedAt = civil.getUpdatedAt();
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
-		res.archive = civil.isArchive();
 		if (civil.getEmail() != null){
 			res.email = civil.getEmail();
-		}
-		if (civil.getPassword() != null){
-			res.password = civil.getPassword();
 		}
 		res.active = civil.isActive();
 		if (civil.getAccessRole() != null){
@@ -175,17 +170,12 @@ public class Mapper {
 
 	public static Function<Organisation, OrganisationResource> organisationToOrganisationResource = (organisation) -> {
 		OrganisationResource res = new OrganisationResource();
-		res.id = organisation.getId();
 		if (organisation.getName() != null){
 			res.name = organisation.getName();
-		}
-		if (organisation.getSiret() != null){
-			res.siret = organisation.getSiret();
 		}
 		res.ref = organisation.getRef();
 		res.malevolant = organisation.isMalevolant();
 		res.email = organisation.getEmail();
-		res.password = organisation.getPassword();
 		if (organisation.getBirthdate() != null){
 			res.birthdate = organisation.getBirthdate();
 		}
@@ -214,7 +204,7 @@ public class Mapper {
 		res.updatedAt = organisation.getUpdatedAt();
 		res.howManyDeclaredIncident = organisation.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = organisation.getVictimOfHowManyMission();
-		res.archive = organisation.isArchive();
+		res.active = organisation.isActive();
 		return res;
 	};
 

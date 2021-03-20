@@ -19,16 +19,6 @@ import com.shield.projectJavaCesi.entity.event.Mission;
 public class Organisation extends Being {
 
 	private String name;
-	private String siret;
-	
-	
-	//@OneToMany(mappedBy = "organisation")
-	//private List<CivilOnOrganisation> civilOnOrganisation = new ArrayList<>();
-		
-	@ManyToMany
-	@JoinTable(name = "civil_on_organisation", joinColumns = @JoinColumn(name = "civil_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "organisation_id", referencedColumnName = "id"))
-	private List<Civil> civils = new ArrayList();
-	
 
 	public String getName() {
 		return name;
@@ -38,20 +28,4 @@ public class Organisation extends Being {
 		this.name = name;
 	}
 
-	public String getSiret() {
-		return siret;
-	}
-
-	public void setSiret(String siret) {
-		this.siret = siret;
-	}
-
-	public List<Civil> getCivils() {
-		return civils;
-	}
-
-	public void setCivils(List<Civil> civils) {
-		this.civils = civils;
-	}
-	
 }
