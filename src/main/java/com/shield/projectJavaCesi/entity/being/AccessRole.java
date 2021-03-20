@@ -15,7 +15,7 @@ public class AccessRole {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
     private String name;
-    private int accredition;
+    private int accreditation;
 
     @OneToMany(mappedBy = "accessRole", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Civil> civil;
@@ -28,8 +28,8 @@ public class AccessRole {
 
     public void setName(String name) { this.name = name; }
 
-    public int getAccredition() { return accredition; }
+    public int getAccreditation() { return accreditation; }
 
-    public void setAccredition(int accredition) { this.accredition = accredition; }
+    public void setAccreditation(int accreditation) { this.accreditation = accreditation; }
 
 }

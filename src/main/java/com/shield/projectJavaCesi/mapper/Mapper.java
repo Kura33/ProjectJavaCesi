@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import com.shield.projectJavaCesi.entity.being.AccessRole;
 import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
 import com.shield.projectJavaCesi.entity.employee.Employee;
@@ -13,15 +14,12 @@ import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.superbeing.Ability;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
+import com.shield.projectJavaCesi.resource.being.*;
 import com.shield.projectJavaCesi.resource.event.EventTypeResource;
 import com.shield.projectJavaCesi.resource.event.IncidentResource;
 import com.shield.projectJavaCesi.resource.multipleConnection.CommentResource;
 import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
 import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
-import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
-import com.shield.projectJavaCesi.resource.being.CivilResource;
-import com.shield.projectJavaCesi.resource.being.OrganisationForCommentRessource;
-import com.shield.projectJavaCesi.resource.being.OrganisationResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
 
@@ -102,10 +100,14 @@ public class Mapper {
 	};
 
 	public static Function<Civil, CivilResource> civilToCivilResource = (civil) -> {
+		if (civil == null) {
+			return null;}
 		CivilResource res = new CivilResource();
 		res.id = civil.getId();
-		if (civil.getLastname() != null){
-			res.lastname = civil.getLastname();
+		res.ref = civil.getRef();
+		res.malevolant = civil.isMalevolant();
+		if (civil.getTitle() != null){
+			res.title = civil.getTitle();
 		}
 		if (civil.getFirstname() != null){
 			res.firstname = civil.getFirstname();
@@ -113,28 +115,17 @@ public class Mapper {
 		if (civil.getLastname() != null){
 			res.lastname = civil.getLastname();
 		}
-		if (civil.getSocialSecurityNumber() != null){
-			res.socialSecurityNumber = civil.getSocialSecurityNumber();
-		}
-		if (civil.getTitle() != null){
-			res.title = civil.getTitle();
-		}
 		if (civil.getGender() != null){
 			res.gender = civil.getGender();
-		}
-		res.ref = civil.getRef();
-		res.malevolant = civil.isMalevolant();
-		if (civil.getEmail() != null){
-			res.email = civil.getEmail();
-		}
-		if (civil.getPassword() != null){
-			res.password = civil.getPassword();
 		}
 		if (civil.getBirthdate() != null){
 			res.birthdate = civil.getBirthdate();
 		}
 		if (civil.getDeathdate() != null){
 			res.deathdate = civil.getDeathdate();
+		}
+		if (civil.getSocialSecurityNumber() != null){
+			res.socialSecurityNumber = civil.getSocialSecurityNumber();
 		}
 		if (civil.getAddress() != null){
 			res.address = civil.getAddress();
@@ -159,9 +150,18 @@ public class Mapper {
 		res.howManyDeclaredIncident = civil.getHowManyDeclaredIncident();
 		res.victimOfHowManyMission = civil.getVictimOfHowManyMission();
 		res.archive = civil.isArchive();
+		if (civil.getEmail() != null){
+			res.email = civil.getEmail();
+		}
+		if (civil.getPassword() != null){
+			res.password = civil.getPassword();
+		}
 		res.active = civil.isActive();
-		if (civil.getMobilePhone() != null){
-			res.superbeing = (List<Superbeing>) civil.getSuperbeing();
+		if (civil.getAccessRole() != null){
+			res.accessRole = civil.getAccessRole().getName();
+		}
+		if (civil.getSuperbeing() != null){
+			res.superbeing = civil.getSuperbeing().getName();
 		}
 		return res;
 	};

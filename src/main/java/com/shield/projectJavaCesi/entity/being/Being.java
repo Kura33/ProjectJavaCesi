@@ -26,8 +26,6 @@ public abstract class Being {
 		private int id;
 		private String ref;
 		private Boolean malevolant;
-		private String email;
-		private String password;
 		private Date birthdate;
 		private Date deathdate;
 		private String address;
@@ -41,9 +39,9 @@ public abstract class Being {
 		private int howManyDeclaredIncident;
 		private int victimOfHowManyMission;
 		private Boolean archive;
+		private String email;
+		private String password;
 		private Boolean active;
-		//TODO : foreign key access_role_id
-
 
 		@OneToMany(mappedBy = "being")
 	    private List<Comment> comment;

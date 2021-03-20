@@ -31,6 +31,6 @@ public class CivilResource {
 	public String email;
 	public String password;
 	public Boolean active;
-	public List<AccessRole> accessRole;
-	public List<Superbeing> superbeing;
+	public String accessRole;
+	public String superbeing;
 }
