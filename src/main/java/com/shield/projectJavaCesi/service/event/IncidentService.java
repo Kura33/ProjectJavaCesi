@@ -1,6 +1,10 @@
 package com.shield.projectJavaCesi.service.event;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.shield.projectJavaCesi.repository.multipleConnection.ICommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shield.projectJavaCesi.entity.event.Incident;
@@ -10,13 +14,19 @@ import com.shield.projectJavaCesi.repository.event.IIncidentRepository;
 public class IncidentService {
 	@Autowired
 	private IIncidentRepository repository;
+	@Autowired
+	private ICommentRepository commentRepository;
 
 	public List<Incident> saveIncident(List<Incident> incidents) {
 		return repository.saveAll(incidents);
 	}
 
-	public Incident getIncidentById(int id) {
-		return repository.findById(id).orElse(null);
+	public Map<String, Object> getIncidentById(int id) {
+		Map<String, Object> result = new HashMap<>();
+		result.put("incident", repository.findById(id).orElse(null));
+		result.put("comments", commentRepository.findCommentsByIncidentId(id));
+
+		return result;
 	}
 
 	public List<Incident> getIncidents() {
