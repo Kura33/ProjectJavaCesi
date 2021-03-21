@@ -5,4 +5,9 @@ import com.shield.projectJavaCesi.entity.employee.Employee;
 
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer>{
 
+
+    public Employee getEmployeeByEmail(String email);
+
+    public Employee getEmployeeByEmailAndPassword(String email, String password);
+
 }

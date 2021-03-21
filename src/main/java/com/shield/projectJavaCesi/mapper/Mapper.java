@@ -2,6 +2,7 @@ package com.shield.projectJavaCesi.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import com.shield.projectJavaCesi.entity.being.AccessRole;
@@ -23,6 +24,9 @@ import com.shield.projectJavaCesi.resource.superbeing.SuperbeingForCommentResour
 import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.thymeleaf.expression.Strings;
 
 public class Mapper {
@@ -336,6 +340,15 @@ public class Mapper {
         }
         // if (comment.getMission() != null) {
         // res.mission = Mapper.missionToMissionResource.apply(comment.getMission());}
+        return res;
+    };
+
+    public static BiFunction<Employee, List<GrantedAuthority>, User> employeeToUserDetails = (
+            employee, roles) -> {
+        if (employee == null) {
+            return null;
+        }
+        User res = new User(employee.getEmail(), employee.getPassword(), roles);
         return res;
     };
 

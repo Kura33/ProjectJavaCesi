@@ -48,15 +48,20 @@ public abstract class Being {
 	    @ManyToOne
 		@JoinColumn(name = "superbeing_id", referencedColumnName = "id")
 	    private Superbeing superbeing;
-	    
+
 	    @ManyToMany
 		@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
 		private List<Incident> incident = new ArrayList<>();
-	    
+
+	    @OneToOne
+		@JoinColumn(name = "access_role_id", referencedColumnName = "id")
+		private AccessRole accessRole;
+
+
 	    public void addIncident(Incident incident) {
 			this.incident.add(incident);
 		}
-		
+
 		public int getId() {
 			return id;
 		}
@@ -185,4 +190,11 @@ public abstract class Being {
 	}
 		public Superbeing getSuperbeing() { return superbeing; }
 		public void setSuperbeing(Superbeing superbeing) { this.superbeing = superbeing; }
+
+		public AccessRole getAccessRole() {
+			return accessRole;
+		}
+		public void setAccessRole(AccessRole accessRole) {
+			this.accessRole = accessRole;
+		}
 }
