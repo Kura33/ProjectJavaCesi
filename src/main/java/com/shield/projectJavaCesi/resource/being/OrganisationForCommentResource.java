@@ -1,5 +1,6 @@
 package com.shield.projectJavaCesi.resource.being;
 
-public class OrganisationForCommentRessource {
+public class OrganisationForCommentResource {
+    public Integer id;
 	public String name;
 }

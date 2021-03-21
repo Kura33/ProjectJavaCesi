@@ -3,6 +3,7 @@ package com.shield.projectJavaCesi.resource.being;
 import java.util.Date;
 
 public class OrganisationResource {
+    public Integer id;
     public String ref;
     public Boolean malevolant;
     public String name;

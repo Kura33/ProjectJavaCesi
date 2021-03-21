@@ -1,5 +1,6 @@
 package com.shield.projectJavaCesi.entity.multipleConnection;
 
+import com.shield.projectJavaCesi.entity.being.AccessRole;
 import com.shield.projectJavaCesi.entity.employee.Employee;
 import com.shield.projectJavaCesi.entity.employee.EmployeeDepartment;
 import com.shield.projectJavaCesi.entity.event.EventType;
@@ -30,9 +31,9 @@ public class Comment {
 	@JoinColumn(name = "being_id", referencedColumnName = "id")
 	private Being being;
 
-//    @ManyToOne
-//    @JoinColumn(name = "access_role_id", referencedColumnName = "id")
-//    private List<AccessRole> accessRole;
+    @ManyToOne
+    @JoinColumn(name = "access_role_id", referencedColumnName = "id")
+    private AccessRole accessRole;
 
 	@ManyToOne
 	@JoinColumn(name = "employee_id", referencedColumnName = "id")
@@ -106,13 +107,13 @@ public class Comment {
 		this.being = being;
 	}
 
-//	public AccessRole getAccessRole() {
-//		return accessRole;
-//	}
-//
-//	public void setAccessRole(AccessRole accessRole) {
-//		this.accessRole = accessRole;
-//	}
+	public AccessRole getAccessRole() {
+		return accessRole;
+	}
+
+	public void setAccessRole(AccessRole accessRole) {
+		this.accessRole = accessRole;
+	}
 
 	public Employee getEmployee() {
 		return employee;

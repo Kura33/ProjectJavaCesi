@@ -1,6 +1,7 @@
 package com.shield.projectJavaCesi.resource.being;
 
-public class CivilForEmployeeRessource {
+public class CivilForEmployeeResource {
+    public Integer id;
 	public String firstName;
 	public String lastName;
 }

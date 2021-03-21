@@ -1,12 +1,9 @@
 package com.shield.projectJavaCesi.resource.being;
 
-import com.shield.projectJavaCesi.entity.being.AccessRole;
-import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
-
 import java.util.Date;
-import java.util.List;
 
 public class CivilResource {
+    public Integer id;
 	public String ref;
 	public Boolean malevolant;
 	public String title;
