@@ -3,9 +3,7 @@ package com.shield.projectJavaCesi.entity.being;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.*;
-
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
@@ -18,8 +16,6 @@ import org.hibernate.annotations.GenericGenerator;
 @DiscriminatorColumn(name="organisation", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Being {
 
-	//@Column(name = "id", updatable = false, nullable = false)
-	//@MapsId("id")
 		@Id
 		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
 		@GenericGenerator(name = "native", strategy = "native")
