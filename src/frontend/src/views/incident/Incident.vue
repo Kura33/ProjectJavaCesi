@@ -14,7 +14,7 @@
       </tr>
       </thead>
 
-      <tbody class="table-striped">
+      <tbody class="table-striped" v-if="incidents">
       <tr v-for="incident in incidents" :key="incident.id">
         <th scope="row"> {{ incident.ref }}</th>
         <td> {{ format_date(incident.startDate) }} - {{ format_date(incident.endDate) }}</td>
@@ -35,8 +35,14 @@
         </td>
       </tr>
       </tbody>
+      <tbody class="table-striped" v-else>
+      <tr>
+        <td colspan="7">Aucun incident pour l'instant</td>
+      </tr>
+      </tbody>
     </table>
   </div>
+
 </template>
 
 <script>
@@ -49,7 +55,7 @@ export default {
   el: "#incident-table",
   data() {
     return {
-      incidents: []
+      incidents: null
     }
   },
   methods: {

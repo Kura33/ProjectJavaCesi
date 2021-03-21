@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';
-// import {createRouter} from 'vue-router';
 
 const Home = import('@/views/Home');
+const Login = import('@/views/Login');
 const About = import('@/views/About');
 const Incident = import('@/views/incident/Incident');
 const IncidentDetail = import('@/views/incident/IncidentDetail');
@@ -9,6 +9,7 @@ const NotFound = import('@/views/NotFound');
 
 const routes = [
     {path: '/', name: 'Home', component: Home,},
+    {path: '/shield/login', name: 'Login', component: Login,},
     {path: '/shield/incident/', name: 'Incident', component: Incident,},
     {path: '/shield/incident/:id', name: 'IncidentDetail', component: IncidentDetail, props: true,},
     {path: '/shield/about/', name: 'About', component: About,},

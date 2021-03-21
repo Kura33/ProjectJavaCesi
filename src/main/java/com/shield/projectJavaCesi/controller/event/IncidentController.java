@@ -1,9 +1,12 @@
 package com.shield.projectJavaCesi.controller.event;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +38,17 @@ public class IncidentController {
 	}
 
 	@GetMapping("/{id}")
-	public IncidentResource findIncidentById(@PathVariable int id) {
-		Incident incident = service.getIncidentById(id);
-		return Mapper.incidentToIncidentResource.apply(incident);
+	public Map<String, Object>findIncidentById(@PathVariable int id) {
+		Map<String, Object> map = service.getIncidentById(id);
+
+//		Incident incident = (Incident) map.get("incident");
+//		Comment comment = (Comment) map.get("comment");
+
+		map.put("incident", Mapper.incidentToIncidentResource.apply((Incident) map.get("incident")));
+//		map.put("comment", Mapper.commentToCommentResource.apply((List<Comment>) map.get("comment")));
+		map.put("comments", Mapper.map((List<Comment>) map.get("comments"), Mapper.commentToCommentResource));
+		return map;
+//		return Mapper.incidentToIncidentResource.apply(incident);
 	}
 
 	@PostMapping("/create")
