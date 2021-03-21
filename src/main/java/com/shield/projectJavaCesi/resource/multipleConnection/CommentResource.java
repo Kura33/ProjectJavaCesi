@@ -1,5 +1,7 @@
 package com.shield.projectJavaCesi.resource.multipleConnection;
 
+import com.shield.projectJavaCesi.resource.superbeing.AbilityResource;
+import com.shield.projectJavaCesi.resource.superbeing.SuperbeingForCommentResource;
 import com.shield.projectJavaCesi.resource.superbeing.SuperbeingResource;
 import com.shield.projectJavaCesi.resource.being.CivilForCommentRessource;
 import com.shield.projectJavaCesi.resource.being.OrganisationForCommentRessource;
@@ -10,12 +12,12 @@ import com.shield.projectJavaCesi.resource.event.IncidentResource;
 
 public class CommentResource {
 	public String comments;
-	public SuperbeingResource superbeing;
+	public SuperbeingForCommentResource superbeing;
 	public CivilForCommentRessource civil;
 	public OrganisationForCommentRessource organisation;
 	// public AccessRoleResource accessRole;
 	public EmployeeResource employee;
-	// public AbilityResource ability;
+	public AbilityResource ability;
 	public EmployeeDepartmentResource employeeDepartment;
 	// public LocationResource location;
 	// public MediaResource media;
@@ -24,5 +26,6 @@ public class CommentResource {
 	public EventTypeResource eventType;
 	public IncidentResource incident;
 	// public MissionResource mission;
+
 
 }
