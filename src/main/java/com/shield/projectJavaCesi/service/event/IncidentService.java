@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.shield.projectJavaCesi.repository.being.ICivilRepository;
+import com.shield.projectJavaCesi.repository.being.IOrganisationRepository;
 import com.shield.projectJavaCesi.repository.multipleConnection.ICommentRepository;
+import com.shield.projectJavaCesi.repository.superbeing.ISuperbeingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shield.projectJavaCesi.entity.event.Incident;
@@ -16,6 +19,12 @@ public class IncidentService {
 	private IIncidentRepository repository;
 	@Autowired
 	private ICommentRepository commentRepository;
+	@Autowired
+	private ISuperbeingRepository superbeingRepository;
+	@Autowired
+	private ICivilRepository civilRepository;
+	@Autowired
+	private IOrganisationRepository organisationRepository;
 
 	public List<Incident> saveIncident(List<Incident> incidents) {
 		return repository.saveAll(incidents);
@@ -25,6 +34,9 @@ public class IncidentService {
 		Map<String, Object> result = new HashMap<>();
 		result.put("incident", repository.findById(id).orElse(null));
 		result.put("comments", commentRepository.findCommentsByIncidentId(id));
+		result.put("superbeings", superbeingRepository.findSuperbeingsByIncidentId(id));
+		result.put("civils", civilRepository.findCivilsByIncidentId(id));
+		result.put("organisations", organisationRepository.findOrganisationsByIncidentId(id));
 
 		return result;
 	}

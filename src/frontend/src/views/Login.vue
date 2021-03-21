@@ -8,7 +8,7 @@
     </div>
 
 
-    <form action="@/views/incident/Incident" @submit="checkForm" method="post" class="flex flex-column">
+    <form action="" @submit="checkForm" method="post" class="flex flex-column">
       <div class="form-group">
         <label for="email">Email address</label>
         <input v-model="email" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
@@ -23,9 +23,13 @@
       <button type="submit" class="btn btn-primary m-auto">Se connecter</button>
     </form>
   </div>
+
+  <div>{{ connected ? connected :'nope' }}</div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: "Login",
   data() {
@@ -34,16 +38,12 @@ export default {
       errorMessage: null,
       email: null,
       password: null,
-      connectionResult: '',
+      connected: '',
+      data: '',
     }
   },
   methods: {
     // 1
-    getLoginPage() {
-      fetch("/shield/login")
-          .then(response => response.json())
-    },
-
     // 2
     backward() {
       this.$router.go(-1)
@@ -76,40 +76,32 @@ export default {
       return re.test(email);
     },
     async connection() {
-      const requestOptions = {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          email: this.email,
-          password: this.password,
+
+      const body = {
+                email: this.email,
+                password: this.password,
+              };
+      const headers = {"Content-Type": "application/json"};
+      try {
+        await axios.post(`/shield/login`, {
+          body: body
+        }, {headers})
+        .then(response => {
+          this.connected = response;
+          console.log(response)
         })
-      };
-      fetch('/shield/login', requestOptions)
-          .then(async response => {
-            const data = await response.json();
-
-            // check for error response
-            if (!response.ok) {
-              // get error message from body or default to response status
-              const error = (data && data.message) || response.status;
-              return Promise.reject(error);
-            }
-
-            this.connectionResult = data
-          })
-          .catch(error => {
-            this.errorMessage = error;
-            console.error('There was an error!', error);
-          });
-    },
-    // 4
-    created() {
-      this.getLoginPage()
-
+        // .then(response => {
+        //   axios.post(`/shield/user`,
+        //       {},
+        //       // {body: response},
+        //       {headers: {Authorization: response.token}})
+        // })
+      } catch (e) {
+        this.errors.push(e)
+      }
     }
   },
   mounted() {
-    this.created()
   }
 }
 </script>

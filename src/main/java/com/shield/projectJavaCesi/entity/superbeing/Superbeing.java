@@ -1,6 +1,7 @@
 package com.shield.projectJavaCesi.entity.superbeing;
 
 import com.shield.projectJavaCesi.entity.being.Being;
+import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 import org.hibernate.annotations.GenericGenerator;
@@ -50,6 +51,13 @@ public class Superbeing {
 
     public void addAbility(Ability ability) {
         this.ability.add(ability);
+    }
+
+    @ManyToMany(mappedBy = "superbeing")
+    private List<Incident> incident = new ArrayList<>();
+
+    public void addIncident(Incident incident) {
+        this.incident.add(incident);
     }
 
     public int getId() {

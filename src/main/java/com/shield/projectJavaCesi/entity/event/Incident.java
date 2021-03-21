@@ -15,6 +15,7 @@ import com.shield.projectJavaCesi.entity.being.Being;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Location;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
+import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 
 @Entity
 @Table(name = "incident")
@@ -58,6 +59,14 @@ public class Incident extends Event {
 
 	public void addBeing(Being being) {
 		this.being.add(being);
+	}
+
+	@ManyToMany
+	@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "superbeing_id", referencedColumnName = "id"))
+	private List<Superbeing> superbeing = new ArrayList<>();
+
+	public void addSuperbeing(Superbeing superbeing) {
+		this.superbeing.add(superbeing);
 	}
 
 	public String getStatus() {
