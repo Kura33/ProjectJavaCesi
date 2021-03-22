@@ -21,93 +21,121 @@ import org.springframework.stereotype.Service;
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.repository.event.IIncidentRepository;
 
+import javax.persistence.EntityManager;
+
 @Service
 public class IncidentService {
+    @Autowired
+    private IIncidentRepository repository;
+    @Autowired
+    private ICommentRepository commentRepository;
+    @Autowired
+    private ISuperbeingRepository superbeingRepository;
+    @Autowired
+    private ICivilRepository civilRepository;
+    @Autowired
+    private IOrganisationRepository organisationRepository;
+    @Autowired
+    private IEventTypeRepository eventTypeRepository;
 	@Autowired
-	private IIncidentRepository repository;
-	@Autowired
-	private ICommentRepository commentRepository;
-	@Autowired
-	private ISuperbeingRepository superbeingRepository;
-	@Autowired
-	private ICivilRepository civilRepository;
-	@Autowired
-	private IOrganisationRepository organisationRepository;
-	@Autowired
-	private IEventTypeRepository eventTypeRepository;
+	private EntityManager em;
 
+    public List<Incident> saveIncident(List<Incident> incidents) {
+        return repository.saveAll(incidents);
+    }
 
-	public List<Incident> saveIncident(List<Incident> incidents) {
-		return repository.saveAll(incidents);
-	}
+    public List<Incident> saveIncidentAndRelations(List<Map<String, Object>> incidentAndRelations) {
+        List<Incident> savedIncidents = new ArrayList<>();
+        for (Map<String, Object> incidentAndRelation : incidentAndRelations) {
+            EventType eventType = eventTypeRepository.save((EventType) incidentAndRelation.get("eventType"));
+            Incident incident = (Incident) incidentAndRelation.get("incident");
+            incident.setEventType(eventType);
 
-	public List<Incident> saveIncidentAndRelations(List<Map<String, Object>> incidentAndRelations)
-	{
-		List<Incident> savedIncidents = new ArrayList<>();
-		for (Map<String, Object> incidentAndRelation : incidentAndRelations) {
-			EventType eventType = eventTypeRepository.save((EventType)incidentAndRelation.get("eventType"));
-			Incident incident = (Incident) incidentAndRelation.get("incident");
-			incident.setEventType(eventType);
-			incident = repository.save(incident);
-			savedIncidents.add(incident);
-		}
+            //save civilians relationships
+            List<Integer> civiliansIds = (List<Integer>) incidentAndRelation.get("civils");
+            for (Integer civilId : civiliansIds) {
+                incident.addBeing(civilRepository.findById(civilId).orElse(null));
+            }
+            // save organisations relationships
+            List<Integer> organisationIds = (List<Integer>) incidentAndRelation.get("organisations");
+            for (Integer organisationId : organisationIds) {
+                incident.addBeing(organisationRepository.findById(organisationId).orElse(null));
+            }
 
-		return savedIncidents;
-	}
+            //save superbeings relationships
+            List<Integer> superbeingIds = (List<Integer>) incidentAndRelation.get("superbeings");
+            for (Integer superbeingId : superbeingIds) {
+                incident.addSuperbeing(superbeingRepository.findById(superbeingId).orElse(null));
+            }
+            //save incident
+            incident = repository.save(incident);
+			//em.refresh(incident); // retrieve incident with id.
 
-	public Map<String, Object> getIncidentById(int id) {
-		Map<String, Object> result = new HashMap<>();
-		result.put("incident", repository.findById(id).orElse(null));
-		result.put("comments", commentRepository.findCommentsByIncidentId(id));
-		result.put("superbeings", superbeingRepository.findSuperbeingsByIncidentId(id));
-		result.put("civils", civilRepository.findCivilsByIncidentId(id));
-		result.put("organisations", organisationRepository.findOrganisationsByIncidentId(id));
+            //save comments and their relationships
+            List<Comment> comments = (List<Comment>) incidentAndRelation.get("comment");
+            for (Comment comment : comments) {
+                comment.setIncident(incident);
+            }
+            commentRepository.saveAll(comments);
+            savedIncidents.add(incident);
+        }
 
-		return result;
-	}
+        return savedIncidents;
+    }
 
-	public List<Incident> getIncidents() {
-		return repository.findAll();
-	}
+    public Map<String, Object> getIncidentById(int id) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("incident", repository.findById(id).orElse(null));
+        result.put("comments", commentRepository.findCommentsByIncidentId(id));
+        result.put("superbeings", superbeingRepository.findSuperbeingsByIncidentId(id));
+        result.put("civils", civilRepository.findCivilsByIncidentId(id));
+        result.put("organisations", organisationRepository.findOrganisationsByIncidentId(id));
 
-	public String deleteIncident(int id) {
-		repository.deleteById(id);
-		return "Incident " + id + " deleted";
-	}
+        return result;
+    }
 
-	public String deleteAllIncident() {
-		repository.deleteAll();
-		return "All Incidents deleted";
-	}
+    public List<Incident> getIncidents() {
+        return repository.findAll();
+    }
 
-	public Incident updateIncident(Incident incident) {
-		Incident existingIncident = (Incident) repository.findById(incident.getId()).orElse(null);
-		if (existingIncident == null) {
-			return null;
-		}
-		if (incident.getRef() != null) {
-			existingIncident.setRef(incident.getRef());
-		}
-		if (incident.getStartDate() != null) {
-			existingIncident.setStartDate(incident.getStartDate());
-		}
-		existingIncident.setEndDate(incident.getEndDate());
-		if (incident.isSolved() != null) {
-			existingIncident.setSolved(incident.isSolved());
-		}
-		if (incident.isArchive() != null) {
-			existingIncident.setArchive(incident.isArchive());
-		}
-		if (incident.getEventType() != null) {
-			existingIncident.setEventType(incident.getEventType());
-		}
-		if (incident.getDangerousness() != null) {
-			existingIncident.setDangerousness(incident.getDangerousness());
-		}
-		if (incident.getStatus() != null) {
-			existingIncident.setStatus(incident.getStatus());
-		}
-		return repository.save(existingIncident);
-	}
+    public String deleteIncident(int id) {
+        repository.deleteById(id);
+        return "Incident " + id + " deleted";
+    }
+
+    public String deleteAllIncident() {
+        repository.deleteAll();
+        return "All Incidents deleted";
+    }
+
+    public Incident updateIncident(Incident incident) {
+        Incident existingIncident = (Incident) repository.findById(incident.getId()).orElse(null);
+        if (existingIncident == null) {
+            return null;
+        }
+        if (incident.getRef() != null) {
+            existingIncident.setRef(incident.getRef());
+        }
+        if (incident.getStartDate() != null) {
+            existingIncident.setStartDate(incident.getStartDate());
+        }
+        existingIncident.setEndDate(incident.getEndDate());
+        if (incident.isSolved() != null) {
+            existingIncident.setSolved(incident.isSolved());
+        }
+        if (incident.isArchive() != null) {
+            existingIncident.setArchive(incident.isArchive());
+        }
+        if (incident.getEventType() != null) {
+            existingIncident.setEventType(incident.getEventType());
+        }
+        if (incident.getDangerousness() != null) {
+            existingIncident.setDangerousness(incident.getDangerousness());
+        }
+        if (incident.getStatus() != null) {
+            existingIncident.setStatus(incident.getStatus());
+        }
+        return repository.save(existingIncident);
+    }
 
 }

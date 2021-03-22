@@ -44,6 +44,7 @@ public class Mapper {
         res.setSolved(incidentDto.solved);
         res.setDangerousness(incidentDto.dangerousness);
         res.setStatus(incidentDto.status);
+        res.setArchive(incidentDto.archive);
         return res;
 
     }
@@ -396,7 +397,9 @@ public class Mapper {
         map.put("incident", Mapper.incidentDTOToIncident.apply(incidentDto));
         map.put("comment", Mapper.map(incidentDto.comments, Mapper.commentDtoTocomment));
         map.put("eventType", Mapper.eventTypeDtoToEventType.apply(incidentDto.eventType));
-
+        map.put("civils", incidentDto.civils);
+        map.put("organisations", incidentDto.organisations);
+        map.put("superbeings", incidentDto.superbeings);
         return map;
     };
 

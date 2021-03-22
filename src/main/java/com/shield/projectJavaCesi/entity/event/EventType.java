@@ -2,20 +2,17 @@ package com.shield.projectJavaCesi.entity.event;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "event_type")
 public class EventType {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
 	private String name;
 

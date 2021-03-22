@@ -11,9 +11,10 @@ public class IncidentDto {
     public Boolean solved;
     public Double dangerousness;
     public String status;
+    public Boolean archive;
     public EventTypeDto eventType;
     public List<CommentDto> comments;
-    public List<Long> civils;
-    public List<Long> organisations;
-    public List<Long> superbeings;
+    public List<Integer> civils;
+    public List<Integer> organisations;
+    public List<Integer> superbeings;
 }
