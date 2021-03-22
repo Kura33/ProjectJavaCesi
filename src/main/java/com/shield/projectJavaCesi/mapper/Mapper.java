@@ -1,10 +1,13 @@
 package com.shield.projectJavaCesi.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import com.shield.projectJavaCesi.dto.*;
 import com.shield.projectJavaCesi.entity.being.AccessRole;
 import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
@@ -26,10 +29,25 @@ import com.shield.projectJavaCesi.resource.employee.EmployeeDepartmentResource;
 import com.shield.projectJavaCesi.resource.employee.EmployeeResource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.thymeleaf.expression.Strings;
 
 public class Mapper {
+
+
+    public static Function<IncidentDto, Incident> incidentDTOToIncident = (incidentDto -> {
+        Incident res = new Incident();
+        if (incidentDto == null){
+            return null;
+        }
+        res.setRef(incidentDto.ref);
+        res.setStartDate(incidentDto.startDate);
+        res.setEndDate(incidentDto.endDate);
+        res.setSolved(incidentDto.solved);
+        res.setDangerousness(incidentDto.dangerousness);
+        res.setStatus(incidentDto.status);
+        return res;
+
+    }
+    );
 
 
     public static <T, R> List<R> map(List<T> list, Function<T, R> func) {
@@ -350,6 +368,36 @@ public class Mapper {
         }
         User res = new User(employee.getEmail(), employee.getPassword(), roles);
         return res;
+    };
+
+    public static Function<CommentDto, Comment> commentDtoTocomment = (commentDto) -> {
+        if (commentDto == null) {
+            return null;
+        }
+        Comment res = new Comment();
+        res.setComments(commentDto.comments);
+        return res;
+    };
+    public static Function<EventTypeDto, EventType> eventTypeDtoToEventType = (eventTypeDto) -> {
+        if (eventTypeDto == null) {
+            return null;
+        }
+        EventType res = new EventType();
+        res.setName(eventTypeDto.name);
+
+        return res;
+    };
+
+    public static Function<IncidentDto, Map<String, Object>> incidentDtoToMap = (incidentDto) -> {
+        if (incidentDto == null) {
+            return null;
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("incident", Mapper.incidentDTOToIncident.apply(incidentDto));
+        map.put("comment", Mapper.map(incidentDto.comments, Mapper.commentDtoTocomment));
+        map.put("eventType", Mapper.eventTypeDtoToEventType.apply(incidentDto.eventType));
+
+        return map;
     };
 
 }

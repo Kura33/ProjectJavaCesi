@@ -197,4 +197,5 @@ public abstract class Being {
 		public void setAccessRole(AccessRole accessRole) {
 			this.accessRole = accessRole;
 		}
+
 }

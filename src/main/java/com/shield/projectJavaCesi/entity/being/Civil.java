@@ -26,8 +26,9 @@ public class Civil extends Being {
         TITLE_MR, TITLE_MME
     }
 
-    public static final String GENDER_MR = "M";
-    public static final String GENDER_MME = "Mme";
+    public static final String GENDER_MR = "male";
+    public static final String GENDER_MME = "femal";
+    public static final String GENDER_OTHER = "other";
 
     public enum Gender {
         GENDER_MR, GENDER_MME

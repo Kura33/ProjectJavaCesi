@@ -83,9 +83,7 @@ export default {
               };
       const headers = {"Content-Type": "application/json"};
       try {
-        await axios.post(`/shield/login`, {
-          body: body
-        }, {headers})
+        await axios.post(`/shield/login`, body, {headers})
         .then(response => {
           this.connected = response;
           console.log(response)

@@ -6,11 +6,13 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import com.shield.projectJavaCesi.dto.IncidentDto;
 import com.shield.projectJavaCesi.entity.being.Civil;
 import com.shield.projectJavaCesi.entity.being.Organisation;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,57 +30,99 @@ import com.shield.projectJavaCesi.service.event.IncidentService;
 @RequestMapping(path = "/shield/incident")
 @Transactional
 public class IncidentController {
-	@Autowired
-	private IncidentService service;
+    @Autowired
+    private IncidentService service;
 
-	@Autowired
-	private EntityManager em;
+    @Autowired
+    private EntityManager em;
 
-	@GetMapping("/")
-	public List<IncidentResource> findAllIncidents() {
-		List<Incident> incidents = service.getIncidents();
-		return Mapper.map(incidents, Mapper.incidentToIncidentResource);
-	}
+    /**
+     * Sert à recupérer tous les incidents.
+     *
+     * @return une liste de tous les incidents.
+     */
+    @PreAuthorize("hasAnyAuthority('Agent_0', 'Agent_1', 'Agent_2', 'Agent_3')")
+    @GetMapping("/")
+    public List<IncidentResource> findAllIncidents() {
+        List<Incident> incidents = service.getIncidents();
+        return Mapper.map(incidents, Mapper.incidentToIncidentResource);
+    }
 
-	@GetMapping("/{id}")
-	public Map<String, Object>findIncidentById(@PathVariable int id) {
-		Map<String, Object> map = service.getIncidentById(id);
+    /**
+     * sert à récupérer un incident
+     *
+     * @param id
+     * @return un incident avec sa liste de commentaires, de superbeing, de civils et d'organiation.
+     */
+    @PreAuthorize("hasAnyAuthority('Agent_0', 'Agent_1', 'Agent_2', 'Agent_3')")
+    @GetMapping("/{id}")
+    public Map<String, Object> findIncidentById(@PathVariable int id) {
+        Map<String, Object> map = service.getIncidentById(id);
 
-		map.put("incident", Mapper.incidentToIncidentResource.apply((Incident) map.get("incident")));
-		map.put("comments", Mapper.map((List<Comment>) map.get("comments"), Mapper.commentToCommentResource));
-		map.put("superbeings", Mapper.map((List<Superbeing>) map.get("superbeings"), Mapper.superbeingToSuperbeingResource));
-		map.put("civils", Mapper.map((List<Civil>) map.get("civils"), Mapper.civilToCivilResource));
-		map.put("organisations", Mapper.map((List<Organisation>) map.get("organisations"), Mapper.organisationToOrganisationResource));
-		return map;
-	}
+        map.put("incident", Mapper.incidentToIncidentResource.apply((Incident) map.get("incident")));
+        map.put("comments", Mapper.map((List<Comment>) map.get("comments"), Mapper.commentToCommentResource));
+        map.put("superbeings", Mapper.map((List<Superbeing>) map.get("superbeings"), Mapper.superbeingToSuperbeingResource));
+        map.put("civils", Mapper.map((List<Civil>) map.get("civils"), Mapper.civilToCivilResource));
+        map.put("organisations", Mapper.map((List<Organisation>) map.get("organisations"), Mapper.organisationToOrganisationResource));
+        return map;
+    }
 
-	@PostMapping("/create")
-	public List<IncidentResource> addIncident(@RequestBody List<Incident> incident) {
-		List<Incident> incidents = service.saveIncident(incident);
-		em.flush();
-		for (Incident incident1 : incidents) {
+    /**
+     * sert à créer un ou plusieurs incidents.
+     *
+     * @param incidentAndRelation
+     * @return une liste d'incidents.
+     */
+    @PreAuthorize("hasAnyAuthority('Agent_0', 'Agent_1', 'Agent_2', 'Agent_3')")
+    @PostMapping("/create")
+    public List<IncidentResource> addIncident(@RequestBody List<IncidentDto> incidentAndRelation) {
+    ;
+        List<Map<String, Object>> incidentList = Mapper.map(incidentAndRelation, Mapper.incidentDtoToMap);
+        List<Incident> saveIncidentList = service.saveIncidentAndRelations(incidentList);
+        em.flush();
+        for (Incident incident1 : saveIncidentList) {
 
-			em.refresh(incident1);
-		}
-		return Mapper.map(incidents, Mapper.incidentToIncidentResource);
-	}
+            em.refresh(incident1);
+        }
+        return Mapper.map(saveIncidentList, Mapper.incidentToIncidentResource);
+    }
 
-	@PutMapping("/update")
-	public IncidentResource updateIncident(@RequestBody Incident incident) {
-		Incident incidents = service.updateIncident(incident);
-		em.flush();
-		em.refresh(incidents);
+    /**
+     * Sert à mettre à jour un incident.
+     *
+     * @param incident
+     * @return un incident.
+     */
+    @PreAuthorize("hasAnyAuthority('Agent_0', 'Agent_1', 'Agent_2', 'Agent_3')")
+    @PutMapping("/update")
+    public IncidentResource updateIncident(@RequestBody Incident incident) {
+        Incident incidents = service.updateIncident(incident);
+        em.flush();
+        em.refresh(incidents);
 
-		return Mapper.incidentToIncidentResource.apply(incidents);
-	}
+        return Mapper.incidentToIncidentResource.apply(incidents);
+    }
 
-	@DeleteMapping("/delete/{id}")
-	public String deleteIncidentById(@PathVariable int id) {
-		return service.deleteIncident(id);
-	}
+    /**
+     * Sert à supprimer une fiche incident.
+     *
+     * @param id
+     * @return "True" si l'oppération s'est bien effetuée.
+     */
+    @PreAuthorize("hasAuthority('Agent_0')")
+    @DeleteMapping("/delete/{id}")
+    public String deleteIncidentById(@PathVariable int id) {
+        return service.deleteIncident(id);
+    }
 
-	@DeleteMapping("/delete-all")
-	public String deleteIncidents() {
-		return service.deleteAllIncident();
-	}
+    /**
+     * Sert à supprimer toutes les fiches incidents.
+     *
+     * @return "True" si l'oppération s'est bien effetuée.
+     */
+    @PreAuthorize("hasAuthority('Agent_0')")
+    @DeleteMapping("/delete-all")
+    public String deleteIncidents() {
+        return service.deleteAllIncident();
+    }
 }

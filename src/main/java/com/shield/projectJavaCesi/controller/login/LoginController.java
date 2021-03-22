@@ -1,10 +1,9 @@
-package com.shield.projectJavaCesi.controller.employee;
+package com.shield.projectJavaCesi.controller.login;
 
 import com.shield.projectJavaCesi.config.JwtTokenUtil;
 import com.shield.projectJavaCesi.config.TokenResponse;
 import com.shield.projectJavaCesi.dto.EmployeeDto;
 import com.shield.projectJavaCesi.service.MyUserDetailsService;
-import com.shield.projectJavaCesi.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,13 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/shield")
 public class LoginController {
-
-    @Autowired
-    private EmployeeService service;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -33,6 +28,13 @@ public class LoginController {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
+    /**
+     * Sert à se connecter
+     *
+     * @param employeeDto
+     * @return un token de connection valable 24h.
+     * @throws Exception
+     */
     @PostMapping("/login")
     public TokenResponse login(@RequestBody EmployeeDto employeeDto) throws Exception {
         authenticate(employeeDto.email, employeeDto.password);

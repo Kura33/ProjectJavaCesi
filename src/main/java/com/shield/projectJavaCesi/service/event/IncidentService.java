@@ -1,11 +1,19 @@
 package com.shield.projectJavaCesi.service.event;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.shield.projectJavaCesi.entity.being.Being;
+import com.shield.projectJavaCesi.entity.being.Civil;
+import com.shield.projectJavaCesi.entity.being.Organisation;
+import com.shield.projectJavaCesi.entity.event.EventType;
+import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
+import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
 import com.shield.projectJavaCesi.repository.being.ICivilRepository;
 import com.shield.projectJavaCesi.repository.being.IOrganisationRepository;
+import com.shield.projectJavaCesi.repository.event.IEventTypeRepository;
 import com.shield.projectJavaCesi.repository.multipleConnection.ICommentRepository;
 import com.shield.projectJavaCesi.repository.superbeing.ISuperbeingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +33,26 @@ public class IncidentService {
 	private ICivilRepository civilRepository;
 	@Autowired
 	private IOrganisationRepository organisationRepository;
+	@Autowired
+	private IEventTypeRepository eventTypeRepository;
+
 
 	public List<Incident> saveIncident(List<Incident> incidents) {
 		return repository.saveAll(incidents);
+	}
+
+	public List<Incident> saveIncidentAndRelations(List<Map<String, Object>> incidentAndRelations)
+	{
+		List<Incident> savedIncidents = new ArrayList<>();
+		for (Map<String, Object> incidentAndRelation : incidentAndRelations) {
+			EventType eventType = eventTypeRepository.save((EventType)incidentAndRelation.get("eventType"));
+			Incident incident = (Incident) incidentAndRelation.get("incident");
+			incident.setEventType(eventType);
+			incident = repository.save(incident);
+			savedIncidents.add(incident);
+		}
+
+		return savedIncidents;
 	}
 
 	public Map<String, Object> getIncidentById(int id) {

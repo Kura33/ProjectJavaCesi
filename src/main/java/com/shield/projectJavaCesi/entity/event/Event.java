@@ -59,7 +59,7 @@ public abstract class Event {
 		return solved;
 	}
 
-	public void setSolved(Boolean solved) {
+	public void setSolved(boolean solved) {
 		this.solved = solved;
 	}
 
