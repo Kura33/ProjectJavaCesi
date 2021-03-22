@@ -68,8 +68,8 @@ public class IncidentController {
     }
 
     /**
-     * sert à créer un ou plusieurs incidents.
-     *
+     * sert à créer un ou plusieurs incidents, un ou plusieurs commentaires, un event type
+     * et les relations entre incidents/civils/organisations/superbeings
      * @param incidentAndRelation
      * @return une liste d'incidents.
      */
