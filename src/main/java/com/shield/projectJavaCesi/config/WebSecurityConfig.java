@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/shield/login").permitAll()
+                    .antMatchers("/shield/login", "/swagger-ui/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .logout()
