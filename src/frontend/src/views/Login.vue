@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import Incident from "@/views/incident/Incident";
 
 export default {
   name: "Login",
@@ -40,25 +41,10 @@ export default {
         email: this.email,
         password: this.password,
       })
-      console.log(response);
       localStorage.setItem("token", response.data.token)
-      console.log(localStorage.getItem("token"))
+      this.$router.push(Incident)
 
     },
-
-    // connection(email, password) {
-    //   const headers = {"Content-Type": "application/json"};
-    //   axios.post(`/shield/login`, {email, password}, {headers})
-    //       .then(response => {
-    //         // this.token = response.data.token;
-    //         const token = response.data.token;
-    //         localStorage.setItem('user-token', token);
-    //         // const tokenn = response.data.token;
-    //       })
-    //       .catch(() => {
-    //         localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
-    //       })
-    // },
   },
 }
 </script>

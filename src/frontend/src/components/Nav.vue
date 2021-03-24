@@ -31,14 +31,32 @@
             <a :href="href" @click="navigate" class="nav-link">Login</a>
           </router-link>
         </li>
+        <li class="nav-item" v-if="existingToken">
+          <button class="btn btn-primary" @click="logout">Logout</button>
+        </li>
+
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
+import Home from "@/views/Home";
+
 export default {
-  name: "Nav"
+  name: "Nav",
+  data() {
+    return {
+      existingToken : localStorage.getItem("token") ? localStorage.getItem("token") : null,
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("token")
+      alert("Déconnexion effectuée avec succès")
+      this.$router.push(Home)
+    }
+  }
 }
 </script>
 <style>
