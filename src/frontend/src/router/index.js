@@ -10,11 +10,11 @@ const NotFound = import('@/views/NotFound');
 
 const routes = [
     {path: '/', name: 'Home', component: Home,},
-    {path: '/shield/login', name: 'Login', component: Login,},
-    {path: '/shield/incident/', name: 'Incident', component: Incident,},
-    {path: '/shield/incident/:id', name: 'IncidentDetail', component: IncidentDetail, props: true,},
-    {path: '/shield/incident/create', name: 'IncidentCreation', component: IncidentCreation,},
-    {path: '/shield/about/', name: 'About', component: About,},
+    {path: '/api-shield/login', name: 'Login', component: Login,},
+    {path: '/api-shield/incident/', name: 'Incident', component: Incident,},
+    {path: '/api-shield/incident/:id', name: 'IncidentDetail', component: IncidentDetail, props: true,},
+    {path: '/api-shield/incident/create', name: 'IncidentCreation', component: IncidentCreation,},
+    {path: '/api-shield/about/', name: 'About', component: About,},
     // catch all 404
     {path: '/:catchAll(.*)', name: 'NotFound', component: NotFound,},
 
