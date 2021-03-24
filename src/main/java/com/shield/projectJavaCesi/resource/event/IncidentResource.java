@@ -9,7 +9,6 @@ public class IncidentResource {
 	public Date endDate;
 	public Boolean solved;
 	public Double dangerousness;
-	public Boolean archive;
 	public String status;
 	public String eventType;
 }

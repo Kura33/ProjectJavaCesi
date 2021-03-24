@@ -68,4 +68,9 @@ public class EmployeeService {
 		}
 		return repository.save(existingEmployee);
 	}
+
+	public Employee checkLogin(String email, String password)
+	{
+		return repository.getEmployeeByEmailAndPassword(email, password);
+	}
 }

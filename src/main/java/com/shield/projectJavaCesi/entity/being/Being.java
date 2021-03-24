@@ -3,59 +3,65 @@ package com.shield.projectJavaCesi.entity.being;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.*;
-
 import com.shield.projectJavaCesi.entity.event.Incident;
 import com.shield.projectJavaCesi.entity.multipleConnection.Comment;
 import com.shield.projectJavaCesi.entity.multipleConnection.Media;
 import com.shield.projectJavaCesi.entity.superbeing.Superbeing;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "being")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="organisation", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Being {
 
 		@Id
-		@GeneratedValue
+		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+		@GenericGenerator(name = "native", strategy = "native")
 		private int id;
 		private String ref;
-		private Boolean organisation;
 		private Boolean malevolant;
-		private String email;
-		private String password;
 		private Date birthdate;
 		private Date deathdate;
 		private String address;
 		private String city;
 		private String state;
 		private String zipcode;
-		private String coutry;
+		private String country;
 		private String mobilePhone;
 		private Date addedAt;
-		private Date updateAt;
+		private Date updatedAt;
 		private int howManyDeclaredIncident;
 		private int victimOfHowManyMission;
 		private Boolean archive;
-		
+		private String email;
+		private String password;
+		private Boolean active;
+
 		@OneToMany(mappedBy = "being")
 	    private List<Comment> comment;
 
-	    @OneToMany(mappedBy = "being")
+	    @OneToMany(mappedBy = "media")
 	    private List<Media> media;
 
 	    @ManyToOne
 		@JoinColumn(name = "superbeing_id", referencedColumnName = "id")
 	    private Superbeing superbeing;
-	    
+
 	    @ManyToMany
 		@JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "being_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
 		private List<Incident> incident = new ArrayList<>();
-	    
+
+	    @OneToOne
+		@JoinColumn(name = "access_role_id", referencedColumnName = "id")
+		private AccessRole accessRole;
+
+
 	    public void addIncident(Incident incident) {
 			this.incident.add(incident);
 		}
-		
+
 		public int getId() {
 			return id;
 		}
@@ -67,12 +73,6 @@ public abstract class Being {
 		}
 		public void setRef(String ref) {
 			this.ref = ref;
-		}
-		public Boolean isOrganisation() {
-			return organisation;
-		}
-		public void setOrganisation(Boolean organisation) {
-			this.organisation = organisation;
 		}
 		public Boolean isMalevolant() {
 			return malevolant;
@@ -128,11 +128,11 @@ public abstract class Being {
 		public void setZipcode(String zipcode) {
 			this.zipcode = zipcode;
 		}
-		public String getCoutry() {
-			return coutry;
+		public String getCountry() {
+			return country;
 		}
-		public void setCoutry(String coutry) {
-			this.coutry = coutry;
+		public void setCountry(String country) {
+			this.country = country;
 		}
 		public String getMobilePhone() {
 			return mobilePhone;
@@ -146,11 +146,11 @@ public abstract class Being {
 		public void setAddedAt(Date addedAt) {
 			this.addedAt = addedAt;
 		}
-		public Date getUpdateAt() {
-			return updateAt;
+		public Date getUpdatedAt() {
+			return updatedAt;
 		}
-		public void setUpdateAt(Date updateAt) {
-			this.updateAt = updateAt;
+		public void setUpdatedAt(Date updateAt) {
+			this.updatedAt = updateAt;
 		}
 		public int getHowManyDeclaredIncident() {
 			return howManyDeclaredIncident;
@@ -182,4 +182,20 @@ public abstract class Being {
 		public void setArchive(Boolean archive) {
 			this.archive = archive;
 		}
+		public Boolean isActive() {
+		return active;
+	}
+		public void setActive(Boolean active) {
+		this.active = active;
+	}
+		public Superbeing getSuperbeing() { return superbeing; }
+		public void setSuperbeing(Superbeing superbeing) { this.superbeing = superbeing; }
+
+		public AccessRole getAccessRole() {
+			return accessRole;
+		}
+		public void setAccessRole(AccessRole accessRole) {
+			this.accessRole = accessRole;
+		}
+
 }
