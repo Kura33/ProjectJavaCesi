@@ -53,7 +53,8 @@ public class Superbeing {
         this.ability.add(ability);
     }
 
-    @ManyToMany(mappedBy = "superbeing")
+    @ManyToMany
+    @JoinTable(name = "incident_linked_entity", joinColumns = @JoinColumn(name = "superbeing_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "incident_id", referencedColumnName = "id"))
     private List<Incident> incident = new ArrayList<>();
 
     public void addIncident(Incident incident) {
