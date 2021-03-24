@@ -1,6 +1,5 @@
 <template>
   <div class="page-content p-5">
-  <h1>CODE COULEUR POUR DANGEROSITE ET RESOLU</h1>
   <button class="back-btn btn btn-secondary mb-2">
     <router-link :to="{ name: 'IncidentCreation'}">
       Créer un incident</router-link>
@@ -87,19 +86,6 @@ export default {
     }
   },
   methods: {
-    //1
-    // getIncidentData() {
-    //   fetch("/shield/incident/")
-    //       .then(response => response.json())
-    //       .then((data) => {
-    //         let incidentList = [];
-    //         $.each(data, (incident) => {
-    //           incidentList.push(data[incident])
-    //         })
-    //         this.incidents = incidentList;
-    //       })
-    //       .catch(err => console.log(err.message));
-    // },
     async loadIncidents() {
       await axios.get("/shield/incident/", {
         headers: {
@@ -112,16 +98,9 @@ export default {
         this.incidents = response.data
       })
 
-      // console.log(this.incidents)
-      // console.log(response.data)
-          // .then(response => {
-          //
-          //   // this.incidents = response.data.data
-          // })
     },
     //2
     created() {
-      // this.getIncidentData();
       this.loadIncidents();
 
     },
@@ -159,5 +138,6 @@ a {
 
 .legende{
   display: flex;
+  justify-content: space-evenly;
 }
 </style>

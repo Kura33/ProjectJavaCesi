@@ -47,5 +47,9 @@ export default {
   height: 50px;
 }
 
+.navbar {
+  margin: 0 !important;
+}
+
 
 </style>

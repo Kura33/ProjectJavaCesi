@@ -60,16 +60,7 @@
           <label>Superbeing 2</label><input type="checkbox" v-model="superbeing2" value="2">
           <label>Superbeing 3</label><input type="checkbox" v-model="superbeing3" value="3">
         </div>
-
-        <!--        <div class="form-group">-->
-<!--          <label>Type d'incident</label>-->
-<!--          <select id="eventType" v-model="eventType" name="eventType" type="text" class="form-control">-->
-<!--            <option value="Cambriolage">Cambriolage</option>-->
-<!--            <option value="Attaque de Civils">Attaque de Civils</option>-->
-<!--          </select>-->
-<!--        </div>-->
-
-        <button type="submit" class="btn btn-primary m-auto">Se connecter</button>
+        <button type="submit" class="btn btn-primary m-auto">Créer un incident</button>
 
       </form>
     </div>
@@ -119,18 +110,6 @@ export default {
   },
   methods: {
     async handleCreation() {
-      // const body = [
-      //   {
-      //     ref: this.ref,
-      //     startDate: this.startDate,
-      //     endDate: this.endDate,
-      //     solved: this.solved,
-      //     dangerousness: this.dangerousness,
-      //     status: this.status,
-      //     eventType: this.eventType
-      //   }
-      // ];
-
       const body = [
         {
           "ref": this.reference,
@@ -147,12 +126,12 @@ export default {
           "organisations": [],
           "superbeings": [],
           "comments": [
-            // {
-            //   "comments": "premier commentaire"
-            // },
-            // {
-            //   "comments": "second commentaire"
-            // }
+            {
+              "comments": "premier commentaire"
+            },
+            {
+              "comments": "second commentaire"
+            }
           ]
         }
       ];
