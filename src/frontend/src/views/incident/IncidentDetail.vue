@@ -56,7 +56,7 @@
       <div class="civil-information" v-if="civils">
         <div class="info-nav pl-2 text-white">CIVILS</div>
         <div v-for="civil in civils" :key="civil.id">
-          <div class=""> {{ civil.name }}</div>
+          <div class=""> {{ civil.firstname }} {{ civil.lastname }}</div>
         </div>
       </div>
       <div class="civil-information" v-else>

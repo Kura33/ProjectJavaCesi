@@ -91,25 +91,29 @@ export default {
       superbeing1: null,
       superbeing2: null,
       superbeing3: null,
-      civils: [
-          parseInt(this.civil1),
-          parseInt(this.civil2),
-          parseInt(this.civil7)
-          ],
-      organisations: [
-        parseInt(this.orga3),
-        parseInt(this.orga8),
-      ],
-      superbeings: [
-        parseInt(this.superbeing1),
-        parseInt(this.superbeing2),
-        parseInt(this.superbeing3),
-      ],
+      civils: [],
+      organisations: [],
+      superbeings: [],
       result: '',
     }
   },
   methods: {
     async handleCreation() {
+
+      this.civil1 == true ? this.civils.push(1) : '';
+      this.civil2 == true ? this.civils.push(2) : '';
+      this.civil7 == true ? this.civils.push(7) : '';
+
+      this.orga3 == true ? this.organisations.push(3) : '';
+      this.orga8 == true ? this.organisations.push(8) : '';
+
+      this.superbeing1 == true ? this.superbeings.push(1) : '';
+      this.superbeing2 == true ? this.superbeings.push(2) : '';
+      this.superbeing3 == true ? this.superbeings.push(3) : '';
+
+      console.log(this.civils)
+      console.log(this.superbeings)
+      console.log(this.organisations)
       const body = [
         {
           "ref": this.reference,
@@ -122,9 +126,9 @@ export default {
           "eventType": {
             "name": this.eventType,
           },
-          "civils": [],
-          "organisations": [],
-          "superbeings": [],
+          "civils": this.civils,
+          "organisations": this.organisations,
+          "superbeings": this.superbeings,
           "comments": [
             {
               "comments": "premier commentaire"
