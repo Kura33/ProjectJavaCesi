@@ -1,14 +1,6 @@
 <template>
   <div class="content w-25 m-auto">
-    <div class="errors" v-if="errors">
-      <span><b>Please correct the following error(s):</b></span>
-      <ul>
-        <li>{{ errorMessage }}</li>
-      </ul>
-    </div>
-
-
-    <form action="" @submit="checkForm" method="post" class="flex flex-column">
+    <form action="" @submit.prevent="handleSubmit" method="post" class="flex flex-column">
       <div class="form-group">
         <label for="email">Email address</label>
         <input v-model="email" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
@@ -23,8 +15,6 @@
       <button type="submit" class="btn btn-primary m-auto">Se connecter</button>
     </form>
   </div>
-
-  <div>{{ connected ? connected :'nope' }}</div>
 </template>
 
 <script>
@@ -34,72 +24,41 @@ export default {
   name: "Login",
   data() {
     return {
-      formErrors: [],
-      errorMessage: null,
-      email: null,
-      password: null,
-      connected: '',
-      data: '',
+      // formErrors: [],
+      // errorMessage: null,
+      email: '',
+      password: '',
     }
   },
   methods: {
-    // 1
-    // 2
     backward() {
       this.$router.go(-1)
     },
-    // 3
-    checkForm(e) {
-      e.preventDefault();
-      if (this.email && this.password) {
-        this.connection();
-      }
-      this.formErrors = [];
 
-      if (!this.email) {
-        this.formErrors.push('Email required.');
-      } else if (!this.validEmail(this.email)) {
-        this.formErrors.push('Valid email required.');
-      }
-      if (!this.password) {
-        this.formErrors.push('Password required.');
-      }
-
-      if (!this.formErrors.length) {
-        this.connection();
-      }
-
+    async handleSubmit() {
+      const response = await axios.post(`/shield/login`, {
+        email: this.email,
+        password: this.password,
+      })
+      console.log(response);
+      localStorage.setItem("token", response.data.token)
+      console.log(localStorage.getItem("token"))
 
     },
-    validEmail(email) {
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
-    },
-    async connection() {
 
-      const body = {
-                email: this.email,
-                password: this.password,
-              };
-      const headers = {"Content-Type": "application/json"};
-      try {
-        await axios.post(`/shield/login`, body, {headers})
-        .then(response => {
-          this.connected = response;
-          console.log(response)
-        })
-        // .then(response => {
-        //   axios.post(`/shield/user`,
-        //       {},
-        //       // {body: response},
-        //       {headers: {Authorization: response.token}})
-        // })
-      } catch (e) {
-        this.errors.push(e)
-      }
-    }
+    // connection(email, password) {
+    //   const headers = {"Content-Type": "application/json"};
+    //   axios.post(`/shield/login`, {email, password}, {headers})
+    //       .then(response => {
+    //         // this.token = response.data.token;
+    //         const token = response.data.token;
+    //         localStorage.setItem('user-token', token);
+    //         // const tokenn = response.data.token;
+    //       })
+    //       .catch(() => {
+    //         localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+    //       })
+    // },
   },
-  mounted() {
-  }
 }
 </script>

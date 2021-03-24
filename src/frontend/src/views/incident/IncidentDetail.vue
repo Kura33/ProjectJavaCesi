@@ -7,7 +7,9 @@
         <div class="info-nav pl-2 text-white">INFORMATIONS</div>
         <div class="info-content px-2 grid-container-incident-info" v-if="incident">
           <div class="grid-item grid-item-1"><span>RÉFÉRENCE : </span><span>{{ incident.ref }}</span></div>
-          <div class="grid-item grid-item-2"><span>DATE DE DÉBUT : </span><span>{{ format_date(incident.startDate) }}</span></div>
+          <div class="grid-item grid-item-2"><span>DATE DE DÉBUT : </span><span>{{
+              format_date(incident.startDate)
+            }}</span></div>
           <div class="grid-item grid-item-3">
             <span>DATE DE FIN : </span><span>{{ incident.endDate ? format_date(incident.endDate) : ' -' }}</span></div>
           <div class="grid-item grid-item-4"><span>STATUT : </span><span>{{ incident.status }}</span></div>
@@ -22,7 +24,7 @@
         <div class="info-content px-2" v-else>No informations available for this incident</div>
       </div>
       <div class="comment-information">
-        <table class="table table-bordered table-hover table-sm" id="incident-table">
+        <table class="table table-bordered table-hover table-sm" id="comment-table">
           <thead class="text-light">
           <tr>
             <th scope="col">COMMENTAIRES</th>
@@ -41,28 +43,44 @@
           </tbody>
         </table>
       </div>
+      <div class="superhero-information" v-if="superbeings">
+        <div class="info-nav pl-2 text-white">SUPERBEINGS</div>
+        <div v-for="superbeing in superbeings" :key="superbeing.id">
+          <div class=""> {{ superbeing.name }}</div>
+        </div>
+      </div>
+      <div class="superhero-information" v-else>
+        <div class="info-nav pl-2 text-white">SUPER-HÉROS</div>
+      <div class="info-content px-2" >No informations available for this incident</div>
+      </div>
+      <div class="civil-information" v-if="civils">
+        <div class="info-nav pl-2 text-white">CIVILS</div>
+        <div v-for="civil in civils" :key="civil.id">
+          <div class=""> {{ civil.name }}</div>
+        </div>
+      </div>
+      <div class="civil-information" v-else>
+        <div class="info-nav pl-2 text-white">SUPER-HÉROS</div>
+      <div class="info-content px-2" >No informations available for this incident</div>
+      </div>
+      <div class="organisation-information" v-if="organisations">
+        <div class="info-nav pl-2 text-white">ORGANISATIONS</div>
+        <div v-for="organisation in organisations" :key="organisation.id">
+          <div class=""> {{ organisation.name }}</div>
+        </div>
+      </div>
+      <div class="organisation-information" v-else>
+        <div class="info-nav pl-2 text-white">SUPER-HÉROS</div>
+      <div class="info-content px-2" >No informations available for this incident</div>
+      </div>
     </div>
   </div>
-
-
-  <div v-if="superbeings">
-
-    <div v-for="superbeing in superbeings" :key="superbeing.id"><span>{{ superbeing }}</span></div>
-  </div>
-  <div v-if="civils">
-    <div v-for="civil in civils" :key="civil.id"><span>{{ civil }}</span></div>
-  </div>
-  <div v-if="organisations">
-    <div v-for="organisation in organisations" :key="organisation.id">
-      <span>{{ organisation }}</span>
-    </div>
-  </div>
-
 </template>
 
 <script>
 
 import moment from "moment";
+import axios from "axios";
 
 export default {
   name: "IncidentDetail",
@@ -78,26 +96,20 @@ export default {
   },
   methods: {
     // 1
-    getIncidentDetails() {
-      fetch("/shield/incident/" + this.id)
-          .then(response => response.json())
-          .then(data => {
-            this.incident = data.incident;
-            this.comments = data.comments;
-            this.superbeings = data.superbeings;
-            this.civils = data.civils;
-            this.organisations = data.organisations;
-            // console.log(data.incident)
-            console.log(this.incident)
-            // console.log(data.comments)
-            console.log(this.comments)
-            // console.log(data.superbeings)
-            console.log(this.superbeings)
-            // console.log(data.civils)
-            // console.log(this.civils)
-            // console.log(data.organisations)
-            // console.log(this.organisations)
-
+    async getIncidentDetails() {
+      await axios.get("/shield/incident/" + this.id, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+          Authorization: 'Bearer ' + localStorage.getItem("token"),
+        }
+      })
+          .then(response => {
+            this.incident = response.data.incident;
+            this.comments = response.data.comments;
+            this.superbeings = response.data.superbeings;
+            this.civils = response.data.civils;
+            this.organisations = response.data.organisations;
           })
           .catch(err => console.log(err.message));
     },
@@ -119,7 +131,7 @@ export default {
 
   },
   mounted() {
-    this.created()
+    this.created();
   }
 }
 </script>
@@ -133,21 +145,26 @@ export default {
   display: grid;
   gap: 20px 20px;
   grid-template-areas:
-    "incident being ."
-    "comment media location";
+    "incident organisation organisation"
+    "comment civil superbeing";
 }
 
 .incident-information {
   grid-area: incident;
-  /*height: 26vh;*/
-  /*width: 45vw;*/
 }
-
 .comment-information {
   grid-area: comment;
-  /*height: 26vh;*/
-  /*width: 45vw;*/
 }
+.superhero-information {
+  grid-area: superbeing;
+}
+.civil-information {
+  grid-area: civil;
+}
+.organisation-information {
+  grid-area: organisation;
+}
+
 
 .grid-container-incident-info {
   display: grid;

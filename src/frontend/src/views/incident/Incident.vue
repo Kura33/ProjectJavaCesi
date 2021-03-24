@@ -1,13 +1,37 @@
 <template>
+  <div class="page-content p-5">
   <h1>CODE COULEUR POUR DANGEROSITE ET RESOLU</h1>
-  <div class="p-5 table-responsive">
+  <button class="back-btn btn btn-secondary mb-2">
+    <router-link :to="{ name: 'IncidentCreation'}">
+      Créer un incident</router-link>
+  </button>
+
+  <div class="table-responsive">
+    <div class="legende">
+      <div>
+        <h4>Dangerosité</h4>
+        <div>
+          <h6>Attention : </h6>
+          <span>Jaune : Au dessus de 40%</span>
+        </div>
+        <div>
+          <h6>Critique : </h6>
+          <span>Rouge : Au dessus de 70%</span>
+        </div>
+      </div>
+      <div>
+        <h4>Résolu</h4>
+        <span>Vert : Oui</span><br>
+        <span>Rouge : Non</span>
+      </div>
+    </div>
     <table class="table table-bordered table-hover table-sm" id="incident-table">
       <thead class="thead-dark text-light">
       <tr>
         <th scope="col">Référence</th>
         <th scope="col">Timeframe de l'incident</th>
         <th scope="col">Statut</th>
-        <th scope="col" >Dangerosité</th>
+        <th scope="col">Dangerosité</th>
         <th scope="col">Type d'incident</th>
         <th scope="col">Résolu</th>
         <th scope="col">Actions</th>
@@ -21,13 +45,14 @@
         <td> {{ incident.status }}</td>
         <td :class="incident.dangerousness > 70.00 ? 'table-danger'
             : incident.dangerousness > 40.00 ? 'table-warning': ''"
-        > {{ incident.dangerousness }}%
+        > {{ incident.dangerousness }}
         </td>
         <td> {{ incident.eventType }}</td>
         <td class="text-center"><span :class="incident.solved ? 'dot-true' : 'dot-false'"></span></td>
         <td>
           <div class="action-div">
-            <router-link :to="{ name: 'IncidentDetail', params: {id: incident.id}}" class="action-link"><img class="detail-img" src="@/assets/img/information-button.svg" alt="todo"></router-link>
+            <router-link :to="{ name: 'IncidentDetail', params: {id: incident.id}}" class="action-link"><img
+                class="detail-img" src="@/assets/img/information-button.svg" alt="todo"></router-link>
             <button class="action-button" v-if="incident.status === 'À prendre en charge'">
               <img class="to-do-img" src="@/assets/img/to-do.svg" alt="todo">
             </button>
@@ -42,39 +67,62 @@
       </tbody>
     </table>
   </div>
+  <div>{{ token }}</div>
 
+  </div>
 </template>
 
 <script>
-import $ from 'jquery'
+// import $ from 'jquery'
 import moment from 'moment'
-
+import axios from "axios";
 
 export default {
   name: "Incident",
   el: "#incident-table",
   data() {
     return {
-      incidents: null
+      incidents: null,
+      token: localStorage.getItem('user-token'),
     }
   },
   methods: {
     //1
-    getIncidentData() {
-      fetch("/shield/incident/")
-          .then(response => response.json())
-          .then((data) => {
-            let incidentList = [];
-            $.each(data, (incident) => {
-              incidentList.push(data[incident])
-            })
-            this.incidents = incidentList;
-          })
-          .catch(err => console.log(err.message));
+    // getIncidentData() {
+    //   fetch("/shield/incident/")
+    //       .then(response => response.json())
+    //       .then((data) => {
+    //         let incidentList = [];
+    //         $.each(data, (incident) => {
+    //           incidentList.push(data[incident])
+    //         })
+    //         this.incidents = incidentList;
+    //       })
+    //       .catch(err => console.log(err.message));
+    // },
+    async loadIncidents() {
+      await axios.get("/shield/incident/", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+          Authorization: 'Bearer ' + localStorage.getItem("token"),
+        }
+      })
+      .then(response => {
+        this.incidents = response.data
+      })
+
+      // console.log(this.incidents)
+      // console.log(response.data)
+          // .then(response => {
+          //
+          //   // this.incidents = response.data.data
+          // })
     },
     //2
     created() {
-      this.getIncidentData();
+      // this.getIncidentData();
+      this.loadIncidents();
 
     },
     //3
@@ -96,11 +144,20 @@ export default {
   text-align: center;
   vertical-align: center;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .to-do-img {
   width: 30px;
 }
 
 .detail-img {
   width: 30px;
+}
+
+.legende{
+  display: flex;
 }
 </style>
