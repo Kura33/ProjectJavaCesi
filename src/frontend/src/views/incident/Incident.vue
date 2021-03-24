@@ -10,12 +10,10 @@
       <div>
         <h4>Dangerosité</h4>
         <div>
-          <h6>Attention : </h6>
-          <span>Jaune : Au dessus de 40%</span>
+          <span>Attention : Jaune : Au dessus de 40%</span>
         </div>
         <div>
-          <h6>Critique : </h6>
-          <span>Rouge : Au dessus de 70%</span>
+          <span>Critique : Rouge : Au dessus de 70%</span>
         </div>
       </div>
       <div>

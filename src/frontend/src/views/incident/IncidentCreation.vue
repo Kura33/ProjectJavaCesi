@@ -69,6 +69,7 @@
 
 <script>
 import axios from "axios";
+import Incident from "@/views/incident/Incident";
 
 export default {
   name: "IncidentCreation",
@@ -111,9 +112,6 @@ export default {
       this.superbeing2 == true ? this.superbeings.push(2) : '';
       this.superbeing3 == true ? this.superbeings.push(3) : '';
 
-      console.log(this.civils)
-      console.log(this.superbeings)
-      console.log(this.organisations)
       const body = [
         {
           "ref": this.reference,
@@ -149,6 +147,7 @@ export default {
       })
           .then(response => {
             result = response.status === 200 ? 'Incident créé avec succès' : 'incident non créé';
+            this.$router.push(Incident)
 
 
             this.result = result;
