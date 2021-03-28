@@ -1,16 +1,18 @@
 <template>
   <div class="content w-25 m-auto">
-    <form action="" @submit.prevent="handleSubmit" method="post" class="flex flex-column">
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input v-model="email" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
-               placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input v-model="password" name="password" type="password" class="form-control" id="password"
-               placeholder="Password">
+    <form action="" @submit.prevent="handleSubmit" method="post" class="form-login">
+      <div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input v-model="email" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                 placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input v-model="password" name="password" type="password" class="form-control" id="password"
+                 placeholder="Password">
+        </div>
       </div>
       <button type="submit" class="btn btn-primary m-auto">Se connecter</button>
     </form>
@@ -37,14 +39,31 @@ export default {
     },
 
     async handleSubmit() {
-      const response = await axios.post(`/shield/login`, {
+      await axios.post(`/shield/login`, {
         email: this.email,
         password: this.password,
       })
-      localStorage.setItem("token", response.data.token)
-      this.$router.push(Incident)
+          .then(response => {
+            localStorage.setItem("token", response.data.token)
+            this.$router.push(Incident)
+            response.status === 200
+                ? this.$toast.success('Connexion réussie')
+                : this.$toast.error("La connexion n'a pu aboutir, veuillez réessayer ultérieurement")
+          })
 
     },
   },
 }
 </script>
+
+<style>
+.content {
+  width: 50%;
+}
+.form-login {
+  margin: 100px auto;
+  display: flex;
+  max-width: 500px;
+}
+
+</style>
