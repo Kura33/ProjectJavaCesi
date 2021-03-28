@@ -8,30 +8,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <router-link :to="{ name: 'Home'}" class="nav-link">Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-              :to="{ name: 'Incident'}"
-              v-slot="{ href, navigate }">
-            <a :href="href" @click="navigate" class="nav-link">Incidents</a>
+          <router-link :to="{ name: 'Home'}" class="nav-link">
+            <li class="nav-item active">Home</li>
           </router-link>
-        </li>
+          <router-link
+              :to="{ name: 'Incident'}" class="nav-link"><li class="nav-item">Incidents</li>
+          </router-link>
         <li class="nav-item">
           <a class="nav-link" href="#">Litiges</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Missions</a>
         </li>
-        <li class="nav-item">
-          <router-link
-              :to="{ name: 'Login'}"
-              v-slot="{ href, navigate }">
-            <a :href="href" @click="navigate" class="nav-link">Login</a>
-          </router-link>
-        </li>
-        <li class="nav-item" v-if="existingToken">
+        <router-link
+            :to="{ name: 'Login'}" class="nav-link"><li class="nav-item">Login</li>
+        </router-link>
+        <li class="nav-item" v-if="existingToken != null" :key="existingToken">
           <button class="btn btn-primary" @click="logout">Logout</button>
         </li>
 
@@ -53,9 +45,13 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem("token")
-      alert("Déconnexion effectuée avec succès")
+      this.$toast.success('Déconnexion réussie')
       this.$router.push(Home)
     }
+  },
+  mounted() {
+    console.log(this.existingToken)
+    this.$forceUpdate();
   }
 }
 </script>

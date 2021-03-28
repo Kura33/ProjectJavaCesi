@@ -1,3 +1,8 @@
+#app {
+    background-color: lightgray;
+    height: 100vh;
+}
+
 .action-div {
     display: flex;
     justify-content: space-evenly;
@@ -68,3 +73,6 @@
     margin: 10vh auto;
     opacity: .5;
 }
+ .table {
+     background-color: white;
+ }

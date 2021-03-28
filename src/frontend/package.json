@@ -8,15 +8,23 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@dafcoe/vue-notification": "^0.1.5",
+    "@vueform/multiselect": "^1.3.5",
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "moment": "^2.29.1",
     "sass": "^1.32.8",
-    "vue": "^3.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^3.0.2",
+    "vue": "^3.0.9",
     "vue-axios": "^3.2.4",
+    "vue-multiselect": "^2.1.6",
     "vue-router": "^4.0.5"
   },
   "devDependencies": {
+    "@meforma/vue-toaster": "^1.2.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
