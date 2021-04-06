@@ -3,7 +3,8 @@
   <div class="page-content p-5">
     <button @click="backward" class="back-btn btn btn-secondary mb-2">Retour</button>
     <div class="grid-container">
-      <div class="incident-information">
+      <!--      INFORMATIONS-->
+      <div class="incident-information bg-white">
         <div class="info-nav pl-2 text-white">INFORMATIONS</div>
         <div class="info-content px-2 grid-container-incident-info" v-if="incident">
           <div class="grid-item grid-item-1"><span>RÉFÉRENCE : </span><span>{{ incident.ref }}</span></div>
@@ -23,7 +24,8 @@
         </div>
         <div class="info-content px-2" v-else>No informations available for this incident</div>
       </div>
-      <div class="comment-information">
+      <!--      COMMENTS-->
+      <div class="comment-information bg-white">
         <table class="table table-bordered table-hover table-sm" id="comment-table">
           <thead class="text-light">
           <tr>
@@ -38,40 +40,73 @@
           </tbody>
           <tbody class="table-striped" v-else>
           <tr>
-            <td colspan="7">Aucun incident pour l'instant</td>
+            <td colspan="1">Aucun commentaire pour l'instant</td>
           </tr>
           </tbody>
         </table>
       </div>
-      <div class="superhero-information" v-if="superbeings">
-        <div class="info-nav pl-2 text-white">SUPERBEINGS</div>
-        <div v-for="superbeing in superbeings" :key="superbeing.id">
-          <div class=""> {{ superbeing.name }}</div>
-        </div>
+      <!--      SUPERHERO-->
+      <div class="superhero-information bg-white">
+        <table class="table table-bordered table-hover table-sm" id="superbeing-table">
+          <thead class="text-light">
+          <tr>
+            <th scope="col">SUPERBEINGS</th>
+          </tr>
+          </thead>
+
+          <tbody class="table-striped" v-if="superbeings">
+          <tr v-for="superbeing in superbeings" :key="superbeing.id">
+            <td>{{ superbeing.name }}</td>
+          </tr>
+          </tbody>
+          <tbody class="table-striped" v-else>
+          <tr>
+            <td colspan="1">Aucun superbeing pour l'instant</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="superhero-information" v-else>
-        <div class="info-nav pl-2 text-white">SUPER-HÉROS</div>
-      <div class="info-content px-2" >No informations available for this incident</div>
+      <!--      CIVILS-->
+      <div class="civil-information bg-white">
+        <table class="table table-bordered table-hover table-sm" id="civil-table">
+          <thead class="text-light">
+          <tr>
+            <th scope="col">CIVILS</th>
+          </tr>
+          </thead>
+
+          <tbody class="table-striped" v-if="superbeings">
+          <tr v-for="civil in civils" :key="civil.id">
+            <td>{{ civil.firstname }} {{ civil.lastname }}</td>
+          </tr>
+          </tbody>
+          <tbody class="table-striped" v-else>
+          <tr>
+            <td colspan="1">Aucun civil pour l'instant</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="civil-information" v-if="civils">
-        <div class="info-nav pl-2 text-white">CIVILS</div>
-        <div v-for="civil in civils" :key="civil.id">
-          <div class=""> {{ civil.firstname }} {{ civil.lastname }}</div>
-        </div>
-      </div>
-      <div class="civil-information" v-else>
-        <div class="info-nav pl-2 text-white">SUPER-HÉROS</div>
-      <div class="info-content px-2" >No informations available for this incident</div>
-      </div>
-      <div class="organisation-information" v-if="organisations">
-        <div class="info-nav pl-2 text-white">ORGANISATIONS</div>
-        <div v-for="organisation in organisations" :key="organisation.id">
-          <div class=""> {{ organisation.name }}</div>
-        </div>
-      </div>
-      <div class="organisation-information" v-else>
-        <div class="info-nav pl-2 text-white">SUPER-HÉROS</div>
-      <div class="info-content px-2" >No informations available for this incident</div>
+      <!--      ORGANISATIONS-->
+      <div class="organisation-information bg-white">
+        <table class="table table-bordered table-hover table-sm" id="organisation-table">
+          <thead class="text-light">
+          <tr>
+            <th scope="col">ORGANISATIONS</th>
+          </tr>
+          </thead>
+
+          <tbody class="table-striped" v-if="organisations">
+          <tr v-for="organisation in organisations" :key="organisation.id">
+            <td>{{ organisation.name }}</td>
+          </tr>
+          </tbody>
+          <tbody class="table-striped" v-else>
+          <tr>
+            <td colspan="1">Aucune organisations pour l'instant</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -152,15 +187,19 @@ export default {
 .incident-information {
   grid-area: incident;
 }
+
 .comment-information {
   grid-area: comment;
 }
+
 .superhero-information {
   grid-area: superbeing;
 }
+
 .civil-information {
   grid-area: civil;
 }
+
 .organisation-information {
   grid-area: organisation;
 }

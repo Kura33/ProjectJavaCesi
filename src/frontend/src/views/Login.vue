@@ -21,7 +21,6 @@
 
 <script>
 import axios from 'axios'
-import Incident from "@/views/incident/Incident";
 
 export default {
   name: "Login",
@@ -45,7 +44,7 @@ export default {
       })
           .then(response => {
             localStorage.setItem("token", response.data.token)
-            this.$router.push(Incident)
+            window.location.href="/api-shield/incident/";
             response.status === 200
                 ? this.$toast.success('Connexion réussie')
                 : this.$toast.error("La connexion n'a pu aboutir, veuillez réessayer ultérieurement")
@@ -63,6 +62,7 @@ export default {
 .form-login {
   margin: 100px auto;
   display: flex;
+  flex-direction: column;
   max-width: 500px;
 }
 
