@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Missions</a>
         </li>
-        <router-link
+        <router-link v-if="!existingToken"
             :to="{ name: 'Login'}" class="nav-link"><li class="nav-item">Login</li>
         </router-link>
         <li class="nav-item" v-if="existingToken != null" :key="existingToken">
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import Home from "@/views/Home";
 
 export default {
   name: "Nav",
@@ -45,8 +44,8 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem("token")
+      window.location.href="/";
       this.$toast.success('Déconnexion réussie')
-      this.$router.push(Home)
     }
   },
   mounted() {
